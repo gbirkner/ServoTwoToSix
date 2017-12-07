@@ -1,0 +1,112 @@
+\hypertarget{class_servo_steuerung}{}\section{Servo\+Steuerung Class Reference}
+\label{class_servo_steuerung}\index{Servo\+Steuerung@{Servo\+Steuerung}}
+
+
+{\ttfamily \#include $<$Servo\+Steuerung.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_servo_steuerung_a4d17a7eea78a5b9a0c5aa6bb5d25331e}{Servo\+Steuerung} (\hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}{Servo\+Type} n\+P\+W\+M\+Frequenz, uint16\+\_\+t n\+Null\+Stellung)
+\item 
+void \hyperlink{class_servo_steuerung_a462f39b2e0473d5330d9fbbe3a67d1f6}{Switch\+In\+Start} ()
+\begin{DoxyCompactList}\small\item\em Start timer 0 with timer value 0 on a rising edge of the switch-\/channel this timer starts counting on 0 to meassure the switch-\/position (3 positions) Start D\+TZ Timer synchron with P\+WM Timer Switch\+Timer\+: Counts to 255 in 4,096ms =$>$ 1 step = 0.\+016ms `$\ast$ =$>$ 600µs = 37.\+5 steps $<$ 66 steps = Switch\+Position 0° =$>$ 1.\+5ms = 93.\+75 steps $<$ 122 steps = Switch\+Position 90° =$>$ 2.\+4ms = 150 steps $>$ 122 steps = Switch\+Position 180° \end{DoxyCompactList}\item 
+void \hyperlink{class_servo_steuerung_a7e89377b3caff64108bfee0080c487a6}{Switch\+In\+Stop} ()
+\begin{DoxyCompactList}\small\item\em stops timer0 at falling edge of the switch-\/channel and calculates the needed outputs for the tristate buffers Switchposition near 0°\+: servo1+2 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 near 90°\+: servo3+4 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 near 180°\+:servo5+6 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 to avoid interrupt disturbance while calculating all interrupts are disabled temporally \end{DoxyCompactList}\item 
+void \hyperlink{class_servo_steuerung_ae2a1bd8f3af267a0d2ab9f809608d47f}{Stop\+P\+WM} ()
+\begin{DoxyCompactList}\small\item\em stops Servo P\+WM Timer 1 and drive\+To\+Zero\+Timer\+: all Servos not signaled are set to \hyperlink{_servo_steuerung_8h_ac82622e58c08ce8436c732ba91b5bdfca3262d48df5d75e3452f0f16b313b7808}{Servo\+State\+::off} \end{DoxyCompactList}\item 
+\hyperlink{class_servo_steuerung_a38e63ec98ee12ea62b806f1d0907e40e}{Servo\+Steuerung} ()
+\item 
+\hyperlink{class_servo_steuerung_a774ff059cae5862d95f303160d8d86ee}{$\sim$\+Servo\+Steuerung} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{class_servo_steuerung_acb713feae67029353e82186aa63712a6}{drive\+To\+Zero\+Delay}
+\item 
+uint8\+\_\+t \hyperlink{class_servo_steuerung_aa6df43ef121ba9ce5d0336f9678f8e70}{drive\+To\+Zero\+Counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_servo_steuerung_a4d17a7eea78a5b9a0c5aa6bb5d25331e}\label{class_servo_steuerung_a4d17a7eea78a5b9a0c5aa6bb5d25331e}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Servo\+Steuerung@{Servo\+Steuerung}}
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{Servo\+Steuerung()}{ServoSteuerung()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Servo\+Steuerung\+::\+Servo\+Steuerung (\begin{DoxyParamCaption}\item[{\hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}{Servo\+Type}}]{n\+P\+W\+M\+Frequenz,  }\item[{uint16\+\_\+t}]{n\+Null\+Stellung }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_servo_steuerung_a38e63ec98ee12ea62b806f1d0907e40e}\label{class_servo_steuerung_a38e63ec98ee12ea62b806f1d0907e40e}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Servo\+Steuerung@{Servo\+Steuerung}}
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{Servo\+Steuerung()}{ServoSteuerung()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Servo\+Steuerung\+::\+Servo\+Steuerung (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_servo_steuerung_a774ff059cae5862d95f303160d8d86ee}\label{class_servo_steuerung_a774ff059cae5862d95f303160d8d86ee}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!````~Servo\+Steuerung@{$\sim$\+Servo\+Steuerung}}
+\index{````~Servo\+Steuerung@{$\sim$\+Servo\+Steuerung}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{$\sim$\+Servo\+Steuerung()}{~ServoSteuerung()}}
+{\footnotesize\ttfamily Servo\+Steuerung\+::$\sim$\+Servo\+Steuerung (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_servo_steuerung_ae2a1bd8f3af267a0d2ab9f809608d47f}\label{class_servo_steuerung_ae2a1bd8f3af267a0d2ab9f809608d47f}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Stop\+P\+WM@{Stop\+P\+WM}}
+\index{Stop\+P\+WM@{Stop\+P\+WM}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{Stop\+P\+W\+M()}{StopPWM()}}
+{\footnotesize\ttfamily void Servo\+Steuerung\+::\+Stop\+P\+WM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+stops Servo P\+WM Timer 1 and drive\+To\+Zero\+Timer\+: all Servos not signaled are set to \hyperlink{_servo_steuerung_8h_ac82622e58c08ce8436c732ba91b5bdfca3262d48df5d75e3452f0f16b313b7808}{Servo\+State\+::off} 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo_steuerung_a462f39b2e0473d5330d9fbbe3a67d1f6}\label{class_servo_steuerung_a462f39b2e0473d5330d9fbbe3a67d1f6}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Switch\+In\+Start@{Switch\+In\+Start}}
+\index{Switch\+In\+Start@{Switch\+In\+Start}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{Switch\+In\+Start()}{SwitchInStart()}}
+{\footnotesize\ttfamily void Servo\+Steuerung\+::\+Switch\+In\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start timer 0 with timer value 0 on a rising edge of the switch-\/channel this timer starts counting on 0 to meassure the switch-\/position (3 positions) Start D\+TZ Timer synchron with P\+WM Timer Switch\+Timer\+: Counts to 255 in 4,096ms =$>$ 1 step = 0.\+016ms `$\ast$ =$>$ 600µs = 37.\+5 steps $<$ 66 steps = Switch\+Position 0° =$>$ 1.\+5ms = 93.\+75 steps $<$ 122 steps = Switch\+Position 90° =$>$ 2.\+4ms = 150 steps $>$ 122 steps = Switch\+Position 180° 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo_steuerung_a7e89377b3caff64108bfee0080c487a6}\label{class_servo_steuerung_a7e89377b3caff64108bfee0080c487a6}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!Switch\+In\+Stop@{Switch\+In\+Stop}}
+\index{Switch\+In\+Stop@{Switch\+In\+Stop}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{Switch\+In\+Stop()}{SwitchInStop()}}
+{\footnotesize\ttfamily void Servo\+Steuerung\+::\+Switch\+In\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+stops timer0 at falling edge of the switch-\/channel and calculates the needed outputs for the tristate buffers Switchposition near 0°\+: servo1+2 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 near 90°\+: servo3+4 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 near 180°\+:servo5+6 get the server-\/input signals 1+2 the previous selected servos get the internal pwm (midlle position) of timer1 for 0.\+5s and then logic 0 to avoid interrupt disturbance while calculating all interrupts are disabled temporally 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_servo_steuerung_aa6df43ef121ba9ce5d0336f9678f8e70}\label{class_servo_steuerung_aa6df43ef121ba9ce5d0336f9678f8e70}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!drive\+To\+Zero\+Counter@{drive\+To\+Zero\+Counter}}
+\index{drive\+To\+Zero\+Counter@{drive\+To\+Zero\+Counter}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{drive\+To\+Zero\+Counter}{driveToZeroCounter}}
+{\footnotesize\ttfamily uint8\+\_\+t Servo\+Steuerung\+::drive\+To\+Zero\+Counter}
+
+\mbox{\Hypertarget{class_servo_steuerung_acb713feae67029353e82186aa63712a6}\label{class_servo_steuerung_acb713feae67029353e82186aa63712a6}} 
+\index{Servo\+Steuerung@{Servo\+Steuerung}!drive\+To\+Zero\+Delay@{drive\+To\+Zero\+Delay}}
+\index{drive\+To\+Zero\+Delay@{drive\+To\+Zero\+Delay}!Servo\+Steuerung@{Servo\+Steuerung}}
+\subsubsection{\texorpdfstring{drive\+To\+Zero\+Delay}{driveToZeroDelay}}
+{\footnotesize\ttfamily uint8\+\_\+t Servo\+Steuerung\+::drive\+To\+Zero\+Delay}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_servo_steuerung_8h}{Servo\+Steuerung.\+h}\item 
+\hyperlink{_servo_steuerung_8cpp}{Servo\+Steuerung.\+cpp}\end{DoxyCompactItemize}

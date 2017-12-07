@@ -1,0 +1,508 @@
+\hypertarget{_general_8h}{}\section{Servo\+To\+To\+Six/\+General.h File Reference}
+\label{_general_8h}\index{Servo\+To\+To\+Six/\+General.\+h@{Servo\+To\+To\+Six/\+General.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_general_8h_a6c8fad838ed64cc67da3f68149009758}{A\+U\+T\+H\+OR}~\char`\"{}gert birkner\char`\"{}
+\item 
+\#define \hyperlink{_general_8h_a66d6a95c2ba69f100898e9a415dfea64}{C\+O\+M\+P\+A\+NY}~\char`\"{}b\+Sd electronics\char`\"{}
+\item 
+\#define \hyperlink{_general_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}{V\+E\+R\+S\+I\+ON}~\char`\"{}1.\+0\char`\"{}
+\item 
+\#define \hyperlink{_general_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}~1
+\item 
+\#define \hyperlink{_general_8h_a65e9886d74aaee76545e83dd09011727}{false}~0
+\item 
+\#define \hyperlink{_general_8h_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}~16000000
+\item 
+\#define \hyperlink{_general_8h_aa346e2f38f22de5364d9a9ee13d85c15}{S\+E\+T\+\_\+\+B\+IT}(P\+O\+RT,  B\+I\+T\+N\+UM)~((P\+O\+RT) $\vert$= (1$<$$<$(B\+I\+T\+N\+UM)))
+\item 
+\#define \hyperlink{_general_8h_ad689e54b7db82527b1944b4566cc4957}{C\+L\+E\+A\+R\+\_\+\+B\+IT}(P\+O\+RT,  B\+I\+T\+N\+UM)~((P\+O\+RT) \&= $\sim$(1$<$$<$(B\+I\+T\+N\+UM)))
+\item 
+\#define \hyperlink{_general_8h_af19efcbcd1f9686564acdb835521a2ec}{T\+O\+O\+G\+L\+E\+\_\+\+B\+IT}(P\+O\+RT,  B\+I\+T\+N\+UM)~((P\+O\+RT) $^\wedge$= (1$<$$<$(B\+I\+T\+N\+UM)))
+\item 
+\#define \hyperlink{_general_8h_a51359f06341028a775a7f590e9d6ffed}{Sig\+In\+Switch\+Port}~P\+O\+R\+TD
+\item 
+\#define \hyperlink{_general_8h_a354db194436a3f9ad89bf0307af4ad48}{Sig\+In\+Switch\+Dir}~D\+D\+RD
+\item 
+\#define \hyperlink{_general_8h_af4ef5d5a2b63df79bae734bf706e0c0e}{Sig\+I\+N\+Switch\+Input}~P\+I\+ND
+\item 
+\#define \hyperlink{_general_8h_afbe9e1ecbecc45a82c1f397a63ad935b}{Sig\+In\+Switch\+Pin}~P\+O\+R\+T\+D2
+\item 
+\#define \hyperlink{_general_8h_a64a1ae629bf74fb4f72b389f56d82e48}{I\+S\+P\+Port}~P\+O\+R\+TB
+\item 
+\#define \hyperlink{_general_8h_affc1921d57686f6e33c021d9e498374f}{Mosi\+Pin}~P\+O\+R\+T\+B3
+\item 
+\#define \hyperlink{_general_8h_a0f2076345560530dd6cfd03e1a973e4f}{Miso\+Pin}~P\+O\+R\+T\+B4
+\item 
+\#define \hyperlink{_general_8h_aacfca87972d3d95285f3a3b321eb2a37}{Sck\+Pin}~P\+O\+R\+T\+B5
+\item 
+\#define \hyperlink{_general_8h_abbdd6b7821662a6d6e6a08f022258a8c}{Reset\+Port}~P\+O\+R\+TC
+\item 
+\#define \hyperlink{_general_8h_ab0d7bf9cbf338fa1c79bbec0b8d56d29}{Reset\+Pin}~P\+O\+R\+T\+C6
+\item 
+\#define \hyperlink{_general_8h_a5e5b8b9f891dacac1cc9200a0b27f5bd}{P\+W\+M\+Out\+Port}~P\+O\+R\+TB
+\item 
+\#define \hyperlink{_general_8h_a76ad7433fddb619d5959f04be42cc491}{P\+W\+M\+Out\+Dir}~D\+D\+RB
+\item 
+\#define \hyperlink{_general_8h_a6718251532f09978dca37dab5b6575f4}{P\+W\+M\+Out1\+Pin}~P\+O\+R\+T\+B1
+\item 
+\#define \hyperlink{_general_8h_af8b9fcc9613adb367fe40bf20ba3b9c5}{P\+W\+M\+O\+U\+T2\+Pin}~P\+O\+R\+T\+B2
+\item 
+\#define \hyperlink{_general_8h_aa728842717f570d242a14c35f698968c}{Pwm\+On\+Port}~P\+O\+R\+TC
+\item 
+\#define \hyperlink{_general_8h_a2cc27e37c8ede41ccee4048844bba26d}{Pwm\+On\+Dir}~D\+D\+RC
+\item 
+\#define \hyperlink{_general_8h_a5dad95355b60260ef129761c04225046}{Pwm\+On12\+Pin}~P\+O\+R\+T\+C0
+\item 
+\#define \hyperlink{_general_8h_a7edc0353cfa9ec06aac5809fd364dda4}{Pwm\+On34\+Pin}~P\+O\+R\+T\+C1
+\item 
+\#define \hyperlink{_general_8h_a4794feed12b799b354e38cde0e69fa27}{Pwm\+On56\+Pin}~P\+O\+R\+T\+C2
+\item 
+\#define \hyperlink{_general_8h_aef114dcec90dfc1d9778e511fa029735}{Servo\+Open\+Port}~P\+O\+R\+TD
+\item 
+\#define \hyperlink{_general_8h_ae4c977a80ddc3b3a4f050ed24c4e7beb}{Servo\+Open\+Dir}~D\+D\+RD
+\item 
+\#define \hyperlink{_general_8h_afd5c545c2bfe7c12c406ebbf7c31a667}{S\+V12\+Open\+Pin}~P\+O\+R\+T\+D3
+\item 
+\#define \hyperlink{_general_8h_ab59a2e1b8f448e88929d9f66008c150b}{S\+V34\+Open\+Pin}~P\+O\+R\+T\+D4
+\item 
+\#define \hyperlink{_general_8h_a1e25dc0afd8f47b428554208fe3dfbe4}{S\+V56\+Open\+Pin}~P\+O\+R\+T\+D5
+\item 
+\#define \hyperlink{_general_8h_a45a3c5c1fc1766c020b8292cf705c279}{Switch\+Timer\+Start256}()~((T\+C\+C\+R0B) $\vert$= (1 $<$$<$ (C\+S02)))
+\item 
+\#define \hyperlink{_general_8h_a3bf1bd2bd13d9375492d295c898c1559}{Switch\+Timer\+Stopp}()~((T\+C\+C\+R0B) \&= $\sim$((1 $<$$<$ (C\+S02)) $\vert$ (1 $<$$<$ (C\+S01)) $\vert$ (1 $<$$<$ (C\+S00)) ))
+\item 
+\#define \hyperlink{_general_8h_aeffe271e2b8fa82848501f51305d3300}{P\+W\+M\+Timer\+Start8}()~((T\+C\+C\+R1B) $\vert$= (1 $<$$<$ (C\+S11)))
+\item 
+\#define \hyperlink{_general_8h_a4fbd292bb9d8bad4911eb378eae5097e}{P\+W\+M\+Timer\+Stopp}()~((T\+C\+C\+R1B) \&= $\sim$((1 $<$$<$ (C\+S12)) $\vert$ (1 $<$$<$ (C\+S11)) $\vert$ (1 $<$$<$ (C\+S10)) ))
+\item 
+\#define \hyperlink{_general_8h_a8ed24c25c338da7a650f3112788b6d04}{Dt\+Z\+Timer\+Start1024}()~((T\+C\+C\+R2B) $\vert$= ((1 $<$$<$ (C\+S22)) $\vert$ (1 $<$$<$ (C\+S21)) $\vert$ (1 $<$$<$ (C\+S20)) ))
+\item 
+\#define \hyperlink{_general_8h_a6d593e82dfa2b05df9492a8e79ea5e07}{Dt\+Z\+Timer\+Stop}()~((T\+C\+C\+R2B) \&= $\sim$((1 $<$$<$ (C\+S22)) $\vert$ (1 $<$$<$ (C\+S21)) $\vert$ (1 $<$$<$ (C\+S20)) ))
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}{Servo\+Type} \{ \hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3a646a65ffce62accc20b934c3eb523a6b}{analog} = 50, 
+\hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3af720a8609e573fd4d5a00470faa39ac1}{digital} = 300
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_general_8h_a6c8fad838ed64cc67da3f68149009758}\label{_general_8h_a6c8fad838ed64cc67da3f68149009758}} 
+\index{General.\+h@{General.\+h}!A\+U\+T\+H\+OR@{A\+U\+T\+H\+OR}}
+\index{A\+U\+T\+H\+OR@{A\+U\+T\+H\+OR}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{A\+U\+T\+H\+OR}{AUTHOR}}
+{\footnotesize\ttfamily \#define A\+U\+T\+H\+OR~\char`\"{}gert birkner\char`\"{}}
+
+
+
+Definition at line 9 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_ad689e54b7db82527b1944b4566cc4957}\label{_general_8h_ad689e54b7db82527b1944b4566cc4957}} 
+\index{General.\+h@{General.\+h}!C\+L\+E\+A\+R\+\_\+\+B\+IT@{C\+L\+E\+A\+R\+\_\+\+B\+IT}}
+\index{C\+L\+E\+A\+R\+\_\+\+B\+IT@{C\+L\+E\+A\+R\+\_\+\+B\+IT}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{C\+L\+E\+A\+R\+\_\+\+B\+IT}{CLEAR\_BIT}}
+{\footnotesize\ttfamily \#define C\+L\+E\+A\+R\+\_\+\+B\+IT(\begin{DoxyParamCaption}\item[{}]{P\+O\+RT,  }\item[{}]{B\+I\+T\+N\+UM }\end{DoxyParamCaption})~((P\+O\+RT) \&= $\sim$(1$<$$<$(B\+I\+T\+N\+UM)))}
+
+
+
+Definition at line 22 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a66d6a95c2ba69f100898e9a415dfea64}\label{_general_8h_a66d6a95c2ba69f100898e9a415dfea64}} 
+\index{General.\+h@{General.\+h}!C\+O\+M\+P\+A\+NY@{C\+O\+M\+P\+A\+NY}}
+\index{C\+O\+M\+P\+A\+NY@{C\+O\+M\+P\+A\+NY}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+M\+P\+A\+NY}{COMPANY}}
+{\footnotesize\ttfamily \#define C\+O\+M\+P\+A\+NY~\char`\"{}b\+Sd electronics\char`\"{}}
+
+
+
+Definition at line 10 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a8ed24c25c338da7a650f3112788b6d04}\label{_general_8h_a8ed24c25c338da7a650f3112788b6d04}} 
+\index{General.\+h@{General.\+h}!Dt\+Z\+Timer\+Start1024@{Dt\+Z\+Timer\+Start1024}}
+\index{Dt\+Z\+Timer\+Start1024@{Dt\+Z\+Timer\+Start1024}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Dt\+Z\+Timer\+Start1024}{DtZTimerStart1024}}
+{\footnotesize\ttfamily \#define Dt\+Z\+Timer\+Start1024(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R2B) $\vert$= ((1 $<$$<$ (C\+S22)) $\vert$ (1 $<$$<$ (C\+S21)) $\vert$ (1 $<$$<$ (C\+S20)) ))}
+
+
+
+Definition at line 64 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a6d593e82dfa2b05df9492a8e79ea5e07}\label{_general_8h_a6d593e82dfa2b05df9492a8e79ea5e07}} 
+\index{General.\+h@{General.\+h}!Dt\+Z\+Timer\+Stop@{Dt\+Z\+Timer\+Stop}}
+\index{Dt\+Z\+Timer\+Stop@{Dt\+Z\+Timer\+Stop}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Dt\+Z\+Timer\+Stop}{DtZTimerStop}}
+{\footnotesize\ttfamily \#define Dt\+Z\+Timer\+Stop(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R2B) \&= $\sim$((1 $<$$<$ (C\+S22)) $\vert$ (1 $<$$<$ (C\+S21)) $\vert$ (1 $<$$<$ (C\+S20)) ))}
+
+
+
+Definition at line 65 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a43bafb28b29491ec7f871319b5a3b2f8}\label{_general_8h_a43bafb28b29491ec7f871319b5a3b2f8}} 
+\index{General.\+h@{General.\+h}!F\+\_\+\+C\+PU@{F\+\_\+\+C\+PU}}
+\index{F\+\_\+\+C\+PU@{F\+\_\+\+C\+PU}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{F\+\_\+\+C\+PU}{F\_CPU}}
+{\footnotesize\ttfamily \#define F\+\_\+\+C\+PU~16000000}
+
+
+
+Definition at line 19 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a65e9886d74aaee76545e83dd09011727}\label{_general_8h_a65e9886d74aaee76545e83dd09011727}} 
+\index{General.\+h@{General.\+h}!false@{false}}
+\index{false@{false}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily \#define false~0}
+
+
+
+Definition at line 14 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a64a1ae629bf74fb4f72b389f56d82e48}\label{_general_8h_a64a1ae629bf74fb4f72b389f56d82e48}} 
+\index{General.\+h@{General.\+h}!I\+S\+P\+Port@{I\+S\+P\+Port}}
+\index{I\+S\+P\+Port@{I\+S\+P\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{I\+S\+P\+Port}{ISPPort}}
+{\footnotesize\ttfamily \#define I\+S\+P\+Port~P\+O\+R\+TB}
+
+
+
+Definition at line 34 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a0f2076345560530dd6cfd03e1a973e4f}\label{_general_8h_a0f2076345560530dd6cfd03e1a973e4f}} 
+\index{General.\+h@{General.\+h}!Miso\+Pin@{Miso\+Pin}}
+\index{Miso\+Pin@{Miso\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Miso\+Pin}{MisoPin}}
+{\footnotesize\ttfamily \#define Miso\+Pin~P\+O\+R\+T\+B4}
+
+
+
+Definition at line 36 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_affc1921d57686f6e33c021d9e498374f}\label{_general_8h_affc1921d57686f6e33c021d9e498374f}} 
+\index{General.\+h@{General.\+h}!Mosi\+Pin@{Mosi\+Pin}}
+\index{Mosi\+Pin@{Mosi\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Mosi\+Pin}{MosiPin}}
+{\footnotesize\ttfamily \#define Mosi\+Pin~P\+O\+R\+T\+B3}
+
+
+
+Definition at line 35 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a5dad95355b60260ef129761c04225046}\label{_general_8h_a5dad95355b60260ef129761c04225046}} 
+\index{General.\+h@{General.\+h}!Pwm\+On12\+Pin@{Pwm\+On12\+Pin}}
+\index{Pwm\+On12\+Pin@{Pwm\+On12\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Pwm\+On12\+Pin}{PwmOn12Pin}}
+{\footnotesize\ttfamily \#define Pwm\+On12\+Pin~P\+O\+R\+T\+C0}
+
+
+
+Definition at line 48 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a7edc0353cfa9ec06aac5809fd364dda4}\label{_general_8h_a7edc0353cfa9ec06aac5809fd364dda4}} 
+\index{General.\+h@{General.\+h}!Pwm\+On34\+Pin@{Pwm\+On34\+Pin}}
+\index{Pwm\+On34\+Pin@{Pwm\+On34\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Pwm\+On34\+Pin}{PwmOn34Pin}}
+{\footnotesize\ttfamily \#define Pwm\+On34\+Pin~P\+O\+R\+T\+C1}
+
+
+
+Definition at line 49 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a4794feed12b799b354e38cde0e69fa27}\label{_general_8h_a4794feed12b799b354e38cde0e69fa27}} 
+\index{General.\+h@{General.\+h}!Pwm\+On56\+Pin@{Pwm\+On56\+Pin}}
+\index{Pwm\+On56\+Pin@{Pwm\+On56\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Pwm\+On56\+Pin}{PwmOn56Pin}}
+{\footnotesize\ttfamily \#define Pwm\+On56\+Pin~P\+O\+R\+T\+C2}
+
+
+
+Definition at line 50 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a2cc27e37c8ede41ccee4048844bba26d}\label{_general_8h_a2cc27e37c8ede41ccee4048844bba26d}} 
+\index{General.\+h@{General.\+h}!Pwm\+On\+Dir@{Pwm\+On\+Dir}}
+\index{Pwm\+On\+Dir@{Pwm\+On\+Dir}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Pwm\+On\+Dir}{PwmOnDir}}
+{\footnotesize\ttfamily \#define Pwm\+On\+Dir~D\+D\+RC}
+
+
+
+Definition at line 47 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_aa728842717f570d242a14c35f698968c}\label{_general_8h_aa728842717f570d242a14c35f698968c}} 
+\index{General.\+h@{General.\+h}!Pwm\+On\+Port@{Pwm\+On\+Port}}
+\index{Pwm\+On\+Port@{Pwm\+On\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Pwm\+On\+Port}{PwmOnPort}}
+{\footnotesize\ttfamily \#define Pwm\+On\+Port~P\+O\+R\+TC}
+
+
+
+Definition at line 46 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a6718251532f09978dca37dab5b6575f4}\label{_general_8h_a6718251532f09978dca37dab5b6575f4}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+Out1\+Pin@{P\+W\+M\+Out1\+Pin}}
+\index{P\+W\+M\+Out1\+Pin@{P\+W\+M\+Out1\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Out1\+Pin}{PWMOut1Pin}}
+{\footnotesize\ttfamily \#define P\+W\+M\+Out1\+Pin~P\+O\+R\+T\+B1}
+
+
+
+Definition at line 43 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_af8b9fcc9613adb367fe40bf20ba3b9c5}\label{_general_8h_af8b9fcc9613adb367fe40bf20ba3b9c5}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+O\+U\+T2\+Pin@{P\+W\+M\+O\+U\+T2\+Pin}}
+\index{P\+W\+M\+O\+U\+T2\+Pin@{P\+W\+M\+O\+U\+T2\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+O\+U\+T2\+Pin}{PWMOUT2Pin}}
+{\footnotesize\ttfamily \#define P\+W\+M\+O\+U\+T2\+Pin~P\+O\+R\+T\+B2}
+
+
+
+Definition at line 44 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a76ad7433fddb619d5959f04be42cc491}\label{_general_8h_a76ad7433fddb619d5959f04be42cc491}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+Out\+Dir@{P\+W\+M\+Out\+Dir}}
+\index{P\+W\+M\+Out\+Dir@{P\+W\+M\+Out\+Dir}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Out\+Dir}{PWMOutDir}}
+{\footnotesize\ttfamily \#define P\+W\+M\+Out\+Dir~D\+D\+RB}
+
+
+
+Definition at line 42 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a5e5b8b9f891dacac1cc9200a0b27f5bd}\label{_general_8h_a5e5b8b9f891dacac1cc9200a0b27f5bd}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+Out\+Port@{P\+W\+M\+Out\+Port}}
+\index{P\+W\+M\+Out\+Port@{P\+W\+M\+Out\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Out\+Port}{PWMOutPort}}
+{\footnotesize\ttfamily \#define P\+W\+M\+Out\+Port~P\+O\+R\+TB}
+
+
+
+Definition at line 41 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_aeffe271e2b8fa82848501f51305d3300}\label{_general_8h_aeffe271e2b8fa82848501f51305d3300}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+Timer\+Start8@{P\+W\+M\+Timer\+Start8}}
+\index{P\+W\+M\+Timer\+Start8@{P\+W\+M\+Timer\+Start8}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Timer\+Start8}{PWMTimerStart8}}
+{\footnotesize\ttfamily \#define P\+W\+M\+Timer\+Start8(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R1B) $\vert$= (1 $<$$<$ (C\+S11)))}
+
+
+
+Definition at line 61 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a4fbd292bb9d8bad4911eb378eae5097e}\label{_general_8h_a4fbd292bb9d8bad4911eb378eae5097e}} 
+\index{General.\+h@{General.\+h}!P\+W\+M\+Timer\+Stopp@{P\+W\+M\+Timer\+Stopp}}
+\index{P\+W\+M\+Timer\+Stopp@{P\+W\+M\+Timer\+Stopp}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Timer\+Stopp}{PWMTimerStopp}}
+{\footnotesize\ttfamily \#define P\+W\+M\+Timer\+Stopp(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R1B) \&= $\sim$((1 $<$$<$ (C\+S12)) $\vert$ (1 $<$$<$ (C\+S11)) $\vert$ (1 $<$$<$ (C\+S10)) ))}
+
+
+
+Definition at line 62 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_ab0d7bf9cbf338fa1c79bbec0b8d56d29}\label{_general_8h_ab0d7bf9cbf338fa1c79bbec0b8d56d29}} 
+\index{General.\+h@{General.\+h}!Reset\+Pin@{Reset\+Pin}}
+\index{Reset\+Pin@{Reset\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Reset\+Pin}{ResetPin}}
+{\footnotesize\ttfamily \#define Reset\+Pin~P\+O\+R\+T\+C6}
+
+
+
+Definition at line 39 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_abbdd6b7821662a6d6e6a08f022258a8c}\label{_general_8h_abbdd6b7821662a6d6e6a08f022258a8c}} 
+\index{General.\+h@{General.\+h}!Reset\+Port@{Reset\+Port}}
+\index{Reset\+Port@{Reset\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Reset\+Port}{ResetPort}}
+{\footnotesize\ttfamily \#define Reset\+Port~P\+O\+R\+TC}
+
+
+
+Definition at line 38 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_aacfca87972d3d95285f3a3b321eb2a37}\label{_general_8h_aacfca87972d3d95285f3a3b321eb2a37}} 
+\index{General.\+h@{General.\+h}!Sck\+Pin@{Sck\+Pin}}
+\index{Sck\+Pin@{Sck\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Sck\+Pin}{SckPin}}
+{\footnotesize\ttfamily \#define Sck\+Pin~P\+O\+R\+T\+B5}
+
+
+
+Definition at line 37 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_ae4c977a80ddc3b3a4f050ed24c4e7beb}\label{_general_8h_ae4c977a80ddc3b3a4f050ed24c4e7beb}} 
+\index{General.\+h@{General.\+h}!Servo\+Open\+Dir@{Servo\+Open\+Dir}}
+\index{Servo\+Open\+Dir@{Servo\+Open\+Dir}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Servo\+Open\+Dir}{ServoOpenDir}}
+{\footnotesize\ttfamily \#define Servo\+Open\+Dir~D\+D\+RD}
+
+
+
+Definition at line 53 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_aef114dcec90dfc1d9778e511fa029735}\label{_general_8h_aef114dcec90dfc1d9778e511fa029735}} 
+\index{General.\+h@{General.\+h}!Servo\+Open\+Port@{Servo\+Open\+Port}}
+\index{Servo\+Open\+Port@{Servo\+Open\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Servo\+Open\+Port}{ServoOpenPort}}
+{\footnotesize\ttfamily \#define Servo\+Open\+Port~P\+O\+R\+TD}
+
+
+
+Definition at line 52 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_aa346e2f38f22de5364d9a9ee13d85c15}\label{_general_8h_aa346e2f38f22de5364d9a9ee13d85c15}} 
+\index{General.\+h@{General.\+h}!S\+E\+T\+\_\+\+B\+IT@{S\+E\+T\+\_\+\+B\+IT}}
+\index{S\+E\+T\+\_\+\+B\+IT@{S\+E\+T\+\_\+\+B\+IT}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+B\+IT}{SET\_BIT}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+B\+IT(\begin{DoxyParamCaption}\item[{}]{P\+O\+RT,  }\item[{}]{B\+I\+T\+N\+UM }\end{DoxyParamCaption})~((P\+O\+RT) $\vert$= (1$<$$<$(B\+I\+T\+N\+UM)))}
+
+
+
+Definition at line 21 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a354db194436a3f9ad89bf0307af4ad48}\label{_general_8h_a354db194436a3f9ad89bf0307af4ad48}} 
+\index{General.\+h@{General.\+h}!Sig\+In\+Switch\+Dir@{Sig\+In\+Switch\+Dir}}
+\index{Sig\+In\+Switch\+Dir@{Sig\+In\+Switch\+Dir}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Sig\+In\+Switch\+Dir}{SigInSwitchDir}}
+{\footnotesize\ttfamily \#define Sig\+In\+Switch\+Dir~D\+D\+RD}
+
+
+
+Definition at line 30 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_af4ef5d5a2b63df79bae734bf706e0c0e}\label{_general_8h_af4ef5d5a2b63df79bae734bf706e0c0e}} 
+\index{General.\+h@{General.\+h}!Sig\+I\+N\+Switch\+Input@{Sig\+I\+N\+Switch\+Input}}
+\index{Sig\+I\+N\+Switch\+Input@{Sig\+I\+N\+Switch\+Input}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Sig\+I\+N\+Switch\+Input}{SigINSwitchInput}}
+{\footnotesize\ttfamily \#define Sig\+I\+N\+Switch\+Input~P\+I\+ND}
+
+
+
+Definition at line 31 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_afbe9e1ecbecc45a82c1f397a63ad935b}\label{_general_8h_afbe9e1ecbecc45a82c1f397a63ad935b}} 
+\index{General.\+h@{General.\+h}!Sig\+In\+Switch\+Pin@{Sig\+In\+Switch\+Pin}}
+\index{Sig\+In\+Switch\+Pin@{Sig\+In\+Switch\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Sig\+In\+Switch\+Pin}{SigInSwitchPin}}
+{\footnotesize\ttfamily \#define Sig\+In\+Switch\+Pin~P\+O\+R\+T\+D2}
+
+
+
+Definition at line 32 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a51359f06341028a775a7f590e9d6ffed}\label{_general_8h_a51359f06341028a775a7f590e9d6ffed}} 
+\index{General.\+h@{General.\+h}!Sig\+In\+Switch\+Port@{Sig\+In\+Switch\+Port}}
+\index{Sig\+In\+Switch\+Port@{Sig\+In\+Switch\+Port}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Sig\+In\+Switch\+Port}{SigInSwitchPort}}
+{\footnotesize\ttfamily \#define Sig\+In\+Switch\+Port~P\+O\+R\+TD}
+
+
+
+Definition at line 29 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_afd5c545c2bfe7c12c406ebbf7c31a667}\label{_general_8h_afd5c545c2bfe7c12c406ebbf7c31a667}} 
+\index{General.\+h@{General.\+h}!S\+V12\+Open\+Pin@{S\+V12\+Open\+Pin}}
+\index{S\+V12\+Open\+Pin@{S\+V12\+Open\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{S\+V12\+Open\+Pin}{SV12OpenPin}}
+{\footnotesize\ttfamily \#define S\+V12\+Open\+Pin~P\+O\+R\+T\+D3}
+
+
+
+Definition at line 54 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_ab59a2e1b8f448e88929d9f66008c150b}\label{_general_8h_ab59a2e1b8f448e88929d9f66008c150b}} 
+\index{General.\+h@{General.\+h}!S\+V34\+Open\+Pin@{S\+V34\+Open\+Pin}}
+\index{S\+V34\+Open\+Pin@{S\+V34\+Open\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{S\+V34\+Open\+Pin}{SV34OpenPin}}
+{\footnotesize\ttfamily \#define S\+V34\+Open\+Pin~P\+O\+R\+T\+D4}
+
+
+
+Definition at line 55 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a1e25dc0afd8f47b428554208fe3dfbe4}\label{_general_8h_a1e25dc0afd8f47b428554208fe3dfbe4}} 
+\index{General.\+h@{General.\+h}!S\+V56\+Open\+Pin@{S\+V56\+Open\+Pin}}
+\index{S\+V56\+Open\+Pin@{S\+V56\+Open\+Pin}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{S\+V56\+Open\+Pin}{SV56OpenPin}}
+{\footnotesize\ttfamily \#define S\+V56\+Open\+Pin~P\+O\+R\+T\+D5}
+
+
+
+Definition at line 56 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a45a3c5c1fc1766c020b8292cf705c279}\label{_general_8h_a45a3c5c1fc1766c020b8292cf705c279}} 
+\index{General.\+h@{General.\+h}!Switch\+Timer\+Start256@{Switch\+Timer\+Start256}}
+\index{Switch\+Timer\+Start256@{Switch\+Timer\+Start256}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Switch\+Timer\+Start256}{SwitchTimerStart256}}
+{\footnotesize\ttfamily \#define Switch\+Timer\+Start256(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R0B) $\vert$= (1 $<$$<$ (C\+S02)))}
+
+
+
+Definition at line 58 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a3bf1bd2bd13d9375492d295c898c1559}\label{_general_8h_a3bf1bd2bd13d9375492d295c898c1559}} 
+\index{General.\+h@{General.\+h}!Switch\+Timer\+Stopp@{Switch\+Timer\+Stopp}}
+\index{Switch\+Timer\+Stopp@{Switch\+Timer\+Stopp}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Switch\+Timer\+Stopp}{SwitchTimerStopp}}
+{\footnotesize\ttfamily \#define Switch\+Timer\+Stopp(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((T\+C\+C\+R0B) \&= $\sim$((1 $<$$<$ (C\+S02)) $\vert$ (1 $<$$<$ (C\+S01)) $\vert$ (1 $<$$<$ (C\+S00)) ))}
+
+
+
+Definition at line 59 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_af19efcbcd1f9686564acdb835521a2ec}\label{_general_8h_af19efcbcd1f9686564acdb835521a2ec}} 
+\index{General.\+h@{General.\+h}!T\+O\+O\+G\+L\+E\+\_\+\+B\+IT@{T\+O\+O\+G\+L\+E\+\_\+\+B\+IT}}
+\index{T\+O\+O\+G\+L\+E\+\_\+\+B\+IT@{T\+O\+O\+G\+L\+E\+\_\+\+B\+IT}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{T\+O\+O\+G\+L\+E\+\_\+\+B\+IT}{TOOGLE\_BIT}}
+{\footnotesize\ttfamily \#define T\+O\+O\+G\+L\+E\+\_\+\+B\+IT(\begin{DoxyParamCaption}\item[{}]{P\+O\+RT,  }\item[{}]{B\+I\+T\+N\+UM }\end{DoxyParamCaption})~((P\+O\+RT) $^\wedge$= (1$<$$<$(B\+I\+T\+N\+UM)))}
+
+
+
+Definition at line 23 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}\label{_general_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}} 
+\index{General.\+h@{General.\+h}!true@{true}}
+\index{true@{true}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \#define true~1}
+
+
+
+Definition at line 13 of file General.\+h.
+
+\mbox{\Hypertarget{_general_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}\label{_general_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}} 
+\index{General.\+h@{General.\+h}!V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}}
+\index{V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{V\+E\+R\+S\+I\+ON}{VERSION}}
+{\footnotesize\ttfamily \#define V\+E\+R\+S\+I\+ON~\char`\"{}1.\+0\char`\"{}}
+
+
+
+Definition at line 11 of file General.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}\label{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}} 
+\index{General.\+h@{General.\+h}!Servo\+Type@{Servo\+Type}}
+\index{Servo\+Type@{Servo\+Type}!General.\+h@{General.\+h}}
+\subsubsection{\texorpdfstring{Servo\+Type}{ServoType}}
+{\footnotesize\ttfamily enum \hyperlink{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3}{Servo\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{analog@{analog}!General.\+h@{General.\+h}}\index{General.\+h@{General.\+h}!analog@{analog}}}\mbox{\Hypertarget{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3a646a65ffce62accc20b934c3eb523a6b}\label{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3a646a65ffce62accc20b934c3eb523a6b}} 
+analog&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{digital@{digital}!General.\+h@{General.\+h}}\index{General.\+h@{General.\+h}!digital@{digital}}}\mbox{\Hypertarget{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3af720a8609e573fd4d5a00470faa39ac1}\label{_general_8h_ad0662fc04fff667bd896f8d92bebb0f3af720a8609e573fd4d5a00470faa39ac1}} 
+digital&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 68 of file General.\+h.
+
