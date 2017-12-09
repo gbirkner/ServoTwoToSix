@@ -10,6 +10,7 @@
 #define	false	0
 
 #define F_CPU	16000000UL
+#define BAUD_RATE 19200UL
 
 //////////////////////////////////////////////////////////////////////////
 //                   EEPROM Settings                                    //
