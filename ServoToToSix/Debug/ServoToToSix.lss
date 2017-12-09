@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000200  00000000  00000000  00001898  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00003d7b  00000000  00000000  00001a98  2**0
+  6 .debug_info   00004370  00000000  00000000  00001a98  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000c1b  00000000  00000000  00005813  2**0
+  7 .debug_abbrev 000011d5  00000000  00000000  00005e08  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000010cc  00000000  00000000  0000642e  2**0
+  8 .debug_line   000010ec  00000000  00000000  00006fdd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000680  00000000  00000000  000074fc  2**2
+  9 .debug_frame  00000680  00000000  00000000  000080cc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000d7a  00000000  00000000  00007b7c  2**0
+ 10 .debug_str    00000f82  00000000  00000000  0000874c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001c1c  00000000  00000000  000088f6  2**0
+ 11 .debug_loc    00001c1c  00000000  00000000  000096ce  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001e0  00000000  00000000  0000a512  2**0
+ 12 .debug_ranges 000001e0  00000000  00000000  0000b2ea  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -503,11 +503,11 @@ ServoEEPROM initValues;
      32e:	08 95       	ret
 
 00000330 <_ZN6myUartC1Ev>:
-	write(dtostrf(d, 9, precision, s), linefeed);
-}
-
-
-// default constructor
+ *  default constructor 
+ *  inits the UART0 Interface -> Baud, 8 Databits, 1 stop, no parity
+ * 
+ * \return 
+ */
 myUart::myUart() {
      330:	23 e3       	ldi	r18, 0x33	; 51
      332:	30 e0       	ldi	r19, 0x00	; 0
@@ -535,8 +535,11 @@ myUart::~myUart() {
      350:	08 95       	ret
 
 00000352 <_ZN6myUart4readEPhh>:
-} //~uart
-
+ *  max. number of chars
+ *
+ * \return uint8_t
+ *  number of read chars without \0
+ */
 uint8_t myUart::read(unsigned char *x, uint8_t size) {
      352:	0f 93       	push	r16
      354:	1f 93       	push	r17
@@ -585,7 +588,7 @@ uint8_t myUart::read(unsigned char *x, uint8_t size) {
      38c:	9c 93       	st	X, r25
 		i++;
      38e:	8f 5f       	subi	r24, 0xFF	; 255
-
+ */
 uint8_t myUart::read(unsigned char *x, uint8_t size) {
 	uint8_t i = 0;
 	if (size == 0) return 0;				// return 0 if no space
@@ -615,9 +618,9 @@ uint8_t myUart::read(unsigned char *x, uint8_t size) {
      3ac:	10 82       	st	Z, r1
 	return i;				// return number of characters written (incl. '\0')
      3ae:	01 c0       	rjmp	.+2      	; 0x3b2 <_ZN6myUart4readEPhh+0x60>
-myUart::~myUart() {
-} //~uart
-
+ * \return uint8_t
+ *  number of read chars without \0
+ */
 uint8_t myUart::read(unsigned char *x, uint8_t size) {
 	uint8_t i = 0;
 	if (size == 0) return 0;				// return 0 if no space
@@ -635,7 +638,10 @@ uint8_t myUart::read(unsigned char *x, uint8_t size) {
      3ba:	08 95       	ret
 
 000003bc <_ZN6myUart4readEv>:
-
+ *  reads a single char from UART
+ * 
+ * \return unsigned char
+ */
 unsigned char myUart::read() {
 	while( !(UCSR0A & (1<<RXC0)));
      3bc:	e0 ec       	ldi	r30, 0xC0	; 192
@@ -649,7 +655,10 @@ unsigned char myUart::read() {
      3ca:	08 95       	ret
 
 000003cc <_ZN6myUart6enableEv>:
-
+ *  enables UART0 recieve and transmit modes
+ * 
+ * \return void
+ */
 void myUart::enable() {
 	  UCSR0B |= (1<<RXEN0) | (1<<TXEN0);  // UART RX, TX 
      3cc:	e1 ec       	ldi	r30, 0xC1	; 193
@@ -660,8 +669,10 @@ void myUart::enable() {
      3d6:	08 95       	ret
 
 000003d8 <_ZN6myUart7disableEv>:
-}
-
+ *  disables recieve and transmitt for UART0
+ * 
+ * \return void
+ */
 void myUart::disable() {
 	UCSR0B &= ~((1<<RXEN0) | (1<<TXEN0));  // UART RX, TX 
      3d8:	e1 ec       	ldi	r30, 0xC1	; 193
@@ -672,10 +683,10 @@ void myUart::disable() {
      3e2:	08 95       	ret
 
 000003e4 <_ZN6myUart4LfCrEv>:
-	write((unsigned char)('['));
-	write((unsigned char)('H'));
-}
-
+ *  to display proper Linefeed
+ * 
+ * \return void
+ */
 void myUart::LfCr() {
 	while(!(UCSR0A & (1 << UDRE0))) {	}
      3e4:	e0 ec       	ldi	r30, 0xC0	; 192
@@ -698,11 +709,11 @@ void myUart::LfCr() {
      404:	08 95       	ret
 
 00000406 <_ZN6myUart5writeEhb>:
-
-
-#include <myUart.h>
-
-
+ * \param linefeed
+ *  if true ... send CR and LF
+ *  default value = false
+ * \return void
+ */
 void myUart::write(unsigned char c, bool linefeed /*= false*/) {
      406:	9c 01       	movw	r18, r24
 	while(!(UCSR0A & (1 << UDRE0))) {	}
@@ -722,11 +733,11 @@ void myUart::write(unsigned char c, bool linefeed /*= false*/) {
      420:	08 95       	ret
 
 00000422 <_ZN6myUart3clsEv>:
-
-void myUart::disable() {
-	UCSR0B &= ~((1<<RXEN0) | (1<<TXEN0));  // UART RX, TX 
-}
-
+ *  send clear screen command for VT100 Terminal
+ *  with Escape sequences
+ * 
+ * \return void
+ */
 void myUart::cls() {
      422:	cf 93       	push	r28
      424:	df 93       	push	r29
@@ -771,11 +782,11 @@ void myUart::cls() {
      470:	08 95       	ret
 
 00000472 <_ZN6myUart5writeEPcb>:
-		LfCr();
-	}
-
-}
-
+ * \param linefeed
+ *  if true .. send CR and LF
+ *  default value = false
+ * \return void
+ */
 void myUart::write(char *s, bool linefeed /*= false*/) {
      472:	ff 92       	push	r15
      474:	0f 93       	push	r16
@@ -794,10 +805,10 @@ void myUart::write(char *s, bool linefeed /*= false*/) {
      48a:	40 e0       	ldi	r20, 0x00	; 0
      48c:	c8 01       	movw	r24, r16
      48e:	0e 94 03 02 	call	0x406	; 0x406 <_ZN6myUart5writeEhb>
-	}
-
-}
-
+ *  if true .. send CR and LF
+ *  default value = false
+ * \return void
+ */
 void myUart::write(char *s, bool linefeed /*= false*/) {
 	while (*s) {
      492:	69 91       	ld	r22, Y+
@@ -820,7 +831,11 @@ void myUart::write(char *s, bool linefeed /*= false*/) {
      4ac:	08 95       	ret
 
 000004ae <_ZN6myUart5writeEib>:
-
+ * \param linefeed
+ *  is handed over to write for char arrays; 
+ *  default value = false
+ * \return void
+ */
 void myUart::write(int16_t i, bool linefeed /*= false*/) {
      4ae:	ff 92       	push	r15
      4b0:	0f 93       	push	r16
@@ -873,7 +888,11 @@ void myUart::write(int16_t i, bool linefeed /*= false*/) {
      4fe:	08 95       	ret
 
 00000500 <_ZN6myUart5writeEjb>:
-
+ * \param linefeed
+ *  is handed over to write for char arrays
+ *  default value is false
+ * \return void
+ */
 void myUart::write(uint16_t i, bool linefeed /*= false*/) {
      500:	ff 92       	push	r15
      502:	0f 93       	push	r16

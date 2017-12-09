@@ -87,12 +87,5 @@ enum class ServoType {
 };
 
 
-enum class uartMenuState {
-	MainMenu = 0,
-	ServoTypeMenu,
-	NullStellungMenu,
-	AngleRangeMenu
-};
-
 #endif
 
