@@ -86,6 +86,7 @@ ISR(SigInServo1Interrupt) {
  *  to avoid disruptions on servo signals
  */
 ISR(ThreeMsCountInterrupt) {
+	PORTC ^= (1 << PORTC5);
 	Servo2To6::setNewPositions();
 	Servo2To6::ThreeMsCounter(false);
 	if (Servo2To6::PWMActive == false) {
