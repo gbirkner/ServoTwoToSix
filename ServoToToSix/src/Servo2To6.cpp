@@ -89,33 +89,38 @@ uint8_t Servo2To6::getPosition(uint8_t position) {
 }
 
 void Servo2To6::setNewPositions() {
-	switch (SwitchPosition) 
-	{
-		case 0:			
-			ServoOpenPort |= (1 << SV12OpenPin);
-			break;
-		case 1:
-			ServoOpenPort |= (1 << SV34OpenPin);
-			break;
-		case 2:
-			ServoOpenPort |= (1 << SV56OpenPin);
-			break;
-	}
-	switch (NewSwitchPosition)
-	{
+
+	ServoOpenPort &= ~(SV1To6OpenPins);
+
+	switch (NewSwitchPosition) {
 		case 0:
-			ServoOpenPort &= ~(1 << SV12OpenPin);
-			PwmOnPort |= (1 << PwmOn12Pin);
+			PwmOnPort &= ~(1 << PwmOn12Pin);
+			ServoOpenPort |= (1 << SV12OpenPin);
+			if(SwitchPosition == 1) {
+				PwmOnPort |= (1 << PwmOn34Pin);
+			} else if (SwitchPosition == 2) {
+				PwmOnPort |= (1 << PwmOn56Pin);
+			}
 			break;
 		case 1:
-		ServoOpenPort &= ~(1 << SV34OpenPin);
-			PwmOnPort |= (1 << PwmOn34Pin);
+			PwmOnPort &= ~(1 << PwmOn34Pin);
+			ServoOpenPort |= (1 << SV34OpenPin);
+			if(SwitchPosition == 0) {
+				PwmOnPort |= (1 << PwmOn12Pin);
+			} else if (SwitchPosition == 2) {
+				PwmOnPort |= (1 << PwmOn56Pin);
+			}
 			break;
 		case 2:
-			ServoOpenPort &= ~(1 << SV56OpenPin);
-			PwmOnPort |= (1 << PwmOn56Pin);
+			PwmOnPort &= ~(1 << PwmOn34Pin);
+			ServoOpenPort |= (1 << SV56OpenPin);
+			if(SwitchPosition == 0) {
+				PwmOnPort |= (1 << PwmOn12Pin);
+			} else if (SwitchPosition == 1) {
+				PwmOnPort |= (1 << PwmOn34Pin);
+			}
 			break;
-	}
+	} // switch (NewSwitchPosition)
 	SwitchPosition = NewSwitchPosition;
 }
 
@@ -193,7 +198,7 @@ void Servo2To6::PWMTimer(bool start)
 void Servo2To6::ThreeMsCounter(bool start)
 {
 	if(start) {
-		TCCR2B |=  (1 << CS22);
+		TCCR2B |= (1 << CS22);
 	} else {
 		TCCR2B &=  ~((1 << CS22) | (1 << CS21) | (1 << CS20));
 	}
