@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  0000005c  00000000  00000000  0000139c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003bf  00000000  00000000  000013f8  2**0
+ 10 .debug_str    000003af  00000000  00000000  000013f8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000000b1  00000000  00000000  000017b7  2**0
+ 11 .debug_loc    000000b1  00000000  00000000  000017a7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000018  00000000  00000000  00001868  2**0
+ 12 .debug_ranges 00000018  00000000  00000000  00001858  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -176,28 +176,28 @@ int main(void)
   d6:	88 81       	ld	r24, Y
   d8:	80 6a       	ori	r24, 0xA0	; 160
   da:	88 83       	st	Y, r24
-	ICR1 = 39999; // - 10000;			// set Frequency for analog Servomotors (50Hz) => (16MHz / N=8 / 50 Hz) - 1 = 39999 
+	ICR1 = 39999; // - 10000;					// set Frequency for analog Servomotors (50Hz) => (16MHz / N=8 / 50 Hz) - 1 = 39999 
   dc:	8f e3       	ldi	r24, 0x3F	; 63
   de:	9c e9       	ldi	r25, 0x9C	; 156
   e0:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
   e4:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
 	
 	// init PWM Timer0 (switch query)
-	TIMSK0 |= (1 << TOIE0);		// ~61 times per second
+	TIMSK0 |= (1 << TOIE0);					// ~61 times per second
   e8:	ce e6       	ldi	r28, 0x6E	; 110
   ea:	d0 e0       	ldi	r29, 0x00	; 0
   ec:	88 81       	ld	r24, Y
   ee:	81 60       	ori	r24, 0x01	; 1
   f0:	88 83       	st	Y, r24
 
-	servoSwitch = SwitchPos[0];		// Switchservo to default (0°)
+	servoSwitch = SwitchPos[0];				// Switchservo to default (0°)
   f2:	8d 91       	ld	r24, X+
   f4:	9c 91       	ld	r25, X
   f6:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
   fa:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
 	SwitchIdx = 0;
   fe:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <SwitchIdx>
-	servo1 = 1200;					// Servo 1 to default (90°)
+	servo1 = 1200;							// Servo 1 to default (90°)
  102:	80 eb       	ldi	r24, 0xB0	; 176
  104:	94 e0       	ldi	r25, 0x04	; 4
  106:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
@@ -234,7 +234,7 @@ ISR(TIMER0_OVF_vect) {
  136:	9f 93       	push	r25
  138:	ef 93       	push	r30
  13a:	ff 93       	push	r31
-	uint8_t newPosition = SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin));
+	uint8_t newPosition = (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
  13c:	89 b1       	in	r24, 0x09	; 9
  13e:	83 70       	andi	r24, 0x03	; 3
 	if((newPosition == SwitchIdx) && (SwitchCount < SwitchDelay)) {
@@ -355,7 +355,7 @@ ISR(TIMER0_OVF_vect) {
 	}
  20e:	10 c0       	rjmp	.+32     	; 0x230 <__vector_16+0x10a>
 ISR(TIMER0_OVF_vect) {
-	uint8_t newPosition = SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin));
+	uint8_t newPosition = (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
 	if((newPosition == SwitchIdx) && (SwitchCount < SwitchDelay)) {
 		SwitchCount++;
 	} else {
@@ -370,7 +370,7 @@ ISR(TIMER0_OVF_vect) {
 }
 
 ISR(TIMER0_OVF_vect) {
-	uint8_t newPosition = SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin));
+	uint8_t newPosition = (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
 	if((newPosition == SwitchIdx) && (SwitchCount < SwitchDelay)) {
 		SwitchCount++;
  21e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
