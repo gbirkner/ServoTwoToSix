@@ -7,10 +7,6 @@ Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ServoToToSix", "ServoToToSi
 EndProject
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ServoTestUnit", "ServoTestUnit\ServoTestUnit.cppproj", "{72F75856-666B-4C3E-B0B0-378B9CC0874F}"
 EndProject
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ServoTwoToSixDebug", "ServoTwoToSixDebug\ServoTwoToSixDebug.cppproj", "{3A002265-D636-48D4-9E3C-8D7F92C67C64}"
-EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Basic Peripherals mega328pb", "Basic Peripherals mega328pb\Basic Peripherals mega328pb.cproj", "{6B393742-2536-496B-BF2E-84D4BB96C8B9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -25,14 +21,6 @@ Global
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Debug|AVR.Build.0 = Debug|AVR
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Release|AVR.ActiveCfg = Release|AVR
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Release|AVR.Build.0 = Release|AVR
-		{3A002265-D636-48D4-9E3C-8D7F92C67C64}.Debug|AVR.ActiveCfg = Debug|AVR
-		{3A002265-D636-48D4-9E3C-8D7F92C67C64}.Debug|AVR.Build.0 = Debug|AVR
-		{3A002265-D636-48D4-9E3C-8D7F92C67C64}.Release|AVR.ActiveCfg = Release|AVR
-		{3A002265-D636-48D4-9E3C-8D7F92C67C64}.Release|AVR.Build.0 = Release|AVR
-		{6B393742-2536-496B-BF2E-84D4BB96C8B9}.Debug|AVR.ActiveCfg = Debug|AVR
-		{6B393742-2536-496B-BF2E-84D4BB96C8B9}.Debug|AVR.Build.0 = Debug|AVR
-		{6B393742-2536-496B-BF2E-84D4BB96C8B9}.Release|AVR.ActiveCfg = Release|AVR
-		{6B393742-2536-496B-BF2E-84D4BB96C8B9}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

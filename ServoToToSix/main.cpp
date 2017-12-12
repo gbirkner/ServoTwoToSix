@@ -21,7 +21,7 @@ int main(void) {
 		usartHelpers::MainMenu();
 		uart.cls();
 		uart.write((char*)"Setup per UART is inactive and Port multiplier is running .....\0");		
-		uart.disable();
+		uart.disable();		
 	}
 
 	sei();

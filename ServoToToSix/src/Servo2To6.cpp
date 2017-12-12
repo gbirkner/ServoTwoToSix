@@ -70,13 +70,15 @@
 	PCICR |= (1 << PCIE1);			// PCINT11 -> SigS1:  any logical change on PC3 generates an Interrupt
 
 	initPWMTimer1();
+	TCCR2B |= (1 << WGM21);			// CTC Mode ThreemsTimer 2
+	OCR2A = 188;					// 3ms =((F_CPU / N / 1000) * 3)
+	TIMSK2 |= (1 << OCIE2A);		// enable Timer2 interrupt reaching OCR2A value
 	SwitchSenseISR(true);
 }
 
 
 
-uint8_t Servo2To6::getPosition(uint8_t position)
-{
+uint8_t Servo2To6::getPosition(uint8_t position) {
 	if (position <= _MinDecision) {
 		return 0;
 	} else if (position >= _MaxDecision) {
@@ -86,35 +88,49 @@ uint8_t Servo2To6::getPosition(uint8_t position)
 	}
 }
 
-void Servo2To6::setNewPositions()
-{
-	switch (SwitchPosition) 
-	{
-		case 0:			
-			ServoOpenPort |= (1 << SV12OpenPin);
-			break;
-		case 1:
-			ServoOpenPort |= (1 << SV34OpenPin);
-			break;
-		case 2:
-			ServoOpenPort |= (1 << SV56OpenPin);
-			break;
-	}
-	switch (NewSwitchPosition)
-	{
+void Servo2To6::setNewPositions() {
+
+	ServoOpenPort &= ~(SV1To6OpenPins);
+
+	switch (NewSwitchPosition) {
 		case 0:
-			ServoOpenPort &= ~(1 << SV12OpenPin);
-			PwmOnPort |= (1 << PwmOn12Pin);
+			PwmOnPort &= ~(1 << PwmOn12Pin);
+			ServoOpenPort |= (1 << SV12OpenPin);
+
+			switch(SwitchPosition) {
+				case 1:
+					PwmOnPort |= (1 << PwmOn34Pin);	
+					break;
+				case 2:
+					PwmOnPort |= (1 << PwmOn56Pin);
+					break;
+			}
 			break;
 		case 1:
-		ServoOpenPort &= ~(1 << SV34OpenPin);
-			PwmOnPort |= (1 << PwmOn34Pin);
+			PwmOnPort &= ~(1 << PwmOn34Pin);
+			ServoOpenPort |= (1 << SV34OpenPin);
+			switch(SwitchPosition) {
+				case 0:
+					PwmOnPort |= (1 << PwmOn12Pin);
+					break;
+				case 2:
+					PwmOnPort |= (1 << PwmOn56Pin);
+					break;
+			}
 			break;
 		case 2:
-			ServoOpenPort &= ~(1 << SV56OpenPin);
-			PwmOnPort |= (1 << PwmOn56Pin);
+			PwmOnPort &= ~(1 << PwmOn34Pin);
+			ServoOpenPort |= (1 << SV56OpenPin);
+			switch(SwitchPosition) {
+				case 0:
+					PwmOnPort |= (1 << PwmOn12Pin);
+					break;
+				case 1:
+					PwmOnPort |= (1 << PwmOn34Pin);
+					break;
+			}
 			break;
-	}
+	} // switch (NewSwitchPosition)
 	SwitchPosition = NewSwitchPosition;
 }
 
@@ -184,7 +200,7 @@ void Servo2To6::PWMTimer(bool start)
 
 /**
  * \brief 
- * starts/stops 3msTimer, sets prescaler to 1024/0
+ * starts/stops 3msTimer, sets prescaler to 256/0
  * \param start
  *	true .. start Timer2; false .. stop timer2
  * \return void
@@ -192,7 +208,7 @@ void Servo2To6::PWMTimer(bool start)
 void Servo2To6::ThreeMsCounter(bool start)
 {
 	if(start) {
-		TCCR2B |=  (1 << CS22) | (1 << CS21) | (1 << CS20);
+		TCCR2B |= (1 << CS22);
 	} else {
 		TCCR2B &=  ~((1 << CS22) | (1 << CS21) | (1 << CS20));
 	}
@@ -206,11 +222,9 @@ void Servo2To6::ThreeMsCounter(bool start)
  * \return void
  */
 void Servo2To6::initPWMTimer1() {	
-	PWMOutDir |= (1 << PWMOut1Pin);				// Timer1 OC1A output
 	TCCR1A |= (1 << WGM11);
 	TCCR1B |= (1 << WGM12) | (1 << WGM13);		// Fast PWM Mode
-	TCCR1A |= (1 << COM1A1);
-	
+	TCCR1A |= (1 << COM1A1);					// config output pin pb1 as PWM Timer output in not inverting mode
 	OCR1A = _MidAngle;
 	switch (_servoType)
 	{

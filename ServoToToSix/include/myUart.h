@@ -1,8 +1,21 @@
 /* 
 * uart.h
+* Simple UART class for uart0 on atmega32
+* Overloaded methods write for different datatypes
+* no string needed, but every char array must be '\0' terminated
+* to ensure correct char array length
+* reading can be done by reading only one char or a char array handed over as char* and size
 *
-* Created: 06.07.2017 14:02:00
-* Author: gert
+* uart must be enabled and can be disabled to start/stop sensing uart port and bind/unbind the rx and tx pins 
+*
+* with every write method a linefeed can be carried out with the second parameter (boolean), default is no linefeed
+* Linefeed and ClearScreen can be executed with extra methods and these are VT100 and above compatible
+*
+* TODO: insert parameters to contructor (Baud-rate)
+* TODO: use different uarts on different controllers
+*
+* Created: 06.12.2017
+* Author: gert birkner bSd 
 */
 
 
@@ -17,13 +30,19 @@
 #define UART_LF	'\n'
 #define UART_CR '\r'
 
+
+/*
+*\brief
+* UART standard class to write char, char*, integers, float and double
+* and to read char and char*
+*/
 class myUart {
 
 //variables
 public:
 	
 private:
-	const uint16_t UBRR_VAL = 51; // ((F_CPU+BAUD*8)/(BAUD*16)-1)
+	const uint16_t UBRR_VAL = (((F_CPU+BAUD_RATE*8)/(BAUD_RATE*16))-1); // 51 for Baudrate 19200 und f_cpu = 16MHz
 
 //functions
 public:

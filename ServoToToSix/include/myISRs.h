@@ -57,10 +57,13 @@ ISR(SwitchSenseInterrupt) {
  *
  */
 ISR(SigInServo1Interrupt) {
-	PORTD |= (1 << PORTD7); //DEBUG
-	if(SigInSwitchInput & (1 << SigInServo1Pin)) {
+	
+	if(SigInInput & (1 << SigInServo1Pin)) {
+		
 		if(Servo2To6::setNewValues) {
+			PORTD ^= (1 << PORTD7); //DEBUG
 			TCNT2 = 0;
+			Servo2To6::setNewValues=false;
 			Servo2To6::ThreeMsCounter(true);
 			Servo2To6::SigInServo1ISR(false);
 		} else if (Servo2To6::PWMSynchronizing) {
@@ -71,6 +74,7 @@ ISR(SigInServo1Interrupt) {
 			Servo2To6::DTZValue++;
 			if (Servo2To6::DTZValue >= Servo2To6::DelayValue) {
 				Servo2To6::PWMTimer(false);
+				PwmOnPort &= PwmON1To6Pins;
 				Servo2To6::PWMActive = false;
 			}
 			TCNT0 = 0;
@@ -86,6 +90,7 @@ ISR(SigInServo1Interrupt) {
  *  to avoid disruptions on servo signals
  */
 ISR(ThreeMsCountInterrupt) {
+	PORTC ^= (1 << PORTC5);
 	Servo2To6::setNewPositions();
 	Servo2To6::ThreeMsCounter(false);
 	if (Servo2To6::PWMActive == false) {

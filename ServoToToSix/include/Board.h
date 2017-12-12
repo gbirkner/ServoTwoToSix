@@ -10,6 +10,7 @@
 #define	false	0
 
 #define F_CPU	16000000UL
+#define BAUD_RATE 19200UL
 
 //////////////////////////////////////////////////////////////////////////
 //                   EEPROM Settings                                    //
@@ -65,6 +66,7 @@
 #define PwmOn12Pin				PORTC0
 #define PwmOn34Pin				PORTC1
 #define PwmOn56Pin				PORTC2
+#define PwmON1To6Pins			0b00000111	// alle Pwm On Pins together
 #define PWMRunning				5
 #define ServoToChange			4
 
@@ -73,6 +75,7 @@
 #define SV12OpenPin				PORTD3
 #define SV34OpenPin				PORTD4
 #define SV56OpenPin				PORTD5
+#define SV1To6OpenPins			0b00111000	// alle ServoOpenPins together
 
 #define SwitchSenseInterrupt	INT0_vect			// INT0 Interrupt falling and rising edge to meassure the switch position
 								
@@ -86,13 +89,6 @@ enum class ServoType {
 	digital300 = 300
 };
 
-
-enum class uartMenuState {
-	MainMenu = 0,
-	ServoTypeMenu,
-	NullStellungMenu,
-	AngleRangeMenu
-};
 
 #endif
 

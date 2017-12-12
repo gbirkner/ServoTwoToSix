@@ -52,14 +52,14 @@ int main(void)
 	TCCR1B |= (1 << WGM12) | (1 << WGM13);		// Timer Mode FastPWM
 
 	TCCR1A |= (1 << COM1A1) | (1 << COM1B1);	// enable Timeroutputpins (non-inverting mode)
-	ICR1 = 39999; // - 10000;			// set Frequency for analog Servomotors (50Hz) => (16MHz / N=8 / 50 Hz) - 1 = 39999 
+	ICR1 = 39999; // - 10000;					// set Frequency for analog Servomotors (50Hz) => (16MHz / N=8 / 50 Hz) - 1 = 39999 
 	
 	// init PWM Timer0 (switch query)
-	TIMSK0 |= (1 << TOIE0);		// ~61 times per second
+	TIMSK0 |= (1 << TOIE0);					// ~61 times per second
 
-	servoSwitch = SwitchPos[0];		// Switchservo to default (0°)
+	servoSwitch = SwitchPos[0];				// Switchservo to default (0°)
 	SwitchIdx = 0;
-	servo1 = 1200;					// Servo 1 to default (90°)
+	servo1 = 1200;							// Servo 1 to default (90°)
 	SwitchCount = 0; 
 	TCCR0B |= (1 << CS02) | (1 << CS00);
 	TCCR1B |= (1 << CS11);					//set prescaler N = 8 for 16MHz and start Timer 1
@@ -69,7 +69,7 @@ int main(void)
 }
 
 ISR(TIMER0_OVF_vect) {
-	uint8_t newPosition = SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin));
+	uint8_t newPosition = (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
 	if((newPosition == SwitchIdx) && (SwitchCount < SwitchDelay)) {
 		SwitchCount++;
 	} else {
