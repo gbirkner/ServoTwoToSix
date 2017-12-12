@@ -96,28 +96,38 @@ void Servo2To6::setNewPositions() {
 		case 0:
 			PwmOnPort &= ~(1 << PwmOn12Pin);
 			ServoOpenPort |= (1 << SV12OpenPin);
-			if(SwitchPosition == 1) {
-				PwmOnPort |= (1 << PwmOn34Pin);
-			} else if (SwitchPosition == 2) {
-				PwmOnPort |= (1 << PwmOn56Pin);
+
+			switch(SwitchPosition) {
+				case 1:
+					PwmOnPort |= (1 << PwmOn34Pin);	
+					break;
+				case 2:
+					PwmOnPort |= (1 << PwmOn56Pin);
+					break;
 			}
 			break;
 		case 1:
 			PwmOnPort &= ~(1 << PwmOn34Pin);
 			ServoOpenPort |= (1 << SV34OpenPin);
-			if(SwitchPosition == 0) {
-				PwmOnPort |= (1 << PwmOn12Pin);
-			} else if (SwitchPosition == 2) {
-				PwmOnPort |= (1 << PwmOn56Pin);
+			switch(SwitchPosition) {
+				case 0:
+					PwmOnPort |= (1 << PwmOn12Pin);
+					break;
+				case 2:
+					PwmOnPort |= (1 << PwmOn56Pin);
+					break;
 			}
 			break;
 		case 2:
 			PwmOnPort &= ~(1 << PwmOn34Pin);
 			ServoOpenPort |= (1 << SV56OpenPin);
-			if(SwitchPosition == 0) {
-				PwmOnPort |= (1 << PwmOn12Pin);
-			} else if (SwitchPosition == 1) {
-				PwmOnPort |= (1 << PwmOn34Pin);
+			switch(SwitchPosition) {
+				case 0:
+					PwmOnPort |= (1 << PwmOn12Pin);
+					break;
+				case 1:
+					PwmOnPort |= (1 << PwmOn34Pin);
+					break;
 			}
 			break;
 	} // switch (NewSwitchPosition)
