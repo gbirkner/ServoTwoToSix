@@ -26,7 +26,7 @@ int main(void) {
 
 	sei();
 
-	Servo2To6::init(initValues.getInitValues().servoType, initValues.getInitValues().SNullStellung, initValues.getInitValues().AngleRange);
+	Servo2To6::init(initValues.getInitValues().servoType, initValues.getInitValues().SNullStellung, initValues.getInitValues().AngleRange, initValues.getInitValues().PWMDelay);
 
 	DDRB |= (1 << PORTB0); // TODO: test------------------------------------
 	DDRC |= (1 << PORTC5);

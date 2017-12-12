@@ -36,7 +36,7 @@ private:
 //functions
 public:
 	// ------- ISR Inlines -----------------
-	static void init(ServoType servotype, int8_t zeroing, uint8_t anglerange);
+	static void init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay);
 	static uint8_t getPosition(uint8_t position);
 	static void setNewPositions();
 	static void SigInServo1ISR(bool enable);

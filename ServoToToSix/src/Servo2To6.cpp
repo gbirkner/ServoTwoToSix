@@ -39,7 +39,7 @@
   * \return 
   *		no return value
   */
- void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange) {
+ void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay) {
 	_servoType = servotype;
 	if (zeroing < -90) 
 		zeroing = -90;
@@ -48,7 +48,22 @@
 	_MidAngle = 3000 + (20 * zeroing);
 	_MinAngle = _MidAngle - (20 * (anglerange/2));
 	_MaxAngle = _MidAngle + (20 * (anglerange/2));
-	DelayValue = 50;			// at 50Hz = 50 is one second delay
+	
+	switch(_servoType) {
+		case(ServoType::analog):
+			DelayValue = (uint16_t)(pwmdelay / 20);
+			break;
+		case ServoType::digital100:
+			DelayValue = (uint16_t)(pwmdelay / 10);
+			break;
+		case ServoType::digital200:
+			DelayValue = (uint16_t)(pwmdelay / 5);
+			break;
+		case ServoType::digital300:
+			DelayValue = (uint16_t)(pwmdelay / 3);
+			break;
+	} // switch
+	DelayValue = pwmdelay;			// at 50Hz = 50 is one second delay
 	SigSwitchMeassure = false;
 	setNewValues = false;
 	PWMSynchronizing = false;
