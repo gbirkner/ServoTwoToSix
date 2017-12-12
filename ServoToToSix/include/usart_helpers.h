@@ -18,6 +18,7 @@ namespace usartHelpers {
 	void ChangeServoType();
 	void ChangeNullstellung();
 	void ChangeAngleRange();
+	void ChangePWMDelay();
 
 }
 

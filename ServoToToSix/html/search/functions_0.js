@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getinitvalues',['getInitValues',['../class_servo_e_e_p_r_o_m.html#ac6e03a1694107eed257a171e01d37029',1,'ServoEEPROM']]]
+  ['cls',['cls',['../classmy_uart.html#a616b3ffa4c6e27ffadeefdd40b08d19f',1,'myUart']]]
 ];

@@ -22,6 +22,7 @@
 	 ServoType servoType;
 	 int8_t SNullStellung;
 	 uint8_t AngleRange;
+	 uint16_t PWMDelay;
 	 bool operator==(const EEPROM_initValues& other) const {		
 		if(SerialNr != other.SerialNr) return false;
 		if(author != other.author) return false;
@@ -64,6 +65,7 @@ public:
 	void setServoType(ServoType st, bool write = false);
 	void setNullStellung(int8_t ns, bool write = false);
 	void setAngleRange(uint8_t ar, bool write = false);
+	void setPWMDelay(uint16_t del, bool write = false);
 	ServoEEPROM();
 	~ServoEEPROM();
 protected:

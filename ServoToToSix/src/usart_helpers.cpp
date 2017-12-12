@@ -11,6 +11,14 @@
 
  namespace usartHelpers {
 
+	 /**
+	  * \brief 
+	  *  translates the enum ServoType to string values 
+	  *  writes the string to standard uart with linefeed
+	  * \param st
+	  *  ServoType enum
+	  * \return void
+	  */
 	 void ServoTypeMenu(ServoType st)
 	 {
 		 switch(st) {
@@ -29,6 +37,12 @@
 		 }
 	 }
 
+	 /**
+	  * \brief 
+	  *  shows the Startup Menu on uart
+	  * 
+	  * \return void
+	  */
 	 void MainMenu() {
 
 		EEPROM_initValues actv = initValues.getInitValues(true);
@@ -46,13 +60,15 @@
 			uart.write((char*)"1 Servotype:  \0"); ServoTypeMenu(initValues.getInitValues().servoType);
 			uart.write((char*)"2 Zeroing:    \0"); uart.write((uint16_t)initValues.getInitValues().SNullStellung); uart.write((char*)" degree\0", true);
 			uart.write((char*)"3 Anglerange: \0"); uart.write((uint16_t)initValues.getInitValues().AngleRange); uart.write((char*)" degree\0", true);
-			uart.write((char*)"4 Refresh menu-values\0", true);
+			uart.write((char*)"4 PWM delay:  \0"); uart.write((uint16_t)initValues.getInitValues().PWMDelay); uart.write((char*)"ms\0", true);
 			uart.LfCr();
-			//if(actv != initValues.getInitValues(false)) changesMade = true; else changesMade = false;
-
+			uart.write((char*)"5 Refresh menu-values\0", true);
+			uart.LfCr();
+			changesMade = false;
 			if(actv.servoType != initValues.getInitValues(false).servoType) changesMade = true;
 			if(actv.SNullStellung != initValues.getInitValues(false).SNullStellung) changesMade = true;
 			if(actv.AngleRange != initValues.getInitValues(false).AngleRange) changesMade = true;
+			if(actv.PWMDelay != initValues.getInitValues(false).PWMDelay) changesMade = true;
 
 			if (changesMade) uart.write((char*)"s Save changes to EEPROM\0", true);			
 			uart.write((char*)"q Exit", true);
@@ -92,7 +108,10 @@
 				 case '3':
 					ChangeAngleRange();
 					break;
-				 case '4':
+				case '4':
+					ChangePWMDelay();
+					break;
+				case '5':
 					break;
 				case 's':
 					if (changesMade) {
@@ -104,6 +123,13 @@
 		 } // while (x != 'q')
 	 }
 
+	 /**
+	  * \brief 
+	  *  uart submenu for changing the servotype (pwm frequency selection) out of
+	  *  for predefined servotypes (=frequencies)
+	  * 
+	  * \return void
+	  */
 	 void ChangeServoType() {
 
 		unsigned char x = '0';
@@ -143,6 +169,12 @@
 	}
 
 
+	/**
+	 * \brief 
+	 *  uart submenu for changing servo zero position deviation from 90° (middle position 1500µs) in degree
+	 * 
+	 * \return void
+	 */
 	void ChangeNullstellung() {
 		char dev[4];
 		bool exit;
@@ -178,6 +210,12 @@
 	}
 
 
+	/**
+	 * \brief 
+	 *  uart submenu for changing the angle range of a Servo
+	 * 
+	 * \return void
+	 */
 	void ChangeAngleRange() {
 		char dev[4];
 		bool exit;
@@ -216,4 +254,39 @@
 		} while (!exit);	
 	}
 
+	/**
+	 * \brief 
+	 *  Uart submenu for changing the PWM delaytimer
+	 * 
+	 * \return void
+	 */
+	void ChangePWMDelay() {
+		const uint8_t length = 6;
+		char dev[length];
+		uart.cls();
+		bool exit = false;
+		do {
+			uart.write((char*)"Servo Multiplier --> Change PWM delay\0", true);
+			uart.LfCr();
+			uart.write((char*)"PWM delay sets the time [ms] the generated PWM lasts after \0", true);
+			uart.write((char*)"changing the Servo output PORT. The min Value is 100 for 100ms! \0", true);
+			uart.LfCr();
+			uart.write((char*)"Current delay: \0"); uart.write((uint16_t)initValues.getInitValues().PWMDelay); uart.write((char*)"ms\0", true);
+			uart.write((char*)"Enter new PWM delay or press 'q' for quit without changes! \0", true);
+			uart.write((char*)"New delay: \0");
+			uart.read((unsigned char*)dev, length);
+			uint8_t lauf = 0;
+			if (dev[lauf] == 'q') {
+				exit = true;
+			} else {
+				uint16_t newVal = (uint16_t)atoi(dev);
+				if (newVal < 100 ) {
+					uart.write((char*)"Value must be an integer between 100 and 65535\0", true); 
+				} else {
+					initValues.setPWMDelay(newVal);
+				}
+			} // if (dev[lauf] == 'q')
+			uart.LfCr();
+		} while (!exit);
+	}
  }

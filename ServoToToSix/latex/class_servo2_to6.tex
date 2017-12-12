@@ -1,0 +1,171 @@
+\hypertarget{class_servo2_to6}{}\section{Servo2\+To6 Class Reference}
+\label{class_servo2_to6}\index{Servo2\+To6@{Servo2\+To6}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_servo2_to6_a5b5c7aa6261d9db7f919033fb067eec6}{init} (Servo\+Type servotype, int8\+\_\+t zeroing, uint8\+\_\+t anglerange)
+\begin{DoxyCompactList}\small\item\em Constructor does all the necessary initializations to provide a valid object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_servo2_to6_a2d0d4647ef0b6f9d96f98d6cbb09abdd}\label{class_servo2_to6_a2d0d4647ef0b6f9d96f98d6cbb09abdd}} 
+static uint8\+\_\+t {\bfseries get\+Position} (uint8\+\_\+t position)
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a9c91c2e9888e3a68593001bd1409bd2a}\label{class_servo2_to6_a9c91c2e9888e3a68593001bd1409bd2a}} 
+static void {\bfseries set\+New\+Positions} ()
+\item 
+static void \hyperlink{class_servo2_to6_a79720ea3e1f3ca50ee709211f4b04c0b}{Sig\+In\+Servo1\+I\+SR} (bool enable)
+\begin{DoxyCompactList}\small\item\em Enables/\+Disables Interrupt on Signal from Servo 1. \end{DoxyCompactList}\item 
+static void \hyperlink{class_servo2_to6_a20c6581e049323ea1463e9ebab20fcad}{Switch\+Timer} (bool start)
+\begin{DoxyCompactList}\small\item\em starts/stops Switch\+Timer0, sets prescaler to 256 or 0 \end{DoxyCompactList}\item 
+static void \hyperlink{class_servo2_to6_ab88100dc147b812c127170decb30a296}{Switch\+Sense\+I\+SR} (bool enable)
+\begin{DoxyCompactList}\small\item\em Enables/disables Interrupt I\+N\+T0 on Switch Signal P\+D2. \end{DoxyCompactList}\item 
+static void \hyperlink{class_servo2_to6_a46c45149d43aa88db46c2519acd91e95}{P\+W\+M\+Timer} (bool start)
+\begin{DoxyCompactList}\small\item\em starts/stops P\+W\+M\+Timer1, sets prescaler to 8/0 \end{DoxyCompactList}\item 
+static void \hyperlink{class_servo2_to6_aa33f322217594b90b27d323a4e89a1f4}{Three\+Ms\+Counter} (bool start)
+\begin{DoxyCompactList}\small\item\em starts/stops 3ms\+Timer, sets prescaler to 256/0 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a7763252e3f67589ce62e67a02dd1322d}\label{class_servo2_to6_a7763252e3f67589ce62e67a02dd1322d}} 
+static uint8\+\_\+t {\bfseries Delay\+Value} = 50
+\item 
+\mbox{\Hypertarget{class_servo2_to6_ad5689a940196c1657e6122f63cab6fd9}\label{class_servo2_to6_ad5689a940196c1657e6122f63cab6fd9}} 
+static bool {\bfseries Sig\+Switch\+Meassure} = false
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a29eea0d2e3a55a776790700550d25b02}\label{class_servo2_to6_a29eea0d2e3a55a776790700550d25b02}} 
+static bool {\bfseries set\+New\+Values} = false
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a6eeff2073a9b4fe4dd22109b0291628c}\label{class_servo2_to6_a6eeff2073a9b4fe4dd22109b0291628c}} 
+static bool {\bfseries P\+W\+M\+Synchronizing} = false
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a227f8c77e0e04866c551d41e30d42714}\label{class_servo2_to6_a227f8c77e0e04866c551d41e30d42714}} 
+static bool {\bfseries P\+W\+M\+Active} = false
+\item 
+\mbox{\Hypertarget{class_servo2_to6_ab79751ee30315c345f86df4ef5d88c6c}\label{class_servo2_to6_ab79751ee30315c345f86df4ef5d88c6c}} 
+static uint8\+\_\+t {\bfseries Switch\+Position} = 0
+\item 
+\mbox{\Hypertarget{class_servo2_to6_aa47e74839a246d5452b1829cafc2ef3b}\label{class_servo2_to6_aa47e74839a246d5452b1829cafc2ef3b}} 
+static uint8\+\_\+t {\bfseries New\+Switch\+Position} = 0
+\item 
+\mbox{\Hypertarget{class_servo2_to6_a478291c91503f393138de867146fdea2}\label{class_servo2_to6_a478291c91503f393138de867146fdea2}} 
+static uint8\+\_\+t {\bfseries D\+T\+Z\+Value} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_servo2_to6_a5b5c7aa6261d9db7f919033fb067eec6}\label{class_servo2_to6_a5b5c7aa6261d9db7f919033fb067eec6}} 
+\index{Servo2\+To6@{Servo2\+To6}!init@{init}}
+\index{init@{init}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::init (\begin{DoxyParamCaption}\item[{Servo\+Type}]{servotype,  }\item[{int8\+\_\+t}]{zeroing,  }\item[{uint8\+\_\+t}]{anglerange }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Constructor does all the necessary initializations to provide a valid object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em servotype} & which servo is used (e.\+g. analog =$>$ 50\+Hz, digital100 =$>$ 100\+Hz, ...) to set the correct P\+WM frequency (I\+CR value) \\
+\hline
+{\em zeroing} & which position should the generated P\+WM provide to the inactive servos in degree(-\/90 to +90) (0° corresponds to middle position) \\
+\hline
+{\em anglerange} & max range of servo angle (e.\+g. 120° =$>$ +-\/60° from 0°(90°) =$>$ not zeroing, so it can be asymmetrical from zeroing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no return value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo2_to6_a46c45149d43aa88db46c2519acd91e95}\label{class_servo2_to6_a46c45149d43aa88db46c2519acd91e95}} 
+\index{Servo2\+To6@{Servo2\+To6}!P\+W\+M\+Timer@{P\+W\+M\+Timer}}
+\index{P\+W\+M\+Timer@{P\+W\+M\+Timer}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{P\+W\+M\+Timer()}{PWMTimer()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::\+P\+W\+M\+Timer (\begin{DoxyParamCaption}\item[{bool}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+starts/stops P\+W\+M\+Timer1, sets prescaler to 8/0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & true ... start P\+W\+M\+Timer1; false ... stop P\+W\+M\+Timer1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo2_to6_a79720ea3e1f3ca50ee709211f4b04c0b}\label{class_servo2_to6_a79720ea3e1f3ca50ee709211f4b04c0b}} 
+\index{Servo2\+To6@{Servo2\+To6}!Sig\+In\+Servo1\+I\+SR@{Sig\+In\+Servo1\+I\+SR}}
+\index{Sig\+In\+Servo1\+I\+SR@{Sig\+In\+Servo1\+I\+SR}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{Sig\+In\+Servo1\+I\+S\+R()}{SigInServo1ISR()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::\+Sig\+In\+Servo1\+I\+SR (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Enables/\+Disables Interrupt on Signal from Servo 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & true ... enable I\+SR, false ... disable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo2_to6_ab88100dc147b812c127170decb30a296}\label{class_servo2_to6_ab88100dc147b812c127170decb30a296}} 
+\index{Servo2\+To6@{Servo2\+To6}!Switch\+Sense\+I\+SR@{Switch\+Sense\+I\+SR}}
+\index{Switch\+Sense\+I\+SR@{Switch\+Sense\+I\+SR}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{Switch\+Sense\+I\+S\+R()}{SwitchSenseISR()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::\+Switch\+Sense\+I\+SR (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Enables/disables Interrupt I\+N\+T0 on Switch Signal P\+D2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & true ... I\+N\+T0 is active, false .. I\+N\+T0 is inactive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo2_to6_a20c6581e049323ea1463e9ebab20fcad}\label{class_servo2_to6_a20c6581e049323ea1463e9ebab20fcad}} 
+\index{Servo2\+To6@{Servo2\+To6}!Switch\+Timer@{Switch\+Timer}}
+\index{Switch\+Timer@{Switch\+Timer}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{Switch\+Timer()}{SwitchTimer()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::\+Switch\+Timer (\begin{DoxyParamCaption}\item[{bool}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+starts/stops Switch\+Timer0, sets prescaler to 256 or 0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & true ... start timer, false ... stop timer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_servo2_to6_aa33f322217594b90b27d323a4e89a1f4}\label{class_servo2_to6_aa33f322217594b90b27d323a4e89a1f4}} 
+\index{Servo2\+To6@{Servo2\+To6}!Three\+Ms\+Counter@{Three\+Ms\+Counter}}
+\index{Three\+Ms\+Counter@{Three\+Ms\+Counter}!Servo2\+To6@{Servo2\+To6}}
+\subsubsection{\texorpdfstring{Three\+Ms\+Counter()}{ThreeMsCounter()}}
+{\footnotesize\ttfamily void Servo2\+To6\+::\+Three\+Ms\+Counter (\begin{DoxyParamCaption}\item[{bool}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+starts/stops 3ms\+Timer, sets prescaler to 256/0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & true .. start Timer2; false .. stop timer2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Servo2\+To6.\+h\item 
+src/Servo2\+To6.\+cpp\end{DoxyCompactItemize}

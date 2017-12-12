@@ -211,7 +211,7 @@ unsigned char myUart::read() {
 
 /**
  * \brief 
- *  enables UART0 recieve and transmit modes
+ *  enables UART0 receive and transmit modes
  * 
  * \return void
  */

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eeprom_5finitvalues',['EEPROM_initValues',['../struct_e_e_p_r_o_m__init_values.html',1,'']]]
+  ['init',['init',['../class_servo2_to6.html#a5b5c7aa6261d9db7f919033fb067eec6',1,'Servo2To6']]]
 ];

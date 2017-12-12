@@ -9,14 +9,33 @@
 #include <ServoEEPROM.h>
 #include <string.h>
 
-EEPROM_initValues ServoEEPROM::getInitValues(bool readAnew)
-{
+/**
+ * \brief 
+ *  gets the content of the struct EEPROM_initValues
+ *  
+ * \param readAnew
+ *  true ... class struct is filled from EEPROM first
+ *  false .. data for struct is filled from class (without EEPROM read)
+ *
+ * \return EEPROM_initValues
+ *  struct which contains all data original from EEPROM
+ */
+EEPROM_initValues ServoEEPROM::getInitValues(bool readAnew) {
 	if (readAnew) {
 		readData();
 	}
 	return m_initValues;
 }
 
+/**
+ * \brief 
+ *  sets all struct data in class and saves them to EEPROM
+ *
+ * \param newInitValues
+ *  struct to persist
+ * 
+ * \return void
+ */
 void ServoEEPROM::setInitValues(EEPROM_initValues newInitValues)
 {
 	//TODO: validate parameter
@@ -24,9 +43,22 @@ void ServoEEPROM::setInitValues(EEPROM_initValues newInitValues)
 	m_initValues.servoType = newInitValues.servoType;
 	m_initValues.SNullStellung = newInitValues.SNullStellung;
 	m_initValues.AngleRange = newInitValues.AngleRange;
+	m_initValues.PWMDelay = newInitValues.PWMDelay;
 	writeData();
 }
 
+/**
+ * \brief 
+ *  sets the SerialNr in class/EEPROM
+ *
+ * \param s
+ *  char array which contains the SerialNr with \0
+ * \param write
+ *  true ... the struct is saved to EEPROM
+ *  false .. the struct is not saved to EEPROM (only class)
+ *
+ * \return void
+ */
 void ServoEEPROM::setSerialNr(uint16_t s, bool write /*= false*/)
 {
 	m_initValues.SerialNr = s;
@@ -34,6 +66,19 @@ void ServoEEPROM::setSerialNr(uint16_t s, bool write /*= false*/)
 	
 }
 
+/**
+ * \brief 
+ *  sets the Author to class/EEPROM
+ *
+ * \param a
+ *  char array which contains the Author with \0
+ *
+ * \param write
+ *  true ... the struct is saved to EEPROM
+ *  false .. the struct is not saved to EEPROM (only class)
+ *
+ * \return void
+ */
 void ServoEEPROM::setAuthor(char* a, bool write /*= false*/)
 {
 	uint8_t actLength = strlen(a);
@@ -76,6 +121,16 @@ void ServoEEPROM::setAngleRange(uint8_t ar, bool write /*= false*/)
 	if(write) writeData();
 }
 
+
+
+void ServoEEPROM::setPWMDelay( uint16_t del, bool write /*= false*/ )
+{
+	if(del > 100) {
+		m_initValues.PWMDelay = del;
+		if(write) writeData();
+	}
+}
+
 // default constructor
 ServoEEPROM::ServoEEPROM()
 {
@@ -103,6 +158,7 @@ void ServoEEPROM::readData() {
 		m_initValues.servoType = ServoType::analog;
 		m_initValues.SNullStellung = 0;
 		m_initValues.AngleRange = 180;
+		m_initValues.PWMDelay = 500;
 		writeData();
 	}
 }
