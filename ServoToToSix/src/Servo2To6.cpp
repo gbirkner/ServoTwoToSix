@@ -107,6 +107,7 @@ void Servo2To6::setNewPositions() {
 
 	ServoOpenPort &= ~(SV1To6OpenPins);
 
+
 	switch (NewSwitchPosition) {
 		case 0:
 			PwmOnPort &= ~(1 << PwmOn12Pin);
@@ -134,7 +135,7 @@ void Servo2To6::setNewPositions() {
 			}
 			break;
 		case 2:
-			PwmOnPort &= ~(1 << PwmOn34Pin);
+			PwmOnPort &= ~(1 << PwmOn56Pin);
 			ServoOpenPort |= (1 << SV56OpenPin);
 			switch(SwitchPosition) {
 				case 0:
@@ -206,10 +207,12 @@ void Servo2To6::SwitchSenseISR(bool enable)
  */
 void Servo2To6::PWMTimer(bool start)
 {
+	PwmOnPort &= ~(PwmON1To6Pins);
 	if(start) {
 		TCCR1B |= (1 << CS11);
 	} else {
-		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));
+		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));	
+			
 	}
 }
 

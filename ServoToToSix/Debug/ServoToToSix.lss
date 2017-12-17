@@ -3,31 +3,31 @@ ServoToToSix.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000606  00800100  000014fa  0000158e  2**0
+  0 .data         00000606  00800100  00001500  00001594  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000014fa  00000000  00000000  00000094  2**1
+  1 .text         00001500  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000046  00800706  00800706  00001b94  2**0
+  2 .bss          00000046  00800706  00800706  00001b9a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00001b94  2**0
+  3 .comment      00000030  00000000  00000000  00001b9a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001bc4  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001bcc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000210  00000000  00000000  00001c04  2**0
+  5 .debug_aranges 00000270  00000000  00000000  00001c10  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000041dc  00000000  00000000  00001e14  2**0
+  6 .debug_info   000048d3  00000000  00000000  00001e80  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000c72  00000000  00000000  00005ff0  2**0
+  7 .debug_abbrev 0000120e  00000000  00000000  00006753  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000011e1  00000000  00000000  00006c62  2**0
+  8 .debug_line   00001520  00000000  00000000  00007961  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000006bc  00000000  00000000  00007e44  2**2
+  9 .debug_frame  000006bc  00000000  00000000  00008e84  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000e02  00000000  00000000  00008500  2**0
+ 10 .debug_str    00000fb6  00000000  00000000  00009540  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001d74  00000000  00000000  00009302  2**0
+ 11 .debug_loc    00001d74  00000000  00000000  0000a4f6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000208  00000000  00000000  0000b076  2**0
+ 12 .debug_ranges 00000208  00000000  00000000  0000c26a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -78,8 +78,8 @@ Disassembly of section .text:
       78:	17 e0       	ldi	r17, 0x07	; 7
       7a:	a0 e0       	ldi	r26, 0x00	; 0
       7c:	b1 e0       	ldi	r27, 0x01	; 1
-      7e:	ea ef       	ldi	r30, 0xFA	; 250
-      80:	f4 e1       	ldi	r31, 0x14	; 20
+      7e:	e0 e0       	ldi	r30, 0x00	; 0
+      80:	f5 e1       	ldi	r31, 0x15	; 21
       82:	02 c0       	rjmp	.+4      	; 0x88 <__do_copy_data+0x10>
       84:	05 90       	lpm	r0, Z+
       86:	0d 92       	st	X+, r0
@@ -108,12 +108,12 @@ Disassembly of section .text:
       a4:	04 c0       	rjmp	.+8      	; 0xae <__do_global_ctors+0x10>
       a6:	21 97       	sbiw	r28, 0x01	; 1
       a8:	fe 01       	movw	r30, r28
-      aa:	0e 94 dd 09 	call	0x13ba	; 0x13ba <__tablejump2__>
+      aa:	0e 94 e0 09 	call	0x13c0	; 0x13c0 <__tablejump2__>
       ae:	c4 33       	cpi	r28, 0x34	; 52
       b0:	d1 07       	cpc	r29, r17
       b2:	c9 f7       	brne	.-14     	; 0xa6 <__do_global_ctors+0x8>
       b4:	0e 94 3f 01 	call	0x27e	; 0x27e <main>
-      b8:	0c 94 70 0a 	jmp	0x14e0	; 0x14e0 <__do_global_dtors>
+      b8:	0c 94 73 0a 	jmp	0x14e6	; 0x14e6 <__do_global_dtors>
 
 000000bc <__bad_interrupt>:
       bc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -256,7 +256,7 @@ ISR(SigInServo1Interrupt) {
      190:	10 92 4a 07 	sts	0x074A, r1	; 0x80074a <_ZN9Servo2To612setNewValuesE>
 			Servo2To6::ThreeMsCounter(true);
      194:	81 e0       	ldi	r24, 0x01	; 1
-     196:	0e 94 30 03 	call	0x660	; 0x660 <_ZN9Servo2To614ThreeMsCounterEb>
+     196:	0e 94 33 03 	call	0x666	; 0x666 <_ZN9Servo2To614ThreeMsCounterEb>
 			Servo2To6::SigInServo1ISR(false);
      19a:	80 e0       	ldi	r24, 0x00	; 0
      19c:	0e 94 04 03 	call	0x608	; 0x608 <_ZN9Servo2To614SigInServo1ISREb>
@@ -357,7 +357,7 @@ ISR(ThreeMsCountInterrupt) {
      23e:	0e 94 ce 02 	call	0x59c	; 0x59c <_ZN9Servo2To615setNewPositionsEv>
 	Servo2To6::ThreeMsCounter(false);
      242:	80 e0       	ldi	r24, 0x00	; 0
-     244:	0e 94 30 03 	call	0x660	; 0x660 <_ZN9Servo2To614ThreeMsCounterEb>
+     244:	0e 94 33 03 	call	0x666	; 0x666 <_ZN9Servo2To614ThreeMsCounterEb>
 	if (Servo2To6::PWMActive == false) {
      248:	80 91 48 07 	lds	r24, 0x0748	; 0x800748 <_ZN9Servo2To69PWMActiveE>
      24c:	81 11       	cpse	r24, r1
@@ -406,6 +406,10 @@ int main(void) {
      28e:	de bf       	out	0x3e, r29	; 62
      290:	0f be       	out	0x3f, r0	; 63
      292:	cd bf       	out	0x3d, r28	; 61
+	//initValues.setPWMDelay((uint16_t)500, true);
+
+	
+
 
 	initValues.getInitValues(true);
      294:	41 e0       	ldi	r20, 0x01	; 1
@@ -413,7 +417,7 @@ int main(void) {
      298:	77 e0       	ldi	r23, 0x07	; 7
      29a:	ce 01       	movw	r24, r28
      29c:	01 96       	adiw	r24, 0x01	; 1
-     29e:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     29e:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
 	bool isActiveUart = ((UARTPin & (1 << UARTVcc)) > 0);
 	if(isActiveUart) {
      2a2:	4e 9b       	sbis	0x09, 6	; 9
@@ -423,7 +427,7 @@ int main(void) {
      2a8:	97 e0       	ldi	r25, 0x07	; 7
      2aa:	0e 94 00 02 	call	0x400	; 0x400 <_ZN6myUart6enableEv>
 		usartHelpers::MainMenu();
-     2ae:	0e 94 b9 07 	call	0xf72	; 0xf72 <_ZN12usartHelpers8MainMenuEv>
+     2ae:	0e 94 bc 07 	call	0xf78	; 0xf78 <_ZN12usartHelpers8MainMenuEv>
 		uart.cls();
      2b2:	86 e0       	ldi	r24, 0x06	; 6
      2b4:	97 e0       	ldi	r25, 0x07	; 7
@@ -450,7 +454,7 @@ int main(void) {
      2d6:	77 e0       	ldi	r23, 0x07	; 7
      2d8:	ce 01       	movw	r24, r28
      2da:	01 96       	adiw	r24, 0x01	; 1
-     2dc:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     2dc:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
      2e0:	ec a8       	ldd	r14, Y+52	; 0x34
      2e2:	fd a8       	ldd	r15, Y+53	; 0x35
      2e4:	40 e0       	ldi	r20, 0x00	; 0
@@ -458,7 +462,7 @@ int main(void) {
      2e8:	77 e0       	ldi	r23, 0x07	; 7
      2ea:	ce 01       	movw	r24, r28
      2ec:	c6 96       	adiw	r24, 0x36	; 54
-     2ee:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     2ee:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
      2f2:	a9 96       	adiw	r28, 0x29	; 41
      2f4:	0f ad       	ldd	r16, Y+63	; 0x3f
      2f6:	a9 97       	sbiw	r28, 0x29	; 41
@@ -468,7 +472,7 @@ int main(void) {
      2fe:	ce 01       	movw	r24, r28
      300:	85 59       	subi	r24, 0x95	; 149
      302:	9f 4f       	sbci	r25, 0xFF	; 255
-     304:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     304:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
      308:	c4 56       	subi	r28, 0x64	; 100
      30a:	df 4f       	sbci	r29, 0xFF	; 255
      30c:	18 81       	ld	r17, Y
@@ -480,7 +484,7 @@ int main(void) {
      318:	ce 01       	movw	r24, r28
      31a:	80 56       	subi	r24, 0x60	; 96
      31c:	9f 4f       	sbci	r25, 0xFF	; 255
-     31e:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     31e:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
      322:	97 01       	movw	r18, r14
      324:	40 2f       	mov	r20, r16
      326:	61 2f       	mov	r22, r17
@@ -490,7 +494,7 @@ int main(void) {
      32e:	99 81       	ldd	r25, Y+1	; 0x01
      330:	cf 5c       	subi	r28, 0xCF	; 207
      332:	d0 40       	sbci	r29, 0x00	; 0
-     334:	0e 94 81 03 	call	0x702	; 0x702 <_ZN9Servo2To64initE9ServoTypeahj>
+     334:	0e 94 84 03 	call	0x708	; 0x708 <_ZN9Servo2To64initE9ServoTypeahj>
 
 	DDRB |= (1 << PORTB0); // TODO: test------------------------------------
      338:	20 9a       	sbi	0x04, 0	; 4
@@ -509,7 +513,7 @@ int main(void) {
 ServoEEPROM initValues;
      340:	88 e0       	ldi	r24, 0x08	; 8
      342:	97 e0       	ldi	r25, 0x07	; 7
-     344:	0e 94 7b 04 	call	0x8f6	; 0x8f6 <_ZN11ServoEEPROMC1Ev>
+     344:	0e 94 7e 04 	call	0x8fc	; 0x8fc <_ZN11ServoEEPROMC1Ev>
 myUart uart;
      348:	86 e0       	ldi	r24, 0x06	; 6
      34a:	97 e0       	ldi	r25, 0x07	; 7
@@ -528,7 +532,7 @@ myUart uart;
 ServoEEPROM initValues;
      35a:	88 e0       	ldi	r24, 0x08	; 8
      35c:	97 e0       	ldi	r25, 0x07	; 7
-     35e:	0e 94 7e 04 	call	0x8fc	; 0x8fc <_ZN11ServoEEPROMD1Ev>
+     35e:	0e 94 81 04 	call	0x902	; 0x902 <_ZN11ServoEEPROMD1Ev>
      362:	08 95       	ret
 
 00000364 <_ZN6myUartC1Ev>:
@@ -892,7 +896,7 @@ void myUart::write(int16_t i, bool linefeed /*= false*/) {
      504:	be 01       	movw	r22, r28
      506:	6f 5f       	subi	r22, 0xFF	; 255
      508:	7f 4f       	sbci	r23, 0xFF	; 255
-     50a:	0e 94 01 0a 	call	0x1402	; 0x1402 <__itoa_ncheck>
+     50a:	0e 94 04 0a 	call	0x1408	; 0x1408 <__itoa_ncheck>
 	char s[7];
 	itoa(i, s, 10);
 	write(s, linefeed);
@@ -940,7 +944,7 @@ void myUart::write(uint16_t i, bool linefeed /*= false*/) {
      550:	be 01       	movw	r22, r28
      552:	6f 5f       	subi	r22, 0xFF	; 255
      554:	7f 4f       	sbci	r23, 0xFF	; 255
-     556:	0e 94 01 0a 	call	0x1402	; 0x1402 <__itoa_ncheck>
+     556:	0e 94 04 0a 	call	0x1408	; 0x1408 <__itoa_ncheck>
 	char s[6];
 	itoa(i, s, 10);
 	write(s, linefeed);	
@@ -1010,6 +1014,7 @@ void Servo2To6::setNewPositions() {
      59e:	87 7c       	andi	r24, 0xC7	; 199
      5a0:	8b b9       	out	0x0b, r24	; 11
 
+
 	switch (NewSwitchPosition) {
      5a2:	80 91 46 07 	lds	r24, 0x0746	; 0x800746 <_ZN9Servo2To617NewSwitchPositionE>
      5a6:	81 30       	cpi	r24, 0x01	; 1
@@ -1068,8 +1073,8 @@ void Servo2To6::setNewPositions() {
 			}
 			break;
 		case 2:
-			PwmOnPort &= ~(1 << PwmOn34Pin);
-     5e6:	41 98       	cbi	0x08, 1	; 8
+			PwmOnPort &= ~(1 << PwmOn56Pin);
+     5e6:	42 98       	cbi	0x08, 2	; 8
 			ServoOpenPort |= (1 << SV56OpenPin);
      5e8:	5d 9a       	sbi	0x0b, 5	; 11
 			switch(SwitchPosition) {
@@ -1165,2228 +1170,2232 @@ void Servo2To6::SwitchSenseISR(bool enable)
  */
 void Servo2To6::PWMTimer(bool start)
 {
+	PwmOnPort &= ~(PwmON1To6Pins);
+     644:	98 b1       	in	r25, 0x08	; 8
+     646:	98 7f       	andi	r25, 0xF8	; 248
+     648:	98 b9       	out	0x08, r25	; 8
 	if(start) {
-     644:	88 23       	and	r24, r24
-     646:	31 f0       	breq	.+12     	; 0x654 <_ZN9Servo2To68PWMTimerEb+0x10>
+     64a:	88 23       	and	r24, r24
+     64c:	31 f0       	breq	.+12     	; 0x65a <_ZN9Servo2To68PWMTimerEb+0x16>
 		TCCR1B |= (1 << CS11);
-     648:	e1 e8       	ldi	r30, 0x81	; 129
-     64a:	f0 e0       	ldi	r31, 0x00	; 0
-     64c:	80 81       	ld	r24, Z
-     64e:	82 60       	ori	r24, 0x02	; 2
-     650:	80 83       	st	Z, r24
-     652:	08 95       	ret
+     64e:	e1 e8       	ldi	r30, 0x81	; 129
+     650:	f0 e0       	ldi	r31, 0x00	; 0
+     652:	80 81       	ld	r24, Z
+     654:	82 60       	ori	r24, 0x02	; 2
+     656:	80 83       	st	Z, r24
+     658:	08 95       	ret
 	} else {
-		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));
-     654:	e1 e8       	ldi	r30, 0x81	; 129
-     656:	f0 e0       	ldi	r31, 0x00	; 0
-     658:	80 81       	ld	r24, Z
-     65a:	88 7f       	andi	r24, 0xF8	; 248
-     65c:	80 83       	st	Z, r24
-     65e:	08 95       	ret
+		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));	
+     65a:	e1 e8       	ldi	r30, 0x81	; 129
+     65c:	f0 e0       	ldi	r31, 0x00	; 0
+     65e:	80 81       	ld	r24, Z
+     660:	88 7f       	andi	r24, 0xF8	; 248
+     662:	80 83       	st	Z, r24
+     664:	08 95       	ret
 
-00000660 <_ZN9Servo2To614ThreeMsCounterEb>:
+00000666 <_ZN9Servo2To614ThreeMsCounterEb>:
  *	true .. start Timer2; false .. stop timer2
  * \return void
  */
 void Servo2To6::ThreeMsCounter(bool start)
 {
 	if(start) {
-     660:	88 23       	and	r24, r24
-     662:	31 f0       	breq	.+12     	; 0x670 <_ZN9Servo2To614ThreeMsCounterEb+0x10>
+     666:	88 23       	and	r24, r24
+     668:	31 f0       	breq	.+12     	; 0x676 <_ZN9Servo2To614ThreeMsCounterEb+0x10>
 		TCCR2B |= (1 << CS22);
-     664:	e1 eb       	ldi	r30, 0xB1	; 177
-     666:	f0 e0       	ldi	r31, 0x00	; 0
-     668:	80 81       	ld	r24, Z
-     66a:	84 60       	ori	r24, 0x04	; 4
-     66c:	80 83       	st	Z, r24
-     66e:	08 95       	ret
+     66a:	e1 eb       	ldi	r30, 0xB1	; 177
+     66c:	f0 e0       	ldi	r31, 0x00	; 0
+     66e:	80 81       	ld	r24, Z
+     670:	84 60       	ori	r24, 0x04	; 4
+     672:	80 83       	st	Z, r24
+     674:	08 95       	ret
 	} else {
 		TCCR2B &=  ~((1 << CS22) | (1 << CS21) | (1 << CS20));
-     670:	e1 eb       	ldi	r30, 0xB1	; 177
-     672:	f0 e0       	ldi	r31, 0x00	; 0
-     674:	80 81       	ld	r24, Z
-     676:	88 7f       	andi	r24, 0xF8	; 248
-     678:	80 83       	st	Z, r24
-     67a:	08 95       	ret
+     676:	e1 eb       	ldi	r30, 0xB1	; 177
+     678:	f0 e0       	ldi	r31, 0x00	; 0
+     67a:	80 81       	ld	r24, Z
+     67c:	88 7f       	andi	r24, 0xF8	; 248
+     67e:	80 83       	st	Z, r24
+     680:	08 95       	ret
 
-0000067c <_ZN9Servo2To613initPWMTimer1Ev>:
+00000682 <_ZN9Servo2To613initPWMTimer1Ev>:
  *		Timer 1 in Fast PWM Mode creates Servo PWM and OC1A PWM output
  * 
  * \return void
  */
 void Servo2To6::initPWMTimer1() {	
 	TCCR1A |= (1 << WGM11);
-     67c:	e0 e8       	ldi	r30, 0x80	; 128
-     67e:	f0 e0       	ldi	r31, 0x00	; 0
-     680:	80 81       	ld	r24, Z
-     682:	82 60       	ori	r24, 0x02	; 2
-     684:	80 83       	st	Z, r24
+     682:	e0 e8       	ldi	r30, 0x80	; 128
+     684:	f0 e0       	ldi	r31, 0x00	; 0
+     686:	80 81       	ld	r24, Z
+     688:	82 60       	ori	r24, 0x02	; 2
+     68a:	80 83       	st	Z, r24
 	TCCR1B |= (1 << WGM12) | (1 << WGM13);		// Fast PWM Mode
-     686:	a1 e8       	ldi	r26, 0x81	; 129
-     688:	b0 e0       	ldi	r27, 0x00	; 0
-     68a:	8c 91       	ld	r24, X
-     68c:	88 61       	ori	r24, 0x18	; 24
-     68e:	8c 93       	st	X, r24
+     68c:	a1 e8       	ldi	r26, 0x81	; 129
+     68e:	b0 e0       	ldi	r27, 0x00	; 0
+     690:	8c 91       	ld	r24, X
+     692:	88 61       	ori	r24, 0x18	; 24
+     694:	8c 93       	st	X, r24
 	TCCR1A |= (1 << COM1A1);					// config output pin pb1 as PWM Timer output in not inverting mode
-     690:	80 81       	ld	r24, Z
-     692:	80 68       	ori	r24, 0x80	; 128
-     694:	80 83       	st	Z, r24
+     696:	80 81       	ld	r24, Z
+     698:	80 68       	ori	r24, 0x80	; 128
+     69a:	80 83       	st	Z, r24
 	OCR1A = _MidAngle;
-     696:	80 91 41 07 	lds	r24, 0x0741	; 0x800741 <_ZN9Servo2To69_MidAngleE>
-     69a:	90 91 42 07 	lds	r25, 0x0742	; 0x800742 <_ZN9Servo2To69_MidAngleE+0x1>
-     69e:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
-     6a2:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+     69c:	80 91 41 07 	lds	r24, 0x0741	; 0x800741 <_ZN9Servo2To69_MidAngleE>
+     6a0:	90 91 42 07 	lds	r25, 0x0742	; 0x800742 <_ZN9Servo2To69_MidAngleE+0x1>
+     6a4:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+     6a8:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
 	switch (_servoType)
-     6a6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_ZN9Servo2To610_servoTypeE>
-     6aa:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_ZN9Servo2To610_servoTypeE+0x1>
-     6ae:	84 36       	cpi	r24, 0x64	; 100
-     6b0:	91 05       	cpc	r25, r1
-     6b2:	91 f0       	breq	.+36     	; 0x6d8 <_ZN9Servo2To613initPWMTimer1Ev+0x5c>
-     6b4:	1c f4       	brge	.+6      	; 0x6bc <_ZN9Servo2To613initPWMTimer1Ev+0x40>
-     6b6:	c2 97       	sbiw	r24, 0x32	; 50
-     6b8:	41 f0       	breq	.+16     	; 0x6ca <_ZN9Servo2To613initPWMTimer1Ev+0x4e>
-     6ba:	08 95       	ret
-     6bc:	88 3c       	cpi	r24, 0xC8	; 200
-     6be:	91 05       	cpc	r25, r1
-     6c0:	91 f0       	breq	.+36     	; 0x6e6 <_ZN9Servo2To613initPWMTimer1Ev+0x6a>
-     6c2:	8c 32       	cpi	r24, 0x2C	; 44
-     6c4:	91 40       	sbci	r25, 0x01	; 1
-     6c6:	b1 f0       	breq	.+44     	; 0x6f4 <_ZN9Servo2To613initPWMTimer1Ev+0x78>
-     6c8:	08 95       	ret
+     6ac:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_ZN9Servo2To610_servoTypeE>
+     6b0:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_ZN9Servo2To610_servoTypeE+0x1>
+     6b4:	84 36       	cpi	r24, 0x64	; 100
+     6b6:	91 05       	cpc	r25, r1
+     6b8:	91 f0       	breq	.+36     	; 0x6de <_ZN9Servo2To613initPWMTimer1Ev+0x5c>
+     6ba:	1c f4       	brge	.+6      	; 0x6c2 <_ZN9Servo2To613initPWMTimer1Ev+0x40>
+     6bc:	c2 97       	sbiw	r24, 0x32	; 50
+     6be:	41 f0       	breq	.+16     	; 0x6d0 <_ZN9Servo2To613initPWMTimer1Ev+0x4e>
+     6c0:	08 95       	ret
+     6c2:	88 3c       	cpi	r24, 0xC8	; 200
+     6c4:	91 05       	cpc	r25, r1
+     6c6:	91 f0       	breq	.+36     	; 0x6ec <_ZN9Servo2To613initPWMTimer1Ev+0x6a>
+     6c8:	8c 32       	cpi	r24, 0x2C	; 44
+     6ca:	91 40       	sbci	r25, 0x01	; 1
+     6cc:	b1 f0       	breq	.+44     	; 0x6fa <_ZN9Servo2To613initPWMTimer1Ev+0x78>
+     6ce:	08 95       	ret
 	{
 		case ServoType::analog:
 			ICR1 = 39999;
-     6ca:	8f e3       	ldi	r24, 0x3F	; 63
-     6cc:	9c e9       	ldi	r25, 0x9C	; 156
-     6ce:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
-     6d2:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+     6d0:	8f e3       	ldi	r24, 0x3F	; 63
+     6d2:	9c e9       	ldi	r25, 0x9C	; 156
+     6d4:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+     6d8:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
 			break;
-     6d6:	08 95       	ret
+     6dc:	08 95       	ret
 		case ServoType::digital100:
 			ICR1 = 19999;
-     6d8:	8f e1       	ldi	r24, 0x1F	; 31
-     6da:	9e e4       	ldi	r25, 0x4E	; 78
-     6dc:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
-     6e0:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+     6de:	8f e1       	ldi	r24, 0x1F	; 31
+     6e0:	9e e4       	ldi	r25, 0x4E	; 78
+     6e2:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+     6e6:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
 			break;
-     6e4:	08 95       	ret
+     6ea:	08 95       	ret
 		case ServoType::digital200:
 			ICR1 = 9999;
-     6e6:	8f e0       	ldi	r24, 0x0F	; 15
-     6e8:	97 e2       	ldi	r25, 0x27	; 39
-     6ea:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
-     6ee:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+     6ec:	8f e0       	ldi	r24, 0x0F	; 15
+     6ee:	97 e2       	ldi	r25, 0x27	; 39
+     6f0:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+     6f4:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
 			break;
-     6f2:	08 95       	ret
+     6f8:	08 95       	ret
 		case ServoType::digital300:
 			ICR1 = 6666;
-     6f4:	8a e0       	ldi	r24, 0x0A	; 10
-     6f6:	9a e1       	ldi	r25, 0x1A	; 26
-     6f8:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
-     6fc:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
-     700:	08 95       	ret
+     6fa:	8a e0       	ldi	r24, 0x0A	; 10
+     6fc:	9a e1       	ldi	r25, 0x1A	; 26
+     6fe:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+     702:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+     706:	08 95       	ret
 
-00000702 <_ZN9Servo2To64initE9ServoTypeahj>:
+00000708 <_ZN9Servo2To64initE9ServoTypeahj>:
   *		max range of servo angle (e.g. 120° => +-60° from 0°(90°) => not zeroing, so it can be asymmetrical from zeroing
   * \return 
   *		no return value
   */
  void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay) {
 	_servoType = servotype;
-     702:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_ZN9Servo2To610_servoTypeE+0x1>
-     706:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_ZN9Servo2To610_servoTypeE>
-     70a:	6b 35       	cpi	r22, 0x5B	; 91
-     70c:	0c f0       	brlt	.+2      	; 0x710 <_ZN9Servo2To64initE9ServoTypeahj+0xe>
-     70e:	6a e5       	ldi	r22, 0x5A	; 90
+     708:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_ZN9Servo2To610_servoTypeE+0x1>
+     70c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_ZN9Servo2To610_servoTypeE>
+     710:	6b 35       	cpi	r22, 0x5B	; 91
+     712:	0c f0       	brlt	.+2      	; 0x716 <_ZN9Servo2To64initE9ServoTypeahj+0xe>
+     714:	6a e5       	ldi	r22, 0x5A	; 90
 	if (zeroing < -90) 
 		zeroing = -90;
 	else if (zeroing > 90)
 		zeroing = 90;
 	_MidAngle = 3000 + (20 * zeroing);
-     710:	66 3a       	cpi	r22, 0xA6	; 166
-     712:	0c f4       	brge	.+2      	; 0x716 <_ZN9Servo2To64initE9ServoTypeahj+0x14>
-     714:	66 ea       	ldi	r22, 0xA6	; 166
-     716:	34 e1       	ldi	r19, 0x14	; 20
-     718:	63 03       	mulsu	r22, r19
-     71a:	b0 01       	movw	r22, r0
-     71c:	11 24       	eor	r1, r1
-     71e:	68 54       	subi	r22, 0x48	; 72
-     720:	74 4f       	sbci	r23, 0xF4	; 244
-     722:	70 93 42 07 	sts	0x0742, r23	; 0x800742 <_ZN9Servo2To69_MidAngleE+0x1>
-     726:	60 93 41 07 	sts	0x0741, r22	; 0x800741 <_ZN9Servo2To69_MidAngleE>
+     716:	66 3a       	cpi	r22, 0xA6	; 166
+     718:	0c f4       	brge	.+2      	; 0x71c <_ZN9Servo2To64initE9ServoTypeahj+0x14>
+     71a:	66 ea       	ldi	r22, 0xA6	; 166
+     71c:	34 e1       	ldi	r19, 0x14	; 20
+     71e:	63 03       	mulsu	r22, r19
+     720:	b0 01       	movw	r22, r0
+     722:	11 24       	eor	r1, r1
+     724:	68 54       	subi	r22, 0x48	; 72
+     726:	74 4f       	sbci	r23, 0xF4	; 244
+     728:	70 93 42 07 	sts	0x0742, r23	; 0x800742 <_ZN9Servo2To69_MidAngleE+0x1>
+     72c:	60 93 41 07 	sts	0x0741, r22	; 0x800741 <_ZN9Servo2To69_MidAngleE>
 	_MinAngle = _MidAngle - (20 * (anglerange/2));
-     72a:	46 95       	lsr	r20
-     72c:	cb 01       	movw	r24, r22
-     72e:	54 e1       	ldi	r21, 0x14	; 20
-     730:	45 9f       	mul	r20, r21
-     732:	80 19       	sub	r24, r0
-     734:	91 09       	sbc	r25, r1
-     736:	11 24       	eor	r1, r1
-     738:	90 93 44 07 	sts	0x0744, r25	; 0x800744 <_ZN9Servo2To69_MinAngleE+0x1>
-     73c:	80 93 43 07 	sts	0x0743, r24	; 0x800743 <_ZN9Servo2To69_MinAngleE>
+     730:	46 95       	lsr	r20
+     732:	cb 01       	movw	r24, r22
+     734:	54 e1       	ldi	r21, 0x14	; 20
+     736:	45 9f       	mul	r20, r21
+     738:	80 19       	sub	r24, r0
+     73a:	91 09       	sbc	r25, r1
+     73c:	11 24       	eor	r1, r1
+     73e:	90 93 44 07 	sts	0x0744, r25	; 0x800744 <_ZN9Servo2To69_MinAngleE+0x1>
+     742:	80 93 43 07 	sts	0x0743, r24	; 0x800743 <_ZN9Servo2To69_MinAngleE>
 	_MaxAngle = _MidAngle + (20 * (anglerange/2));
-     740:	34 9f       	mul	r19, r20
-     742:	60 0d       	add	r22, r0
-     744:	71 1d       	adc	r23, r1
-     746:	11 24       	eor	r1, r1
-     748:	70 93 40 07 	sts	0x0740, r23	; 0x800740 <_ZN9Servo2To69_MaxAngleE+0x1>
-     74c:	60 93 3f 07 	sts	0x073F, r22	; 0x80073f <_ZN9Servo2To69_MaxAngleE>
+     746:	34 9f       	mul	r19, r20
+     748:	60 0d       	add	r22, r0
+     74a:	71 1d       	adc	r23, r1
+     74c:	11 24       	eor	r1, r1
+     74e:	70 93 40 07 	sts	0x0740, r23	; 0x800740 <_ZN9Servo2To69_MaxAngleE+0x1>
+     752:	60 93 3f 07 	sts	0x073F, r22	; 0x80073f <_ZN9Servo2To69_MaxAngleE>
 			break;
 		case ServoType::digital300:
 			DelayValue = (uint16_t)(pwmdelay / 3);
 			break;
 	} // switch
 	DelayValue = pwmdelay;			// at 50Hz = 50 is one second delay
-     750:	20 93 02 01 	sts	0x0102, r18	; 0x800102 <_ZN9Servo2To610DelayValueE>
+     756:	20 93 02 01 	sts	0x0102, r18	; 0x800102 <_ZN9Servo2To610DelayValueE>
 	SigSwitchMeassure = false;
-     754:	10 92 4b 07 	sts	0x074B, r1	; 0x80074b <_ZN9Servo2To617SigSwitchMeassureE>
+     75a:	10 92 4b 07 	sts	0x074B, r1	; 0x80074b <_ZN9Servo2To617SigSwitchMeassureE>
 	setNewValues = false;
-     758:	10 92 4a 07 	sts	0x074A, r1	; 0x80074a <_ZN9Servo2To612setNewValuesE>
+     75e:	10 92 4a 07 	sts	0x074A, r1	; 0x80074a <_ZN9Servo2To612setNewValuesE>
 	PWMSynchronizing = false;
-     75c:	10 92 49 07 	sts	0x0749, r1	; 0x800749 <_ZN9Servo2To616PWMSynchronizingE>
+     762:	10 92 49 07 	sts	0x0749, r1	; 0x800749 <_ZN9Servo2To616PWMSynchronizingE>
 	PWMActive = false;
-     760:	10 92 48 07 	sts	0x0748, r1	; 0x800748 <_ZN9Servo2To69PWMActiveE>
+     766:	10 92 48 07 	sts	0x0748, r1	; 0x800748 <_ZN9Servo2To69PWMActiveE>
 	_MinDecision = 78; //(uint8_t)((23.4375 - (0.15625 * ((float)anglerange/4.0))) + 0.5);
-     764:	8e e4       	ldi	r24, 0x4E	; 78
-     766:	80 93 3e 07 	sts	0x073E, r24	; 0x80073e <_ZN9Servo2To612_MinDecisionE>
+     76a:	8e e4       	ldi	r24, 0x4E	; 78
+     76c:	80 93 3e 07 	sts	0x073E, r24	; 0x80073e <_ZN9Servo2To612_MinDecisionE>
 	_MaxDecision = 137; //(uint8_t)((23.4375 + (0.15625 * ((float)anglerange/4.0))) + 0.5);
-     76a:	89 e8       	ldi	r24, 0x89	; 137
-     76c:	80 93 3d 07 	sts	0x073D, r24	; 0x80073d <_ZN9Servo2To612_MaxDecisionE>
+     770:	89 e8       	ldi	r24, 0x89	; 137
+     772:	80 93 3d 07 	sts	0x073D, r24	; 0x80073d <_ZN9Servo2To612_MaxDecisionE>
 
 	// ---------------- PIN Configurations
 	ServoOpenDir |= (1 << SV12OpenPin) | (1 << SV34OpenPin) | (1 << SV56OpenPin);			// SwitchPort and ServoOpenPort to OUTPUT
-     770:	8a b1       	in	r24, 0x0a	; 10
-     772:	88 63       	ori	r24, 0x38	; 56
-     774:	8a b9       	out	0x0a, r24	; 10
+     776:	8a b1       	in	r24, 0x0a	; 10
+     778:	88 63       	ori	r24, 0x38	; 56
+     77a:	8a b9       	out	0x0a, r24	; 10
 	ServoOpenPort &= ~((1 << SV12OpenPin) | (1 << SV34OpenPin) | (1 << SV56OpenPin));		// All Servos signal off
-     776:	8b b1       	in	r24, 0x0b	; 11
-     778:	87 7c       	andi	r24, 0xC7	; 199
-     77a:	8b b9       	out	0x0b, r24	; 11
+     77c:	8b b1       	in	r24, 0x0b	; 11
+     77e:	87 7c       	andi	r24, 0xC7	; 199
+     780:	8b b9       	out	0x0b, r24	; 11
 
 	PWMOutDir |= ( 1 << PWMOut1Pin) | (1 << PWMOUT2Pin);									// PWM Pins to OUTPUT
-     77c:	84 b1       	in	r24, 0x04	; 4
-     77e:	86 60       	ori	r24, 0x06	; 6
-     780:	84 b9       	out	0x04, r24	; 4
+     782:	84 b1       	in	r24, 0x04	; 4
+     784:	86 60       	ori	r24, 0x06	; 6
+     786:	84 b9       	out	0x04, r24	; 4
 	PWMOutPort &= ~(( 1 << PWMOut1Pin) | (1 << PWMOUT2Pin));								// PWM Pins to LOW
-     782:	85 b1       	in	r24, 0x05	; 5
-     784:	89 7f       	andi	r24, 0xF9	; 249
-     786:	85 b9       	out	0x05, r24	; 5
+     788:	85 b1       	in	r24, 0x05	; 5
+     78a:	89 7f       	andi	r24, 0xF9	; 249
+     78c:	85 b9       	out	0x05, r24	; 5
 
 	PwmOnDir |= (1 << PwmOn12Pin) | (1 << PwmOn34Pin) | (PwmOn56Pin);						// PWM-ON Pins to OUTPUT
-     788:	87 b1       	in	r24, 0x07	; 7
-     78a:	83 60       	ori	r24, 0x03	; 3
-     78c:	87 b9       	out	0x07, r24	; 7
+     78e:	87 b1       	in	r24, 0x07	; 7
+     790:	83 60       	ori	r24, 0x03	; 3
+     792:	87 b9       	out	0x07, r24	; 7
 	PwmOnPort &= ~((1 << PwmOn12Pin) | (1 << PwmOn34Pin) | (PwmOn56Pin));					// PWM-ON Pins to LOW
-     78e:	88 b1       	in	r24, 0x08	; 8
-     790:	8c 7f       	andi	r24, 0xFC	; 252
-     792:	88 b9       	out	0x08, r24	; 8
+     794:	88 b1       	in	r24, 0x08	; 8
+     796:	8c 7f       	andi	r24, 0xFC	; 252
+     798:	88 b9       	out	0x08, r24	; 8
 
 	EICRA |= (1 << ISC00);			// INT0 -> SigSwitch: any logical change on PD2 generates an Interrupt
-     794:	e9 e6       	ldi	r30, 0x69	; 105
-     796:	f0 e0       	ldi	r31, 0x00	; 0
-     798:	80 81       	ld	r24, Z
-     79a:	81 60       	ori	r24, 0x01	; 1
-     79c:	80 83       	st	Z, r24
+     79a:	e9 e6       	ldi	r30, 0x69	; 105
+     79c:	f0 e0       	ldi	r31, 0x00	; 0
+     79e:	80 81       	ld	r24, Z
+     7a0:	81 60       	ori	r24, 0x01	; 1
+     7a2:	80 83       	st	Z, r24
 	PCICR |= (1 << PCIE1);			// PCINT11 -> SigS1:  any logical change on PC3 generates an Interrupt
-     79e:	e8 e6       	ldi	r30, 0x68	; 104
-     7a0:	f0 e0       	ldi	r31, 0x00	; 0
-     7a2:	80 81       	ld	r24, Z
-     7a4:	82 60       	ori	r24, 0x02	; 2
-     7a6:	80 83       	st	Z, r24
+     7a4:	e8 e6       	ldi	r30, 0x68	; 104
+     7a6:	f0 e0       	ldi	r31, 0x00	; 0
+     7a8:	80 81       	ld	r24, Z
+     7aa:	82 60       	ori	r24, 0x02	; 2
+     7ac:	80 83       	st	Z, r24
 
 	initPWMTimer1();
-     7a8:	0e 94 3e 03 	call	0x67c	; 0x67c <_ZN9Servo2To613initPWMTimer1Ev>
+     7ae:	0e 94 41 03 	call	0x682	; 0x682 <_ZN9Servo2To613initPWMTimer1Ev>
 	TCCR2B |= (1 << WGM21);			// CTC Mode ThreemsTimer 2
-     7ac:	e1 eb       	ldi	r30, 0xB1	; 177
-     7ae:	f0 e0       	ldi	r31, 0x00	; 0
-     7b0:	80 81       	ld	r24, Z
-     7b2:	82 60       	ori	r24, 0x02	; 2
-     7b4:	80 83       	st	Z, r24
+     7b2:	e1 eb       	ldi	r30, 0xB1	; 177
+     7b4:	f0 e0       	ldi	r31, 0x00	; 0
+     7b6:	80 81       	ld	r24, Z
+     7b8:	82 60       	ori	r24, 0x02	; 2
+     7ba:	80 83       	st	Z, r24
 	OCR2A = 188;					// 3ms =((F_CPU / N / 1000) * 3)
-     7b6:	8c eb       	ldi	r24, 0xBC	; 188
-     7b8:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+     7bc:	8c eb       	ldi	r24, 0xBC	; 188
+     7be:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
 	TIMSK2 |= (1 << OCIE2A);		// enable Timer2 interrupt reaching OCR2A value
-     7bc:	e0 e7       	ldi	r30, 0x70	; 112
-     7be:	f0 e0       	ldi	r31, 0x00	; 0
-     7c0:	80 81       	ld	r24, Z
-     7c2:	82 60       	ori	r24, 0x02	; 2
-     7c4:	80 83       	st	Z, r24
+     7c2:	e0 e7       	ldi	r30, 0x70	; 112
+     7c4:	f0 e0       	ldi	r31, 0x00	; 0
+     7c6:	80 81       	ld	r24, Z
+     7c8:	82 60       	ori	r24, 0x02	; 2
+     7ca:	80 83       	st	Z, r24
 	SwitchSenseISR(true);
-     7c6:	81 e0       	ldi	r24, 0x01	; 1
-     7c8:	0e 94 1c 03 	call	0x638	; 0x638 <_ZN9Servo2To614SwitchSenseISREb>
-     7cc:	08 95       	ret
+     7cc:	81 e0       	ldi	r24, 0x01	; 1
+     7ce:	0e 94 1c 03 	call	0x638	; 0x638 <_ZN9Servo2To614SwitchSenseISREb>
+     7d2:	08 95       	ret
 
-000007ce <_ZN11ServoEEPROM9writeDataEv>:
+000007d4 <_ZN11ServoEEPROM9writeDataEv>:
 {
 	uint8_t actLength = strlen(v);
 	if (actLength > 5) actLength = 5;
 	memcpy(m_initValues.version, v, actLength + 1);
 	if(write) writeData();
 }
-     7ce:	45 e3       	ldi	r20, 0x35	; 53
-     7d0:	50 e0       	ldi	r21, 0x00	; 0
-     7d2:	60 e5       	ldi	r22, 0x50	; 80
-     7d4:	70 e0       	ldi	r23, 0x00	; 0
-     7d6:	0e 94 4e 0a 	call	0x149c	; 0x149c <eeprom_update_block>
-     7da:	08 95       	ret
+     7d4:	45 e3       	ldi	r20, 0x35	; 53
+     7d6:	50 e0       	ldi	r21, 0x00	; 0
+     7d8:	60 e5       	ldi	r22, 0x50	; 80
+     7da:	70 e0       	ldi	r23, 0x00	; 0
+     7dc:	0e 94 51 0a 	call	0x14a2	; 0x14a2 <eeprom_update_block>
+     7e0:	08 95       	ret
 
-000007dc <_ZN11ServoEEPROM13setInitValuesE17EEPROM_initValues>:
-     7dc:	cf 93       	push	r28
-     7de:	df 93       	push	r29
-     7e0:	cd b7       	in	r28, 0x3d	; 61
-     7e2:	de b7       	in	r29, 0x3e	; 62
-     7e4:	fc 01       	movw	r30, r24
-     7e6:	89 e3       	ldi	r24, 0x39	; 57
-     7e8:	90 e3       	ldi	r25, 0x30	; 48
-     7ea:	91 83       	std	Z+1, r25	; 0x01
-     7ec:	80 83       	st	Z, r24
-     7ee:	8c a9       	ldd	r24, Y+52	; 0x34
-     7f0:	9d a9       	ldd	r25, Y+53	; 0x35
-     7f2:	90 ab       	std	Z+48, r25	; 0x30
-     7f4:	87 a7       	std	Z+47, r24	; 0x2f
-     7f6:	8e a9       	ldd	r24, Y+54	; 0x36
-     7f8:	81 ab       	std	Z+49, r24	; 0x31
-     7fa:	8f a9       	ldd	r24, Y+55	; 0x37
-     7fc:	82 ab       	std	Z+50, r24	; 0x32
-     7fe:	88 ad       	ldd	r24, Y+56	; 0x38
-     800:	99 ad       	ldd	r25, Y+57	; 0x39
-     802:	94 ab       	std	Z+52, r25	; 0x34
-     804:	83 ab       	std	Z+51, r24	; 0x33
-     806:	cf 01       	movw	r24, r30
-     808:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
-     80c:	df 91       	pop	r29
-     80e:	cf 91       	pop	r28
-     810:	08 95       	ret
+000007e2 <_ZN11ServoEEPROM13setInitValuesE17EEPROM_initValues>:
+     7e2:	cf 93       	push	r28
+     7e4:	df 93       	push	r29
+     7e6:	cd b7       	in	r28, 0x3d	; 61
+     7e8:	de b7       	in	r29, 0x3e	; 62
+     7ea:	fc 01       	movw	r30, r24
+     7ec:	89 e3       	ldi	r24, 0x39	; 57
+     7ee:	90 e3       	ldi	r25, 0x30	; 48
+     7f0:	91 83       	std	Z+1, r25	; 0x01
+     7f2:	80 83       	st	Z, r24
+     7f4:	8c a9       	ldd	r24, Y+52	; 0x34
+     7f6:	9d a9       	ldd	r25, Y+53	; 0x35
+     7f8:	90 ab       	std	Z+48, r25	; 0x30
+     7fa:	87 a7       	std	Z+47, r24	; 0x2f
+     7fc:	8e a9       	ldd	r24, Y+54	; 0x36
+     7fe:	81 ab       	std	Z+49, r24	; 0x31
+     800:	8f a9       	ldd	r24, Y+55	; 0x37
+     802:	82 ab       	std	Z+50, r24	; 0x32
+     804:	88 ad       	ldd	r24, Y+56	; 0x38
+     806:	99 ad       	ldd	r25, Y+57	; 0x39
+     808:	94 ab       	std	Z+52, r25	; 0x34
+     80a:	83 ab       	std	Z+51, r24	; 0x33
+     80c:	cf 01       	movw	r24, r30
+     80e:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
+     812:	df 91       	pop	r29
+     814:	cf 91       	pop	r28
+     816:	08 95       	ret
 
-00000812 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>:
+00000818 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>:
 
 void ServoEEPROM::setServoType(ServoType st, bool write /*= false*/)
 {
 	m_initValues.servoType = st;
-     812:	fc 01       	movw	r30, r24
-     814:	70 ab       	std	Z+48, r23	; 0x30
-     816:	67 a7       	std	Z+47, r22	; 0x2f
+     818:	fc 01       	movw	r30, r24
+     81a:	70 ab       	std	Z+48, r23	; 0x30
+     81c:	67 a7       	std	Z+47, r22	; 0x2f
 	if(write) writeData();
-     818:	41 11       	cpse	r20, r1
-     81a:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
-     81e:	08 95       	ret
+     81e:	41 11       	cpse	r20, r1
+     820:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
+     824:	08 95       	ret
 
-00000820 <_ZN11ServoEEPROM15setNullStellungEab>:
+00000826 <_ZN11ServoEEPROM15setNullStellungEab>:
 }
 
 void ServoEEPROM::setNullStellung(int8_t ns, bool write /*= false*/)
 {
 	m_initValues.SNullStellung = ns;
-     820:	fc 01       	movw	r30, r24
-     822:	61 ab       	std	Z+49, r22	; 0x31
+     826:	fc 01       	movw	r30, r24
+     828:	61 ab       	std	Z+49, r22	; 0x31
 	if(write) writeData();
-     824:	41 11       	cpse	r20, r1
-     826:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
-     82a:	08 95       	ret
+     82a:	41 11       	cpse	r20, r1
+     82c:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
+     830:	08 95       	ret
 
-0000082c <_ZN11ServoEEPROM13setAngleRangeEhb>:
+00000832 <_ZN11ServoEEPROM13setAngleRangeEhb>:
 }
 
 void ServoEEPROM::setAngleRange(uint8_t ar, bool write /*= false*/)
 {
 	m_initValues.AngleRange = ar;
-     82c:	fc 01       	movw	r30, r24
-     82e:	62 ab       	std	Z+50, r22	; 0x32
+     832:	fc 01       	movw	r30, r24
+     834:	62 ab       	std	Z+50, r22	; 0x32
 	if(write) writeData();
-     830:	41 11       	cpse	r20, r1
-     832:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
-     836:	08 95       	ret
+     836:	41 11       	cpse	r20, r1
+     838:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
+     83c:	08 95       	ret
 
-00000838 <_ZN11ServoEEPROM11setPWMDelayEjb>:
+0000083e <_ZN11ServoEEPROM11setPWMDelayEjb>:
 
 
 
 void ServoEEPROM::setPWMDelay( uint16_t del, bool write /*= false*/ )
 {
 	if(del > 100) {
-     838:	65 36       	cpi	r22, 0x65	; 101
-     83a:	71 05       	cpc	r23, r1
-     83c:	30 f0       	brcs	.+12     	; 0x84a <_ZN11ServoEEPROM11setPWMDelayEjb+0x12>
+     83e:	65 36       	cpi	r22, 0x65	; 101
+     840:	71 05       	cpc	r23, r1
+     842:	30 f0       	brcs	.+12     	; 0x850 <_ZN11ServoEEPROM11setPWMDelayEjb+0x12>
 		m_initValues.PWMDelay = del;
-     83e:	fc 01       	movw	r30, r24
-     840:	74 ab       	std	Z+52, r23	; 0x34
-     842:	63 ab       	std	Z+51, r22	; 0x33
+     844:	fc 01       	movw	r30, r24
+     846:	74 ab       	std	Z+52, r23	; 0x34
+     848:	63 ab       	std	Z+51, r22	; 0x33
 		if(write) writeData();
-     844:	41 11       	cpse	r20, r1
-     846:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
-     84a:	08 95       	ret
+     84a:	41 11       	cpse	r20, r1
+     84c:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
+     850:	08 95       	ret
 
-0000084c <_ZN11ServoEEPROM8readDataEv>:
+00000852 <_ZN11ServoEEPROM8readDataEv>:
 ServoEEPROM::ServoEEPROM()
 {
 	readData();
 } //ServoEEPROM
 
 void ServoEEPROM::readData() {
-     84c:	cf 93       	push	r28
-     84e:	df 93       	push	r29
-     850:	ec 01       	movw	r28, r24
+     852:	cf 93       	push	r28
+     854:	df 93       	push	r29
+     856:	ec 01       	movw	r28, r24
 	eeprom_read_block(&m_initValues, (void*)EEPROMADRESS, sizeof(m_initValues));
-     852:	45 e3       	ldi	r20, 0x35	; 53
-     854:	50 e0       	ldi	r21, 0x00	; 0
-     856:	60 e5       	ldi	r22, 0x50	; 80
-     858:	70 e0       	ldi	r23, 0x00	; 0
-     85a:	0e 94 3e 0a 	call	0x147c	; 0x147c <eeprom_read_block>
+     858:	45 e3       	ldi	r20, 0x35	; 53
+     85a:	50 e0       	ldi	r21, 0x00	; 0
+     85c:	60 e5       	ldi	r22, 0x50	; 80
+     85e:	70 e0       	ldi	r23, 0x00	; 0
+     860:	0e 94 41 0a 	call	0x1482	; 0x1482 <eeprom_read_block>
 	if (m_initValues.SerialNr != (uint16_t)SERIALNR) {
-     85e:	88 81       	ld	r24, Y
-     860:	99 81       	ldd	r25, Y+1	; 0x01
-     862:	89 33       	cpi	r24, 0x39	; 57
-     864:	90 43       	sbci	r25, 0x30	; 48
-     866:	61 f1       	breq	.+88     	; 0x8c0 <_ZN11ServoEEPROM8readDataEv+0x74>
+     864:	88 81       	ld	r24, Y
+     866:	99 81       	ldd	r25, Y+1	; 0x01
+     868:	89 33       	cpi	r24, 0x39	; 57
+     86a:	90 43       	sbci	r25, 0x30	; 48
+     86c:	61 f1       	breq	.+88     	; 0x8c6 <_ZN11ServoEEPROM8readDataEv+0x74>
 		m_initValues.SerialNr = (uint16_t)SERIALNR;
-     868:	de 01       	movw	r26, r28
-     86a:	89 e3       	ldi	r24, 0x39	; 57
-     86c:	90 e3       	ldi	r25, 0x30	; 48
-     86e:	8d 93       	st	X+, r24
-     870:	9d 93       	st	X+, r25
+     86e:	de 01       	movw	r26, r28
+     870:	89 e3       	ldi	r24, 0x39	; 57
+     872:	90 e3       	ldi	r25, 0x30	; 48
+     874:	8d 93       	st	X+, r24
+     876:	9d 93       	st	X+, r25
 		memset(m_initValues.company, ' ', 20);
 		memset(m_initValues.version, ' ', 5);
 		uint8_t actLen;
 		actLen = strlen(AUTHOR);
 		if (actLen > 20) actLen = 20;
 		memcpy(m_initValues.author, AUTHOR, actLen + 1);
-     872:	84 e1       	ldi	r24, 0x14	; 20
-     874:	ef ea       	ldi	r30, 0xAF	; 175
-     876:	f6 e0       	ldi	r31, 0x06	; 6
-     878:	01 90       	ld	r0, Z+
-     87a:	0d 92       	st	X+, r0
-     87c:	8a 95       	dec	r24
-     87e:	e1 f7       	brne	.-8      	; 0x878 <_ZN11ServoEEPROM8readDataEv+0x2c>
+     878:	84 e1       	ldi	r24, 0x14	; 20
+     87a:	ef ea       	ldi	r30, 0xAF	; 175
+     87c:	f6 e0       	ldi	r31, 0x06	; 6
+     87e:	01 90       	ld	r0, Z+
+     880:	0d 92       	st	X+, r0
+     882:	8a 95       	dec	r24
+     884:	e1 f7       	brne	.-8      	; 0x87e <_ZN11ServoEEPROM8readDataEv+0x2c>
 		actLen = strlen(COMPANY);
 		if (actLen > 20) actLen = 20;
 		memcpy(m_initValues.company, COMPANY, actLen + 1);
-     880:	de 01       	movw	r26, r28
-     882:	56 96       	adiw	r26, 0x16	; 22
-     884:	84 e1       	ldi	r24, 0x14	; 20
-     886:	e3 ec       	ldi	r30, 0xC3	; 195
-     888:	f6 e0       	ldi	r31, 0x06	; 6
-     88a:	01 90       	ld	r0, Z+
-     88c:	0d 92       	st	X+, r0
-     88e:	8a 95       	dec	r24
-     890:	e1 f7       	brne	.-8      	; 0x88a <_ZN11ServoEEPROM8readDataEv+0x3e>
+     886:	de 01       	movw	r26, r28
+     888:	56 96       	adiw	r26, 0x16	; 22
+     88a:	84 e1       	ldi	r24, 0x14	; 20
+     88c:	e3 ec       	ldi	r30, 0xC3	; 195
+     88e:	f6 e0       	ldi	r31, 0x06	; 6
+     890:	01 90       	ld	r0, Z+
+     892:	0d 92       	st	X+, r0
+     894:	8a 95       	dec	r24
+     896:	e1 f7       	brne	.-8      	; 0x890 <_ZN11ServoEEPROM8readDataEv+0x3e>
 		actLen = strlen(VERSION);
 		if (actLen > 5) actLen = 5;
 		memcpy(m_initValues.version, VERSION, actLen + 1);
-     892:	de 01       	movw	r26, r28
-     894:	9a 96       	adiw	r26, 0x2a	; 42
-     896:	85 e0       	ldi	r24, 0x05	; 5
-     898:	e7 ed       	ldi	r30, 0xD7	; 215
-     89a:	f6 e0       	ldi	r31, 0x06	; 6
-     89c:	01 90       	ld	r0, Z+
-     89e:	0d 92       	st	X+, r0
-     8a0:	8a 95       	dec	r24
-     8a2:	e1 f7       	brne	.-8      	; 0x89c <_ZN11ServoEEPROM8readDataEv+0x50>
+     898:	de 01       	movw	r26, r28
+     89a:	9a 96       	adiw	r26, 0x2a	; 42
+     89c:	85 e0       	ldi	r24, 0x05	; 5
+     89e:	e7 ed       	ldi	r30, 0xD7	; 215
+     8a0:	f6 e0       	ldi	r31, 0x06	; 6
+     8a2:	01 90       	ld	r0, Z+
+     8a4:	0d 92       	st	X+, r0
+     8a6:	8a 95       	dec	r24
+     8a8:	e1 f7       	brne	.-8      	; 0x8a2 <_ZN11ServoEEPROM8readDataEv+0x50>
 		m_initValues.servoType = ServoType::analog;
-     8a4:	82 e3       	ldi	r24, 0x32	; 50
-     8a6:	90 e0       	ldi	r25, 0x00	; 0
-     8a8:	98 ab       	std	Y+48, r25	; 0x30
-     8aa:	8f a7       	std	Y+47, r24	; 0x2f
+     8aa:	82 e3       	ldi	r24, 0x32	; 50
+     8ac:	90 e0       	ldi	r25, 0x00	; 0
+     8ae:	98 ab       	std	Y+48, r25	; 0x30
+     8b0:	8f a7       	std	Y+47, r24	; 0x2f
 		m_initValues.SNullStellung = 0;
-     8ac:	19 aa       	std	Y+49, r1	; 0x31
+     8b2:	19 aa       	std	Y+49, r1	; 0x31
 		m_initValues.AngleRange = 180;
-     8ae:	84 eb       	ldi	r24, 0xB4	; 180
-     8b0:	8a ab       	std	Y+50, r24	; 0x32
+     8b4:	84 eb       	ldi	r24, 0xB4	; 180
+     8b6:	8a ab       	std	Y+50, r24	; 0x32
 		m_initValues.PWMDelay = 500;
-     8b2:	84 ef       	ldi	r24, 0xF4	; 244
-     8b4:	91 e0       	ldi	r25, 0x01	; 1
-     8b6:	9c ab       	std	Y+52, r25	; 0x34
-     8b8:	8b ab       	std	Y+51, r24	; 0x33
+     8b8:	84 ef       	ldi	r24, 0xF4	; 244
+     8ba:	91 e0       	ldi	r25, 0x01	; 1
+     8bc:	9c ab       	std	Y+52, r25	; 0x34
+     8be:	8b ab       	std	Y+51, r24	; 0x33
 		writeData();
-     8ba:	ce 01       	movw	r24, r28
-     8bc:	0e 94 e7 03 	call	0x7ce	; 0x7ce <_ZN11ServoEEPROM9writeDataEv>
+     8c0:	ce 01       	movw	r24, r28
+     8c2:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <_ZN11ServoEEPROM9writeDataEv>
 	}
 }
-     8c0:	df 91       	pop	r29
-     8c2:	cf 91       	pop	r28
-     8c4:	08 95       	ret
+     8c6:	df 91       	pop	r29
+     8c8:	cf 91       	pop	r28
+     8ca:	08 95       	ret
 
-000008c6 <_ZN11ServoEEPROM13getInitValuesEb>:
+000008cc <_ZN11ServoEEPROM13getInitValuesEb>:
  *  false .. data for struct is filled from class (without EEPROM read)
  *
  * \return EEPROM_initValues
  *  struct which contains all data original from EEPROM
  */
 EEPROM_initValues ServoEEPROM::getInitValues(bool readAnew) {
-     8c6:	0f 93       	push	r16
-     8c8:	1f 93       	push	r17
-     8ca:	cf 93       	push	r28
-     8cc:	df 93       	push	r29
-     8ce:	ec 01       	movw	r28, r24
-     8d0:	8b 01       	movw	r16, r22
+     8cc:	0f 93       	push	r16
+     8ce:	1f 93       	push	r17
+     8d0:	cf 93       	push	r28
+     8d2:	df 93       	push	r29
+     8d4:	ec 01       	movw	r28, r24
+     8d6:	8b 01       	movw	r16, r22
 	if (readAnew) {
-     8d2:	44 23       	and	r20, r20
-     8d4:	19 f0       	breq	.+6      	; 0x8dc <_ZN11ServoEEPROM13getInitValuesEb+0x16>
+     8d8:	44 23       	and	r20, r20
+     8da:	19 f0       	breq	.+6      	; 0x8e2 <_ZN11ServoEEPROM13getInitValuesEb+0x16>
 		readData();
-     8d6:	cb 01       	movw	r24, r22
-     8d8:	0e 94 26 04 	call	0x84c	; 0x84c <_ZN11ServoEEPROM8readDataEv>
+     8dc:	cb 01       	movw	r24, r22
+     8de:	0e 94 29 04 	call	0x852	; 0x852 <_ZN11ServoEEPROM8readDataEv>
 	}
 	return m_initValues;
-     8dc:	85 e3       	ldi	r24, 0x35	; 53
-     8de:	f8 01       	movw	r30, r16
-     8e0:	de 01       	movw	r26, r28
-     8e2:	01 90       	ld	r0, Z+
-     8e4:	0d 92       	st	X+, r0
-     8e6:	8a 95       	dec	r24
-     8e8:	e1 f7       	brne	.-8      	; 0x8e2 <_ZN11ServoEEPROM13getInitValuesEb+0x1c>
+     8e2:	85 e3       	ldi	r24, 0x35	; 53
+     8e4:	f8 01       	movw	r30, r16
+     8e6:	de 01       	movw	r26, r28
+     8e8:	01 90       	ld	r0, Z+
+     8ea:	0d 92       	st	X+, r0
+     8ec:	8a 95       	dec	r24
+     8ee:	e1 f7       	brne	.-8      	; 0x8e8 <_ZN11ServoEEPROM13getInitValuesEb+0x1c>
 }
-     8ea:	ce 01       	movw	r24, r28
-     8ec:	df 91       	pop	r29
-     8ee:	cf 91       	pop	r28
-     8f0:	1f 91       	pop	r17
-     8f2:	0f 91       	pop	r16
-     8f4:	08 95       	ret
+     8f0:	ce 01       	movw	r24, r28
+     8f2:	df 91       	pop	r29
+     8f4:	cf 91       	pop	r28
+     8f6:	1f 91       	pop	r17
+     8f8:	0f 91       	pop	r16
+     8fa:	08 95       	ret
 
-000008f6 <_ZN11ServoEEPROMC1Ev>:
+000008fc <_ZN11ServoEEPROMC1Ev>:
 }
 
 // default constructor
 ServoEEPROM::ServoEEPROM()
 {
 	readData();
-     8f6:	0e 94 26 04 	call	0x84c	; 0x84c <_ZN11ServoEEPROM8readDataEv>
-     8fa:	08 95       	ret
+     8fc:	0e 94 29 04 	call	0x852	; 0x852 <_ZN11ServoEEPROM8readDataEv>
+     900:	08 95       	ret
 
-000008fc <_ZN11ServoEEPROMD1Ev>:
+00000902 <_ZN11ServoEEPROMD1Ev>:
 void ServoEEPROM::writeData() {
 	eeprom_update_block(&m_initValues, (void*)EEPROMADRESS, sizeof(m_initValues));
 }
 
 // default destructor
 ServoEEPROM::~ServoEEPROM()
-     8fc:	08 95       	ret
+     902:	08 95       	ret
 
-000008fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>:
+00000904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>:
 	  *  ServoType enum
 	  * \return void
 	  */
 	 void ServoTypeMenu(ServoType st)
 	 {
 		 switch(st) {
-     8fe:	84 36       	cpi	r24, 0x64	; 100
-     900:	91 05       	cpc	r25, r1
-     902:	99 f0       	breq	.+38     	; 0x92a <__stack+0x2b>
-     904:	1c f4       	brge	.+6      	; 0x90c <__stack+0xd>
-     906:	c2 97       	sbiw	r24, 0x32	; 50
-     908:	41 f0       	breq	.+16     	; 0x91a <__stack+0x1b>
-     90a:	08 95       	ret
-     90c:	88 3c       	cpi	r24, 0xC8	; 200
-     90e:	91 05       	cpc	r25, r1
-     910:	a1 f0       	breq	.+40     	; 0x93a <__stack+0x3b>
-     912:	8c 32       	cpi	r24, 0x2C	; 44
-     914:	91 40       	sbci	r25, 0x01	; 1
-     916:	c9 f0       	breq	.+50     	; 0x94a <__stack+0x4b>
-     918:	08 95       	ret
+     904:	84 36       	cpi	r24, 0x64	; 100
+     906:	91 05       	cpc	r25, r1
+     908:	99 f0       	breq	.+38     	; 0x930 <_ZN12usartHelpers13ServoTypeMenuE9ServoType+0x2c>
+     90a:	1c f4       	brge	.+6      	; 0x912 <_ZN12usartHelpers13ServoTypeMenuE9ServoType+0xe>
+     90c:	c2 97       	sbiw	r24, 0x32	; 50
+     90e:	41 f0       	breq	.+16     	; 0x920 <_ZN12usartHelpers13ServoTypeMenuE9ServoType+0x1c>
+     910:	08 95       	ret
+     912:	88 3c       	cpi	r24, 0xC8	; 200
+     914:	91 05       	cpc	r25, r1
+     916:	a1 f0       	breq	.+40     	; 0x940 <_ZN12usartHelpers13ServoTypeMenuE9ServoType+0x3c>
+     918:	8c 32       	cpi	r24, 0x2C	; 44
+     91a:	91 40       	sbci	r25, 0x01	; 1
+     91c:	c9 f0       	breq	.+50     	; 0x950 <_ZN12usartHelpers13ServoTypeMenuE9ServoType+0x4c>
+     91e:	08 95       	ret
 			 case ServoType::analog:
 			 uart.write((char*)"analog  -  50Hz\0", true);
-     91a:	41 e0       	ldi	r20, 0x01	; 1
-     91c:	64 e4       	ldi	r22, 0x44	; 68
-     91e:	71 e0       	ldi	r23, 0x01	; 1
-     920:	86 e0       	ldi	r24, 0x06	; 6
-     922:	97 e0       	ldi	r25, 0x07	; 7
-     924:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     920:	41 e0       	ldi	r20, 0x01	; 1
+     922:	64 e4       	ldi	r22, 0x44	; 68
+     924:	71 e0       	ldi	r23, 0x01	; 1
+     926:	86 e0       	ldi	r24, 0x06	; 6
+     928:	97 e0       	ldi	r25, 0x07	; 7
+     92a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			 break;
-     928:	08 95       	ret
+     92e:	08 95       	ret
 			 case ServoType::digital100:
 			 uart.write((char*)"digital - 100Hz\0", true);
-     92a:	41 e0       	ldi	r20, 0x01	; 1
-     92c:	65 e5       	ldi	r22, 0x55	; 85
-     92e:	71 e0       	ldi	r23, 0x01	; 1
-     930:	86 e0       	ldi	r24, 0x06	; 6
-     932:	97 e0       	ldi	r25, 0x07	; 7
-     934:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     930:	41 e0       	ldi	r20, 0x01	; 1
+     932:	65 e5       	ldi	r22, 0x55	; 85
+     934:	71 e0       	ldi	r23, 0x01	; 1
+     936:	86 e0       	ldi	r24, 0x06	; 6
+     938:	97 e0       	ldi	r25, 0x07	; 7
+     93a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			 break;
-     938:	08 95       	ret
+     93e:	08 95       	ret
 			 case ServoType::digital200:
 			 uart.write((char*)"digital - 200Hz\0", true);
-     93a:	41 e0       	ldi	r20, 0x01	; 1
-     93c:	66 e6       	ldi	r22, 0x66	; 102
-     93e:	71 e0       	ldi	r23, 0x01	; 1
-     940:	86 e0       	ldi	r24, 0x06	; 6
-     942:	97 e0       	ldi	r25, 0x07	; 7
-     944:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     940:	41 e0       	ldi	r20, 0x01	; 1
+     942:	66 e6       	ldi	r22, 0x66	; 102
+     944:	71 e0       	ldi	r23, 0x01	; 1
+     946:	86 e0       	ldi	r24, 0x06	; 6
+     948:	97 e0       	ldi	r25, 0x07	; 7
+     94a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			 break;
-     948:	08 95       	ret
+     94e:	08 95       	ret
 			 case ServoType::digital300:
 			 uart.write((char*)"digital - 300Hz\0", true);
-     94a:	41 e0       	ldi	r20, 0x01	; 1
-     94c:	67 e7       	ldi	r22, 0x77	; 119
-     94e:	71 e0       	ldi	r23, 0x01	; 1
-     950:	86 e0       	ldi	r24, 0x06	; 6
-     952:	97 e0       	ldi	r25, 0x07	; 7
-     954:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     958:	08 95       	ret
+     950:	41 e0       	ldi	r20, 0x01	; 1
+     952:	67 e7       	ldi	r22, 0x77	; 119
+     954:	71 e0       	ldi	r23, 0x01	; 1
+     956:	86 e0       	ldi	r24, 0x06	; 6
+     958:	97 e0       	ldi	r25, 0x07	; 7
+     95a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     95e:	08 95       	ret
 
-0000095a <_ZN12usartHelpers15ChangeServoTypeEv>:
+00000960 <_ZN12usartHelpers15ChangeServoTypeEv>:
 	  *  uart submenu for changing the servotype (pwm frequency selection) out of
 	  *  for predefined servotypes (=frequencies)
 	  * 
 	  * \return void
 	  */
 	 void ChangeServoType() {
-     95a:	1f 93       	push	r17
-     95c:	cf 93       	push	r28
-     95e:	df 93       	push	r29
-     960:	cd b7       	in	r28, 0x3d	; 61
-     962:	de b7       	in	r29, 0x3e	; 62
-     964:	e5 97       	sbiw	r28, 0x35	; 53
-     966:	0f b6       	in	r0, 0x3f	; 63
-     968:	f8 94       	cli
-     96a:	de bf       	out	0x3e, r29	; 62
-     96c:	0f be       	out	0x3f, r0	; 63
-     96e:	cd bf       	out	0x3d, r28	; 61
+     960:	1f 93       	push	r17
+     962:	cf 93       	push	r28
+     964:	df 93       	push	r29
+     966:	cd b7       	in	r28, 0x3d	; 61
+     968:	de b7       	in	r29, 0x3e	; 62
+     96a:	e5 97       	sbiw	r28, 0x35	; 53
+     96c:	0f b6       	in	r0, 0x3f	; 63
+     96e:	f8 94       	cli
+     970:	de bf       	out	0x3e, r29	; 62
+     972:	0f be       	out	0x3f, r0	; 63
+     974:	cd bf       	out	0x3d, r28	; 61
 
 		unsigned char x = '0';
 		
 		while (x != 'q') {		
 			uart.cls();
-     970:	86 e0       	ldi	r24, 0x06	; 6
-     972:	97 e0       	ldi	r25, 0x07	; 7
-     974:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
+     976:	86 e0       	ldi	r24, 0x06	; 6
+     978:	97 e0       	ldi	r25, 0x07	; 7
+     97a:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
 			uart.write((char*)"Servo Multiplier --> Change Servotype\0", true);
-     978:	41 e0       	ldi	r20, 0x01	; 1
-     97a:	68 e8       	ldi	r22, 0x88	; 136
-     97c:	71 e0       	ldi	r23, 0x01	; 1
-     97e:	86 e0       	ldi	r24, 0x06	; 6
-     980:	97 e0       	ldi	r25, 0x07	; 7
-     982:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     97e:	41 e0       	ldi	r20, 0x01	; 1
+     980:	68 e8       	ldi	r22, 0x88	; 136
+     982:	71 e0       	ldi	r23, 0x01	; 1
+     984:	86 e0       	ldi	r24, 0x06	; 6
+     986:	97 e0       	ldi	r25, 0x07	; 7
+     988:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     986:	86 e0       	ldi	r24, 0x06	; 6
-     988:	97 e0       	ldi	r25, 0x07	; 7
-     98a:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     98c:	86 e0       	ldi	r24, 0x06	; 6
+     98e:	97 e0       	ldi	r25, 0x07	; 7
+     990:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Current Servotype: \0"); ServoTypeMenu(initValues.getInitValues().servoType);
-     98e:	40 e0       	ldi	r20, 0x00	; 0
-     990:	6f ea       	ldi	r22, 0xAF	; 175
-     992:	71 e0       	ldi	r23, 0x01	; 1
-     994:	86 e0       	ldi	r24, 0x06	; 6
-     996:	97 e0       	ldi	r25, 0x07	; 7
-     998:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     99c:	40 e0       	ldi	r20, 0x00	; 0
-     99e:	68 e0       	ldi	r22, 0x08	; 8
-     9a0:	77 e0       	ldi	r23, 0x07	; 7
-     9a2:	ce 01       	movw	r24, r28
-     9a4:	01 96       	adiw	r24, 0x01	; 1
-     9a6:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     9aa:	88 a9       	ldd	r24, Y+48	; 0x30
-     9ac:	99 a9       	ldd	r25, Y+49	; 0x31
-     9ae:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+     994:	40 e0       	ldi	r20, 0x00	; 0
+     996:	6f ea       	ldi	r22, 0xAF	; 175
+     998:	71 e0       	ldi	r23, 0x01	; 1
+     99a:	86 e0       	ldi	r24, 0x06	; 6
+     99c:	97 e0       	ldi	r25, 0x07	; 7
+     99e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     9a2:	40 e0       	ldi	r20, 0x00	; 0
+     9a4:	68 e0       	ldi	r22, 0x08	; 8
+     9a6:	77 e0       	ldi	r23, 0x07	; 7
+     9a8:	ce 01       	movw	r24, r28
+     9aa:	01 96       	adiw	r24, 0x01	; 1
+     9ac:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     9b0:	88 a9       	ldd	r24, Y+48	; 0x30
+     9b2:	99 a9       	ldd	r25, Y+49	; 0x31
+     9b4:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.write((char*)"Select new Servotype:\0", true);
-     9b2:	41 e0       	ldi	r20, 0x01	; 1
-     9b4:	64 ec       	ldi	r22, 0xC4	; 196
-     9b6:	71 e0       	ldi	r23, 0x01	; 1
-     9b8:	86 e0       	ldi	r24, 0x06	; 6
-     9ba:	97 e0       	ldi	r25, 0x07	; 7
-     9bc:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     9b8:	41 e0       	ldi	r20, 0x01	; 1
+     9ba:	64 ec       	ldi	r22, 0xC4	; 196
+     9bc:	71 e0       	ldi	r23, 0x01	; 1
+     9be:	86 e0       	ldi	r24, 0x06	; 6
+     9c0:	97 e0       	ldi	r25, 0x07	; 7
+     9c2:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char *)"  1 \0"); ServoTypeMenu(ServoType::analog);
-     9c0:	40 e0       	ldi	r20, 0x00	; 0
-     9c2:	6b ed       	ldi	r22, 0xDB	; 219
-     9c4:	71 e0       	ldi	r23, 0x01	; 1
-     9c6:	86 e0       	ldi	r24, 0x06	; 6
-     9c8:	97 e0       	ldi	r25, 0x07	; 7
-     9ca:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     9ce:	82 e3       	ldi	r24, 0x32	; 50
-     9d0:	90 e0       	ldi	r25, 0x00	; 0
-     9d2:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+     9c6:	40 e0       	ldi	r20, 0x00	; 0
+     9c8:	6b ed       	ldi	r22, 0xDB	; 219
+     9ca:	71 e0       	ldi	r23, 0x01	; 1
+     9cc:	86 e0       	ldi	r24, 0x06	; 6
+     9ce:	97 e0       	ldi	r25, 0x07	; 7
+     9d0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     9d4:	82 e3       	ldi	r24, 0x32	; 50
+     9d6:	90 e0       	ldi	r25, 0x00	; 0
+     9d8:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.write((char *)"  2 \0"); ServoTypeMenu(ServoType::digital100);
-     9d6:	40 e0       	ldi	r20, 0x00	; 0
-     9d8:	61 ee       	ldi	r22, 0xE1	; 225
-     9da:	71 e0       	ldi	r23, 0x01	; 1
-     9dc:	86 e0       	ldi	r24, 0x06	; 6
-     9de:	97 e0       	ldi	r25, 0x07	; 7
-     9e0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     9e4:	84 e6       	ldi	r24, 0x64	; 100
-     9e6:	90 e0       	ldi	r25, 0x00	; 0
-     9e8:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+     9dc:	40 e0       	ldi	r20, 0x00	; 0
+     9de:	61 ee       	ldi	r22, 0xE1	; 225
+     9e0:	71 e0       	ldi	r23, 0x01	; 1
+     9e2:	86 e0       	ldi	r24, 0x06	; 6
+     9e4:	97 e0       	ldi	r25, 0x07	; 7
+     9e6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     9ea:	84 e6       	ldi	r24, 0x64	; 100
+     9ec:	90 e0       	ldi	r25, 0x00	; 0
+     9ee:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.write((char *)"  3 \0"); ServoTypeMenu(ServoType::digital200);
-     9ec:	40 e0       	ldi	r20, 0x00	; 0
-     9ee:	67 ee       	ldi	r22, 0xE7	; 231
-     9f0:	71 e0       	ldi	r23, 0x01	; 1
-     9f2:	86 e0       	ldi	r24, 0x06	; 6
-     9f4:	97 e0       	ldi	r25, 0x07	; 7
-     9f6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     9fa:	88 ec       	ldi	r24, 0xC8	; 200
-     9fc:	90 e0       	ldi	r25, 0x00	; 0
-     9fe:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+     9f2:	40 e0       	ldi	r20, 0x00	; 0
+     9f4:	67 ee       	ldi	r22, 0xE7	; 231
+     9f6:	71 e0       	ldi	r23, 0x01	; 1
+     9f8:	86 e0       	ldi	r24, 0x06	; 6
+     9fa:	97 e0       	ldi	r25, 0x07	; 7
+     9fc:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     a00:	88 ec       	ldi	r24, 0xC8	; 200
+     a02:	90 e0       	ldi	r25, 0x00	; 0
+     a04:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.write((char *)"  4 \0"); ServoTypeMenu(ServoType::digital300);
-     a02:	40 e0       	ldi	r20, 0x00	; 0
-     a04:	6d ee       	ldi	r22, 0xED	; 237
-     a06:	71 e0       	ldi	r23, 0x01	; 1
-     a08:	86 e0       	ldi	r24, 0x06	; 6
-     a0a:	97 e0       	ldi	r25, 0x07	; 7
-     a0c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     a10:	8c e2       	ldi	r24, 0x2C	; 44
-     a12:	91 e0       	ldi	r25, 0x01	; 1
-     a14:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+     a08:	40 e0       	ldi	r20, 0x00	; 0
+     a0a:	6d ee       	ldi	r22, 0xED	; 237
+     a0c:	71 e0       	ldi	r23, 0x01	; 1
+     a0e:	86 e0       	ldi	r24, 0x06	; 6
+     a10:	97 e0       	ldi	r25, 0x07	; 7
+     a12:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     a16:	8c e2       	ldi	r24, 0x2C	; 44
+     a18:	91 e0       	ldi	r25, 0x01	; 1
+     a1a:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.LfCr();
-     a18:	86 e0       	ldi	r24, 0x06	; 6
-     a1a:	97 e0       	ldi	r25, 0x07	; 7
-     a1c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     a1e:	86 e0       	ldi	r24, 0x06	; 6
+     a20:	97 e0       	ldi	r25, 0x07	; 7
+     a22:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char *)"  q Exit\0", true);
-     a20:	41 e0       	ldi	r20, 0x01	; 1
-     a22:	63 ef       	ldi	r22, 0xF3	; 243
-     a24:	71 e0       	ldi	r23, 0x01	; 1
-     a26:	86 e0       	ldi	r24, 0x06	; 6
-     a28:	97 e0       	ldi	r25, 0x07	; 7
-     a2a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     a26:	41 e0       	ldi	r20, 0x01	; 1
+     a28:	63 ef       	ldi	r22, 0xF3	; 243
+     a2a:	71 e0       	ldi	r23, 0x01	; 1
+     a2c:	86 e0       	ldi	r24, 0x06	; 6
+     a2e:	97 e0       	ldi	r25, 0x07	; 7
+     a30:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char *)"Select-->\0");
-     a2e:	40 e0       	ldi	r20, 0x00	; 0
-     a30:	6d ef       	ldi	r22, 0xFD	; 253
-     a32:	71 e0       	ldi	r23, 0x01	; 1
-     a34:	86 e0       	ldi	r24, 0x06	; 6
-     a36:	97 e0       	ldi	r25, 0x07	; 7
-     a38:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     a34:	40 e0       	ldi	r20, 0x00	; 0
+     a36:	6d ef       	ldi	r22, 0xFD	; 253
+     a38:	71 e0       	ldi	r23, 0x01	; 1
+     a3a:	86 e0       	ldi	r24, 0x06	; 6
+     a3c:	97 e0       	ldi	r25, 0x07	; 7
+     a3e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 
 			x = uart.read();
-     a3c:	86 e0       	ldi	r24, 0x06	; 6
-     a3e:	97 e0       	ldi	r25, 0x07	; 7
-     a40:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
-     a44:	18 2f       	mov	r17, r24
+     a42:	86 e0       	ldi	r24, 0x06	; 6
+     a44:	97 e0       	ldi	r25, 0x07	; 7
+     a46:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
+     a4a:	18 2f       	mov	r17, r24
 			switch (x) {
-     a46:	82 33       	cpi	r24, 0x32	; 50
-     a48:	89 f0       	breq	.+34     	; 0xa6c <_ZN12usartHelpers15ChangeServoTypeEv+0x112>
-     a4a:	18 f4       	brcc	.+6      	; 0xa52 <_ZN12usartHelpers15ChangeServoTypeEv+0xf8>
-     a4c:	81 33       	cpi	r24, 0x31	; 49
-     a4e:	31 f0       	breq	.+12     	; 0xa5c <_ZN12usartHelpers15ChangeServoTypeEv+0x102>
-     a50:	25 c0       	rjmp	.+74     	; 0xa9c <_ZN12usartHelpers15ChangeServoTypeEv+0x142>
-     a52:	83 33       	cpi	r24, 0x33	; 51
-     a54:	99 f0       	breq	.+38     	; 0xa7c <_ZN12usartHelpers15ChangeServoTypeEv+0x122>
-     a56:	84 33       	cpi	r24, 0x34	; 52
-     a58:	c9 f0       	breq	.+50     	; 0xa8c <_ZN12usartHelpers15ChangeServoTypeEv+0x132>
-     a5a:	20 c0       	rjmp	.+64     	; 0xa9c <_ZN12usartHelpers15ChangeServoTypeEv+0x142>
+     a4c:	82 33       	cpi	r24, 0x32	; 50
+     a4e:	89 f0       	breq	.+34     	; 0xa72 <_ZN12usartHelpers15ChangeServoTypeEv+0x112>
+     a50:	18 f4       	brcc	.+6      	; 0xa58 <_ZN12usartHelpers15ChangeServoTypeEv+0xf8>
+     a52:	81 33       	cpi	r24, 0x31	; 49
+     a54:	31 f0       	breq	.+12     	; 0xa62 <_ZN12usartHelpers15ChangeServoTypeEv+0x102>
+     a56:	25 c0       	rjmp	.+74     	; 0xaa2 <_ZN12usartHelpers15ChangeServoTypeEv+0x142>
+     a58:	83 33       	cpi	r24, 0x33	; 51
+     a5a:	99 f0       	breq	.+38     	; 0xa82 <_ZN12usartHelpers15ChangeServoTypeEv+0x122>
+     a5c:	84 33       	cpi	r24, 0x34	; 52
+     a5e:	c9 f0       	breq	.+50     	; 0xa92 <_ZN12usartHelpers15ChangeServoTypeEv+0x132>
+     a60:	20 c0       	rjmp	.+64     	; 0xaa2 <_ZN12usartHelpers15ChangeServoTypeEv+0x142>
 				case '1':
 					initValues.setServoType(ServoType::analog, false);
-     a5c:	40 e0       	ldi	r20, 0x00	; 0
-     a5e:	62 e3       	ldi	r22, 0x32	; 50
-     a60:	70 e0       	ldi	r23, 0x00	; 0
-     a62:	88 e0       	ldi	r24, 0x08	; 8
-     a64:	97 e0       	ldi	r25, 0x07	; 7
-     a66:	0e 94 09 04 	call	0x812	; 0x812 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
+     a62:	40 e0       	ldi	r20, 0x00	; 0
+     a64:	62 e3       	ldi	r22, 0x32	; 50
+     a66:	70 e0       	ldi	r23, 0x00	; 0
+     a68:	88 e0       	ldi	r24, 0x08	; 8
+     a6a:	97 e0       	ldi	r25, 0x07	; 7
+     a6c:	0e 94 0c 04 	call	0x818	; 0x818 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
 					break;
-     a6a:	24 c0       	rjmp	.+72     	; 0xab4 <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
+     a70:	24 c0       	rjmp	.+72     	; 0xaba <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
 				case '2':
 					initValues.setServoType(ServoType::digital100, false);
-     a6c:	40 e0       	ldi	r20, 0x00	; 0
-     a6e:	64 e6       	ldi	r22, 0x64	; 100
-     a70:	70 e0       	ldi	r23, 0x00	; 0
-     a72:	88 e0       	ldi	r24, 0x08	; 8
-     a74:	97 e0       	ldi	r25, 0x07	; 7
-     a76:	0e 94 09 04 	call	0x812	; 0x812 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
+     a72:	40 e0       	ldi	r20, 0x00	; 0
+     a74:	64 e6       	ldi	r22, 0x64	; 100
+     a76:	70 e0       	ldi	r23, 0x00	; 0
+     a78:	88 e0       	ldi	r24, 0x08	; 8
+     a7a:	97 e0       	ldi	r25, 0x07	; 7
+     a7c:	0e 94 0c 04 	call	0x818	; 0x818 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
 					break;
-     a7a:	1c c0       	rjmp	.+56     	; 0xab4 <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
+     a80:	1c c0       	rjmp	.+56     	; 0xaba <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
 				case '3':
 					initValues.setServoType(ServoType::digital200, false);
-     a7c:	40 e0       	ldi	r20, 0x00	; 0
-     a7e:	68 ec       	ldi	r22, 0xC8	; 200
-     a80:	70 e0       	ldi	r23, 0x00	; 0
-     a82:	88 e0       	ldi	r24, 0x08	; 8
-     a84:	97 e0       	ldi	r25, 0x07	; 7
-     a86:	0e 94 09 04 	call	0x812	; 0x812 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
+     a82:	40 e0       	ldi	r20, 0x00	; 0
+     a84:	68 ec       	ldi	r22, 0xC8	; 200
+     a86:	70 e0       	ldi	r23, 0x00	; 0
+     a88:	88 e0       	ldi	r24, 0x08	; 8
+     a8a:	97 e0       	ldi	r25, 0x07	; 7
+     a8c:	0e 94 0c 04 	call	0x818	; 0x818 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
 					break;
-     a8a:	14 c0       	rjmp	.+40     	; 0xab4 <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
+     a90:	14 c0       	rjmp	.+40     	; 0xaba <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
 				case '4':
 					initValues.setServoType(ServoType::digital300, false);
-     a8c:	40 e0       	ldi	r20, 0x00	; 0
-     a8e:	6c e2       	ldi	r22, 0x2C	; 44
-     a90:	71 e0       	ldi	r23, 0x01	; 1
-     a92:	88 e0       	ldi	r24, 0x08	; 8
-     a94:	97 e0       	ldi	r25, 0x07	; 7
-     a96:	0e 94 09 04 	call	0x812	; 0x812 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
+     a92:	40 e0       	ldi	r20, 0x00	; 0
+     a94:	6c e2       	ldi	r22, 0x2C	; 44
+     a96:	71 e0       	ldi	r23, 0x01	; 1
+     a98:	88 e0       	ldi	r24, 0x08	; 8
+     a9a:	97 e0       	ldi	r25, 0x07	; 7
+     a9c:	0e 94 0c 04 	call	0x818	; 0x818 <_ZN11ServoEEPROM12setServoTypeE9ServoTypeb>
 					break;				
-     a9a:	0c c0       	rjmp	.+24     	; 0xab4 <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
+     aa0:	0c c0       	rjmp	.+24     	; 0xaba <_ZN12usartHelpers15ChangeServoTypeEv+0x15a>
 			} // switch
 			uart.LfCr();
-     a9c:	86 e0       	ldi	r24, 0x06	; 6
-     a9e:	97 e0       	ldi	r25, 0x07	; 7
-     aa0:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     aa2:	86 e0       	ldi	r24, 0x06	; 6
+     aa4:	97 e0       	ldi	r25, 0x07	; 7
+     aa6:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.LfCr();
-     aa4:	86 e0       	ldi	r24, 0x06	; 6
-     aa6:	97 e0       	ldi	r25, 0x07	; 7
-     aa8:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     aaa:	86 e0       	ldi	r24, 0x06	; 6
+     aac:	97 e0       	ldi	r25, 0x07	; 7
+     aae:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 	  */
 	 void ChangeServoType() {
 
 		unsigned char x = '0';
 		
 		while (x != 'q') {		
-     aac:	11 37       	cpi	r17, 0x71	; 113
-     aae:	09 f0       	breq	.+2      	; 0xab2 <_ZN12usartHelpers15ChangeServoTypeEv+0x158>
-     ab0:	5f cf       	rjmp	.-322    	; 0x970 <_ZN12usartHelpers15ChangeServoTypeEv+0x16>
-     ab2:	09 c0       	rjmp	.+18     	; 0xac6 <_ZN12usartHelpers15ChangeServoTypeEv+0x16c>
+     ab2:	11 37       	cpi	r17, 0x71	; 113
+     ab4:	09 f0       	breq	.+2      	; 0xab8 <_ZN12usartHelpers15ChangeServoTypeEv+0x158>
+     ab6:	5f cf       	rjmp	.-322    	; 0x976 <_ZN12usartHelpers15ChangeServoTypeEv+0x16>
+     ab8:	09 c0       	rjmp	.+18     	; 0xacc <_ZN12usartHelpers15ChangeServoTypeEv+0x16c>
 					break;
 				case '4':
 					initValues.setServoType(ServoType::digital300, false);
 					break;				
 			} // switch
 			uart.LfCr();
-     ab4:	86 e0       	ldi	r24, 0x06	; 6
-     ab6:	97 e0       	ldi	r25, 0x07	; 7
-     ab8:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     aba:	86 e0       	ldi	r24, 0x06	; 6
+     abc:	97 e0       	ldi	r25, 0x07	; 7
+     abe:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.LfCr();
-     abc:	86 e0       	ldi	r24, 0x06	; 6
-     abe:	97 e0       	ldi	r25, 0x07	; 7
-     ac0:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
-     ac4:	55 cf       	rjmp	.-342    	; 0x970 <_ZN12usartHelpers15ChangeServoTypeEv+0x16>
+     ac2:	86 e0       	ldi	r24, 0x06	; 6
+     ac4:	97 e0       	ldi	r25, 0x07	; 7
+     ac6:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     aca:	55 cf       	rjmp	.-342    	; 0x976 <_ZN12usartHelpers15ChangeServoTypeEv+0x16>
 		} // while
 	}
-     ac6:	e5 96       	adiw	r28, 0x35	; 53
-     ac8:	0f b6       	in	r0, 0x3f	; 63
-     aca:	f8 94       	cli
-     acc:	de bf       	out	0x3e, r29	; 62
-     ace:	0f be       	out	0x3f, r0	; 63
-     ad0:	cd bf       	out	0x3d, r28	; 61
-     ad2:	df 91       	pop	r29
-     ad4:	cf 91       	pop	r28
-     ad6:	1f 91       	pop	r17
-     ad8:	08 95       	ret
+     acc:	e5 96       	adiw	r28, 0x35	; 53
+     ace:	0f b6       	in	r0, 0x3f	; 63
+     ad0:	f8 94       	cli
+     ad2:	de bf       	out	0x3e, r29	; 62
+     ad4:	0f be       	out	0x3f, r0	; 63
+     ad6:	cd bf       	out	0x3d, r28	; 61
+     ad8:	df 91       	pop	r29
+     ada:	cf 91       	pop	r28
+     adc:	1f 91       	pop	r17
+     ade:	08 95       	ret
 
-00000ada <_ZN12usartHelpers18ChangeNullstellungEv>:
+00000ae0 <_ZN12usartHelpers18ChangeNullstellungEv>:
 	 * \brief 
 	 *  uart submenu for changing servo zero position deviation from 90° (middle position 1500µs) in degree
 	 * 
 	 * \return void
 	 */
 	void ChangeNullstellung() {
-     ada:	cf 92       	push	r12
-     adc:	df 92       	push	r13
-     ade:	ef 92       	push	r14
-     ae0:	ff 92       	push	r15
-     ae2:	0f 93       	push	r16
-     ae4:	1f 93       	push	r17
-     ae6:	cf 93       	push	r28
-     ae8:	df 93       	push	r29
-     aea:	cd b7       	in	r28, 0x3d	; 61
-     aec:	de b7       	in	r29, 0x3e	; 62
-     aee:	e9 97       	sbiw	r28, 0x39	; 57
-     af0:	0f b6       	in	r0, 0x3f	; 63
-     af2:	f8 94       	cli
-     af4:	de bf       	out	0x3e, r29	; 62
-     af6:	0f be       	out	0x3f, r0	; 63
-     af8:	cd bf       	out	0x3d, r28	; 61
+     ae0:	cf 92       	push	r12
+     ae2:	df 92       	push	r13
+     ae4:	ef 92       	push	r14
+     ae6:	ff 92       	push	r15
+     ae8:	0f 93       	push	r16
+     aea:	1f 93       	push	r17
+     aec:	cf 93       	push	r28
+     aee:	df 93       	push	r29
+     af0:	cd b7       	in	r28, 0x3d	; 61
+     af2:	de b7       	in	r29, 0x3e	; 62
+     af4:	e9 97       	sbiw	r28, 0x39	; 57
+     af6:	0f b6       	in	r0, 0x3f	; 63
+     af8:	f8 94       	cli
+     afa:	de bf       	out	0x3e, r29	; 62
+     afc:	0f be       	out	0x3f, r0	; 63
+     afe:	cd bf       	out	0x3d, r28	; 61
 		char dev[4];
 		bool exit;
 		int8_t maxMinus = -90 + (int8_t)(initValues.getInitValues(false).AngleRange/2);
-     afa:	40 e0       	ldi	r20, 0x00	; 0
-     afc:	68 e0       	ldi	r22, 0x08	; 8
-     afe:	77 e0       	ldi	r23, 0x07	; 7
-     b00:	ce 01       	movw	r24, r28
-     b02:	05 96       	adiw	r24, 0x05	; 5
-     b04:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     b08:	df a8       	ldd	r13, Y+55	; 0x37
-     b0a:	8d 2d       	mov	r24, r13
-     b0c:	86 95       	lsr	r24
-     b0e:	0f 2e       	mov	r0, r31
-     b10:	f6 ea       	ldi	r31, 0xA6	; 166
-     b12:	df 2e       	mov	r13, r31
-     b14:	f0 2d       	mov	r31, r0
-     b16:	d8 0e       	add	r13, r24
+     b00:	40 e0       	ldi	r20, 0x00	; 0
+     b02:	68 e0       	ldi	r22, 0x08	; 8
+     b04:	77 e0       	ldi	r23, 0x07	; 7
+     b06:	ce 01       	movw	r24, r28
+     b08:	05 96       	adiw	r24, 0x05	; 5
+     b0a:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     b0e:	df a8       	ldd	r13, Y+55	; 0x37
+     b10:	8d 2d       	mov	r24, r13
+     b12:	86 95       	lsr	r24
+     b14:	0f 2e       	mov	r0, r31
+     b16:	f6 ea       	ldi	r31, 0xA6	; 166
+     b18:	df 2e       	mov	r13, r31
+     b1a:	f0 2d       	mov	r31, r0
+     b1c:	d8 0e       	add	r13, r24
 		int8_t maxPlus = 90 - (int8_t)(initValues.getInitValues(false).AngleRange/2);
-     b18:	40 e0       	ldi	r20, 0x00	; 0
-     b1a:	68 e0       	ldi	r22, 0x08	; 8
-     b1c:	77 e0       	ldi	r23, 0x07	; 7
-     b1e:	ce 01       	movw	r24, r28
-     b20:	05 96       	adiw	r24, 0x05	; 5
-     b22:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     b26:	9f a9       	ldd	r25, Y+55	; 0x37
-     b28:	96 95       	lsr	r25
-     b2a:	8a e5       	ldi	r24, 0x5A	; 90
-     b2c:	c8 2e       	mov	r12, r24
-     b2e:	c9 1a       	sub	r12, r25
+     b1e:	40 e0       	ldi	r20, 0x00	; 0
+     b20:	68 e0       	ldi	r22, 0x08	; 8
+     b22:	77 e0       	ldi	r23, 0x07	; 7
+     b24:	ce 01       	movw	r24, r28
+     b26:	05 96       	adiw	r24, 0x05	; 5
+     b28:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     b2c:	9f a9       	ldd	r25, Y+55	; 0x37
+     b2e:	96 95       	lsr	r25
+     b30:	8a e5       	ldi	r24, 0x5A	; 90
+     b32:	c8 2e       	mov	r12, r24
+     b34:	c9 1a       	sub	r12, r25
 			uart.write((char*)"For the angle range can not exceed 180 degree the zeroing can only be changed\0", true);
 			uart.write((char*)"when angle range is less than 180!", true);
 			uart.LfCr();
 			uart.write((char*)"Current deviation: \0"); uart.write(initValues.getInitValues().SNullStellung);
 			uart.write((char*)" degree\0", true);
 			uart.write((char*)"Enter integer value between \0"); uart.write((int16_t)maxMinus);  uart.write((char*)" and \0"); uart.write((int16_t)maxPlus); uart.write((char*)" or press 'q' for quit without changes: \0", true);
-     b30:	ed 2c       	mov	r14, r13
-     b32:	0d 2c       	mov	r0, r13
-     b34:	00 0c       	add	r0, r0
-     b36:	ff 08       	sbc	r15, r15
-     b38:	0c 2d       	mov	r16, r12
-     b3a:	0c 2c       	mov	r0, r12
-     b3c:	00 0c       	add	r0, r0
-     b3e:	11 0b       	sbc	r17, r17
+     b36:	ed 2c       	mov	r14, r13
+     b38:	0d 2c       	mov	r0, r13
+     b3a:	00 0c       	add	r0, r0
+     b3c:	ff 08       	sbc	r15, r15
+     b3e:	0c 2d       	mov	r16, r12
+     b40:	0c 2c       	mov	r0, r12
+     b42:	00 0c       	add	r0, r0
+     b44:	11 0b       	sbc	r17, r17
 		char dev[4];
 		bool exit;
 		int8_t maxMinus = -90 + (int8_t)(initValues.getInitValues(false).AngleRange/2);
 		int8_t maxPlus = 90 - (int8_t)(initValues.getInitValues(false).AngleRange/2);
 		do {
 		uart.cls();
-     b40:	86 e0       	ldi	r24, 0x06	; 6
-     b42:	97 e0       	ldi	r25, 0x07	; 7
-     b44:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
+     b46:	86 e0       	ldi	r24, 0x06	; 6
+     b48:	97 e0       	ldi	r25, 0x07	; 7
+     b4a:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
 			exit = false;
 			uart.write((char*)"Servo Multiplier --> Change zeroing\0", true);
-     b48:	41 e0       	ldi	r20, 0x01	; 1
-     b4a:	68 e0       	ldi	r22, 0x08	; 8
-     b4c:	72 e0       	ldi	r23, 0x02	; 2
-     b4e:	86 e0       	ldi	r24, 0x06	; 6
-     b50:	97 e0       	ldi	r25, 0x07	; 7
-     b52:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     b4e:	41 e0       	ldi	r20, 0x01	; 1
+     b50:	68 e0       	ldi	r22, 0x08	; 8
+     b52:	72 e0       	ldi	r23, 0x02	; 2
+     b54:	86 e0       	ldi	r24, 0x06	; 6
+     b56:	97 e0       	ldi	r25, 0x07	; 7
+     b58:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     b56:	86 e0       	ldi	r24, 0x06	; 6
-     b58:	97 e0       	ldi	r25, 0x07	; 7
-     b5a:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     b5c:	86 e0       	ldi	r24, 0x06	; 6
+     b5e:	97 e0       	ldi	r25, 0x07	; 7
+     b60:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Zeroing is the deviation in degree from the middle position (+,-)\0", true);
-     b5e:	41 e0       	ldi	r20, 0x01	; 1
-     b60:	6d e2       	ldi	r22, 0x2D	; 45
-     b62:	72 e0       	ldi	r23, 0x02	; 2
-     b64:	86 e0       	ldi	r24, 0x06	; 6
-     b66:	97 e0       	ldi	r25, 0x07	; 7
-     b68:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     b64:	41 e0       	ldi	r20, 0x01	; 1
+     b66:	6d e2       	ldi	r22, 0x2D	; 45
+     b68:	72 e0       	ldi	r23, 0x02	; 2
+     b6a:	86 e0       	ldi	r24, 0x06	; 6
+     b6c:	97 e0       	ldi	r25, 0x07	; 7
+     b6e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"For the angle range can not exceed 180 degree the zeroing can only be changed\0", true);
-     b6c:	41 e0       	ldi	r20, 0x01	; 1
-     b6e:	60 e7       	ldi	r22, 0x70	; 112
-     b70:	72 e0       	ldi	r23, 0x02	; 2
-     b72:	86 e0       	ldi	r24, 0x06	; 6
-     b74:	97 e0       	ldi	r25, 0x07	; 7
-     b76:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     b72:	41 e0       	ldi	r20, 0x01	; 1
+     b74:	60 e7       	ldi	r22, 0x70	; 112
+     b76:	72 e0       	ldi	r23, 0x02	; 2
+     b78:	86 e0       	ldi	r24, 0x06	; 6
+     b7a:	97 e0       	ldi	r25, 0x07	; 7
+     b7c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"when angle range is less than 180!", true);
-     b7a:	41 e0       	ldi	r20, 0x01	; 1
-     b7c:	6c ed       	ldi	r22, 0xDC	; 220
-     b7e:	76 e0       	ldi	r23, 0x06	; 6
-     b80:	86 e0       	ldi	r24, 0x06	; 6
-     b82:	97 e0       	ldi	r25, 0x07	; 7
-     b84:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     b80:	41 e0       	ldi	r20, 0x01	; 1
+     b82:	6c ed       	ldi	r22, 0xDC	; 220
+     b84:	76 e0       	ldi	r23, 0x06	; 6
+     b86:	86 e0       	ldi	r24, 0x06	; 6
+     b88:	97 e0       	ldi	r25, 0x07	; 7
+     b8a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     b88:	86 e0       	ldi	r24, 0x06	; 6
-     b8a:	97 e0       	ldi	r25, 0x07	; 7
-     b8c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     b8e:	86 e0       	ldi	r24, 0x06	; 6
+     b90:	97 e0       	ldi	r25, 0x07	; 7
+     b92:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Current deviation: \0"); uart.write(initValues.getInitValues().SNullStellung);
-     b90:	40 e0       	ldi	r20, 0x00	; 0
-     b92:	6f eb       	ldi	r22, 0xBF	; 191
-     b94:	72 e0       	ldi	r23, 0x02	; 2
-     b96:	86 e0       	ldi	r24, 0x06	; 6
-     b98:	97 e0       	ldi	r25, 0x07	; 7
-     b9a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     b9e:	40 e0       	ldi	r20, 0x00	; 0
-     ba0:	68 e0       	ldi	r22, 0x08	; 8
-     ba2:	77 e0       	ldi	r23, 0x07	; 7
-     ba4:	ce 01       	movw	r24, r28
-     ba6:	05 96       	adiw	r24, 0x05	; 5
-     ba8:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     bac:	6e a9       	ldd	r22, Y+54	; 0x36
-     bae:	06 2e       	mov	r0, r22
-     bb0:	00 0c       	add	r0, r0
-     bb2:	77 0b       	sbc	r23, r23
-     bb4:	40 e0       	ldi	r20, 0x00	; 0
-     bb6:	86 e0       	ldi	r24, 0x06	; 6
-     bb8:	97 e0       	ldi	r25, 0x07	; 7
-     bba:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
+     b96:	40 e0       	ldi	r20, 0x00	; 0
+     b98:	6f eb       	ldi	r22, 0xBF	; 191
+     b9a:	72 e0       	ldi	r23, 0x02	; 2
+     b9c:	86 e0       	ldi	r24, 0x06	; 6
+     b9e:	97 e0       	ldi	r25, 0x07	; 7
+     ba0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     ba4:	40 e0       	ldi	r20, 0x00	; 0
+     ba6:	68 e0       	ldi	r22, 0x08	; 8
+     ba8:	77 e0       	ldi	r23, 0x07	; 7
+     baa:	ce 01       	movw	r24, r28
+     bac:	05 96       	adiw	r24, 0x05	; 5
+     bae:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     bb2:	6e a9       	ldd	r22, Y+54	; 0x36
+     bb4:	06 2e       	mov	r0, r22
+     bb6:	00 0c       	add	r0, r0
+     bb8:	77 0b       	sbc	r23, r23
+     bba:	40 e0       	ldi	r20, 0x00	; 0
+     bbc:	86 e0       	ldi	r24, 0x06	; 6
+     bbe:	97 e0       	ldi	r25, 0x07	; 7
+     bc0:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
 			uart.write((char*)" degree\0", true);
-     bbe:	41 e0       	ldi	r20, 0x01	; 1
-     bc0:	64 ed       	ldi	r22, 0xD4	; 212
-     bc2:	72 e0       	ldi	r23, 0x02	; 2
-     bc4:	86 e0       	ldi	r24, 0x06	; 6
-     bc6:	97 e0       	ldi	r25, 0x07	; 7
-     bc8:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     bc4:	41 e0       	ldi	r20, 0x01	; 1
+     bc6:	64 ed       	ldi	r22, 0xD4	; 212
+     bc8:	72 e0       	ldi	r23, 0x02	; 2
+     bca:	86 e0       	ldi	r24, 0x06	; 6
+     bcc:	97 e0       	ldi	r25, 0x07	; 7
+     bce:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Enter integer value between \0"); uart.write((int16_t)maxMinus);  uart.write((char*)" and \0"); uart.write((int16_t)maxPlus); uart.write((char*)" or press 'q' for quit without changes: \0", true);
-     bcc:	40 e0       	ldi	r20, 0x00	; 0
-     bce:	6d ed       	ldi	r22, 0xDD	; 221
-     bd0:	72 e0       	ldi	r23, 0x02	; 2
-     bd2:	86 e0       	ldi	r24, 0x06	; 6
-     bd4:	97 e0       	ldi	r25, 0x07	; 7
-     bd6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     bda:	40 e0       	ldi	r20, 0x00	; 0
-     bdc:	b7 01       	movw	r22, r14
-     bde:	86 e0       	ldi	r24, 0x06	; 6
-     be0:	97 e0       	ldi	r25, 0x07	; 7
-     be2:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
-     be6:	40 e0       	ldi	r20, 0x00	; 0
-     be8:	6b ef       	ldi	r22, 0xFB	; 251
-     bea:	72 e0       	ldi	r23, 0x02	; 2
-     bec:	86 e0       	ldi	r24, 0x06	; 6
-     bee:	97 e0       	ldi	r25, 0x07	; 7
-     bf0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     bf4:	40 e0       	ldi	r20, 0x00	; 0
-     bf6:	b8 01       	movw	r22, r16
-     bf8:	86 e0       	ldi	r24, 0x06	; 6
-     bfa:	97 e0       	ldi	r25, 0x07	; 7
-     bfc:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
-     c00:	41 e0       	ldi	r20, 0x01	; 1
-     c02:	62 e0       	ldi	r22, 0x02	; 2
-     c04:	73 e0       	ldi	r23, 0x03	; 3
-     c06:	86 e0       	ldi	r24, 0x06	; 6
-     c08:	97 e0       	ldi	r25, 0x07	; 7
-     c0a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     bd2:	40 e0       	ldi	r20, 0x00	; 0
+     bd4:	6d ed       	ldi	r22, 0xDD	; 221
+     bd6:	72 e0       	ldi	r23, 0x02	; 2
+     bd8:	86 e0       	ldi	r24, 0x06	; 6
+     bda:	97 e0       	ldi	r25, 0x07	; 7
+     bdc:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     be0:	40 e0       	ldi	r20, 0x00	; 0
+     be2:	b7 01       	movw	r22, r14
+     be4:	86 e0       	ldi	r24, 0x06	; 6
+     be6:	97 e0       	ldi	r25, 0x07	; 7
+     be8:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
+     bec:	40 e0       	ldi	r20, 0x00	; 0
+     bee:	6b ef       	ldi	r22, 0xFB	; 251
+     bf0:	72 e0       	ldi	r23, 0x02	; 2
+     bf2:	86 e0       	ldi	r24, 0x06	; 6
+     bf4:	97 e0       	ldi	r25, 0x07	; 7
+     bf6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     bfa:	40 e0       	ldi	r20, 0x00	; 0
+     bfc:	b8 01       	movw	r22, r16
+     bfe:	86 e0       	ldi	r24, 0x06	; 6
+     c00:	97 e0       	ldi	r25, 0x07	; 7
+     c02:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
+     c06:	41 e0       	ldi	r20, 0x01	; 1
+     c08:	62 e0       	ldi	r22, 0x02	; 2
+     c0a:	73 e0       	ldi	r23, 0x03	; 3
+     c0c:	86 e0       	ldi	r24, 0x06	; 6
+     c0e:	97 e0       	ldi	r25, 0x07	; 7
+     c10:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"New deviation: \0");			
-     c0e:	40 e0       	ldi	r20, 0x00	; 0
-     c10:	6c e2       	ldi	r22, 0x2C	; 44
-     c12:	73 e0       	ldi	r23, 0x03	; 3
-     c14:	86 e0       	ldi	r24, 0x06	; 6
-     c16:	97 e0       	ldi	r25, 0x07	; 7
-     c18:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     c14:	40 e0       	ldi	r20, 0x00	; 0
+     c16:	6c e2       	ldi	r22, 0x2C	; 44
+     c18:	73 e0       	ldi	r23, 0x03	; 3
+     c1a:	86 e0       	ldi	r24, 0x06	; 6
+     c1c:	97 e0       	ldi	r25, 0x07	; 7
+     c1e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.read((unsigned char*)dev, 4);
-     c1c:	44 e0       	ldi	r20, 0x04	; 4
-     c1e:	be 01       	movw	r22, r28
-     c20:	6f 5f       	subi	r22, 0xFF	; 255
-     c22:	7f 4f       	sbci	r23, 0xFF	; 255
-     c24:	86 e0       	ldi	r24, 0x06	; 6
-     c26:	97 e0       	ldi	r25, 0x07	; 7
-     c28:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
+     c22:	44 e0       	ldi	r20, 0x04	; 4
+     c24:	be 01       	movw	r22, r28
+     c26:	6f 5f       	subi	r22, 0xFF	; 255
+     c28:	7f 4f       	sbci	r23, 0xFF	; 255
+     c2a:	86 e0       	ldi	r24, 0x06	; 6
+     c2c:	97 e0       	ldi	r25, 0x07	; 7
+     c2e:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
 			uint8_t lauf = 0;
 			if (dev[lauf] == 'q') {
-     c2c:	89 81       	ldd	r24, Y+1	; 0x01
-     c2e:	81 37       	cpi	r24, 0x71	; 113
-     c30:	51 f1       	breq	.+84     	; 0xc86 <_ZN12usartHelpers18ChangeNullstellungEv+0x1ac>
+     c32:	89 81       	ldd	r24, Y+1	; 0x01
+     c34:	81 37       	cpi	r24, 0x71	; 113
+     c36:	51 f1       	breq	.+84     	; 0xc8c <_ZN12usartHelpers18ChangeNullstellungEv+0x1ac>
 				exit = true;	
 			} else {
 				int8_t newVal = (int8_t)atoi(dev);
-     c32:	ce 01       	movw	r24, r28
-     c34:	01 96       	adiw	r24, 0x01	; 1
-     c36:	0e 94 e3 09 	call	0x13c6	; 0x13c6 <atoi>
+     c38:	ce 01       	movw	r24, r28
+     c3a:	01 96       	adiw	r24, 0x01	; 1
+     c3c:	0e 94 e6 09 	call	0x13cc	; 0x13cc <atoi>
 				if (newVal < maxMinus || newVal > maxPlus) {
-     c3a:	8d 15       	cp	r24, r13
-     c3c:	14 f0       	brlt	.+4      	; 0xc42 <_ZN12usartHelpers18ChangeNullstellungEv+0x168>
-     c3e:	c8 16       	cp	r12, r24
-     c40:	dc f4       	brge	.+54     	; 0xc78 <_ZN12usartHelpers18ChangeNullstellungEv+0x19e>
+     c40:	8d 15       	cp	r24, r13
+     c42:	14 f0       	brlt	.+4      	; 0xc48 <_ZN12usartHelpers18ChangeNullstellungEv+0x168>
+     c44:	c8 16       	cp	r12, r24
+     c46:	dc f4       	brge	.+54     	; 0xc7e <_ZN12usartHelpers18ChangeNullstellungEv+0x19e>
 					uart.write((char*)"Value must be between \0"); uart.write((int16_t)maxMinus);  uart.write((char*)" and \0"); uart.write((int16_t)maxPlus, true);
-     c42:	40 e0       	ldi	r20, 0x00	; 0
-     c44:	6d e3       	ldi	r22, 0x3D	; 61
-     c46:	73 e0       	ldi	r23, 0x03	; 3
-     c48:	86 e0       	ldi	r24, 0x06	; 6
-     c4a:	97 e0       	ldi	r25, 0x07	; 7
-     c4c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     c50:	40 e0       	ldi	r20, 0x00	; 0
-     c52:	b7 01       	movw	r22, r14
-     c54:	86 e0       	ldi	r24, 0x06	; 6
-     c56:	97 e0       	ldi	r25, 0x07	; 7
-     c58:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
-     c5c:	40 e0       	ldi	r20, 0x00	; 0
-     c5e:	6b ef       	ldi	r22, 0xFB	; 251
-     c60:	72 e0       	ldi	r23, 0x02	; 2
-     c62:	86 e0       	ldi	r24, 0x06	; 6
-     c64:	97 e0       	ldi	r25, 0x07	; 7
-     c66:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     c6a:	41 e0       	ldi	r20, 0x01	; 1
-     c6c:	b8 01       	movw	r22, r16
-     c6e:	86 e0       	ldi	r24, 0x06	; 6
-     c70:	97 e0       	ldi	r25, 0x07	; 7
-     c72:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
-     c76:	0c c0       	rjmp	.+24     	; 0xc90 <_ZN12usartHelpers18ChangeNullstellungEv+0x1b6>
+     c48:	40 e0       	ldi	r20, 0x00	; 0
+     c4a:	6d e3       	ldi	r22, 0x3D	; 61
+     c4c:	73 e0       	ldi	r23, 0x03	; 3
+     c4e:	86 e0       	ldi	r24, 0x06	; 6
+     c50:	97 e0       	ldi	r25, 0x07	; 7
+     c52:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     c56:	40 e0       	ldi	r20, 0x00	; 0
+     c58:	b7 01       	movw	r22, r14
+     c5a:	86 e0       	ldi	r24, 0x06	; 6
+     c5c:	97 e0       	ldi	r25, 0x07	; 7
+     c5e:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
+     c62:	40 e0       	ldi	r20, 0x00	; 0
+     c64:	6b ef       	ldi	r22, 0xFB	; 251
+     c66:	72 e0       	ldi	r23, 0x02	; 2
+     c68:	86 e0       	ldi	r24, 0x06	; 6
+     c6a:	97 e0       	ldi	r25, 0x07	; 7
+     c6c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     c70:	41 e0       	ldi	r20, 0x01	; 1
+     c72:	b8 01       	movw	r22, r16
+     c74:	86 e0       	ldi	r24, 0x06	; 6
+     c76:	97 e0       	ldi	r25, 0x07	; 7
+     c78:	0e 94 71 02 	call	0x4e2	; 0x4e2 <_ZN6myUart5writeEib>
+     c7c:	0c c0       	rjmp	.+24     	; 0xc96 <_ZN12usartHelpers18ChangeNullstellungEv+0x1b6>
 					} else {
 					initValues.setNullStellung(newVal);
-     c78:	40 e0       	ldi	r20, 0x00	; 0
-     c7a:	68 2f       	mov	r22, r24
-     c7c:	88 e0       	ldi	r24, 0x08	; 8
-     c7e:	97 e0       	ldi	r25, 0x07	; 7
-     c80:	0e 94 10 04 	call	0x820	; 0x820 <_ZN11ServoEEPROM15setNullStellungEab>
-     c84:	05 c0       	rjmp	.+10     	; 0xc90 <_ZN12usartHelpers18ChangeNullstellungEv+0x1b6>
+     c7e:	40 e0       	ldi	r20, 0x00	; 0
+     c80:	68 2f       	mov	r22, r24
+     c82:	88 e0       	ldi	r24, 0x08	; 8
+     c84:	97 e0       	ldi	r25, 0x07	; 7
+     c86:	0e 94 13 04 	call	0x826	; 0x826 <_ZN11ServoEEPROM15setNullStellungEab>
+     c8a:	05 c0       	rjmp	.+10     	; 0xc96 <_ZN12usartHelpers18ChangeNullstellungEv+0x1b6>
 				}
 			} // if (dev[lauf] == 'q')
 			uart.LfCr();
-     c86:	86 e0       	ldi	r24, 0x06	; 6
-     c88:	97 e0       	ldi	r25, 0x07	; 7
-     c8a:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     c8c:	86 e0       	ldi	r24, 0x06	; 6
+     c8e:	97 e0       	ldi	r25, 0x07	; 7
+     c90:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 		} while (!exit);
 	}
-     c8e:	05 c0       	rjmp	.+10     	; 0xc9a <_ZN12usartHelpers18ChangeNullstellungEv+0x1c0>
+     c94:	05 c0       	rjmp	.+10     	; 0xca0 <_ZN12usartHelpers18ChangeNullstellungEv+0x1c0>
 					uart.write((char*)"Value must be between \0"); uart.write((int16_t)maxMinus);  uart.write((char*)" and \0"); uart.write((int16_t)maxPlus, true);
 					} else {
 					initValues.setNullStellung(newVal);
 				}
 			} // if (dev[lauf] == 'q')
 			uart.LfCr();
-     c90:	86 e0       	ldi	r24, 0x06	; 6
-     c92:	97 e0       	ldi	r25, 0x07	; 7
-     c94:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
-     c98:	53 cf       	rjmp	.-346    	; 0xb40 <_ZN12usartHelpers18ChangeNullstellungEv+0x66>
+     c96:	86 e0       	ldi	r24, 0x06	; 6
+     c98:	97 e0       	ldi	r25, 0x07	; 7
+     c9a:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     c9e:	53 cf       	rjmp	.-346    	; 0xb46 <_ZN12usartHelpers18ChangeNullstellungEv+0x66>
 		} while (!exit);
 	}
-     c9a:	e9 96       	adiw	r28, 0x39	; 57
-     c9c:	0f b6       	in	r0, 0x3f	; 63
-     c9e:	f8 94       	cli
-     ca0:	de bf       	out	0x3e, r29	; 62
-     ca2:	0f be       	out	0x3f, r0	; 63
-     ca4:	cd bf       	out	0x3d, r28	; 61
-     ca6:	df 91       	pop	r29
-     ca8:	cf 91       	pop	r28
-     caa:	1f 91       	pop	r17
-     cac:	0f 91       	pop	r16
-     cae:	ff 90       	pop	r15
-     cb0:	ef 90       	pop	r14
-     cb2:	df 90       	pop	r13
-     cb4:	cf 90       	pop	r12
-     cb6:	08 95       	ret
+     ca0:	e9 96       	adiw	r28, 0x39	; 57
+     ca2:	0f b6       	in	r0, 0x3f	; 63
+     ca4:	f8 94       	cli
+     ca6:	de bf       	out	0x3e, r29	; 62
+     ca8:	0f be       	out	0x3f, r0	; 63
+     caa:	cd bf       	out	0x3d, r28	; 61
+     cac:	df 91       	pop	r29
+     cae:	cf 91       	pop	r28
+     cb0:	1f 91       	pop	r17
+     cb2:	0f 91       	pop	r16
+     cb4:	ff 90       	pop	r15
+     cb6:	ef 90       	pop	r14
+     cb8:	df 90       	pop	r13
+     cba:	cf 90       	pop	r12
+     cbc:	08 95       	ret
 
-00000cb8 <_ZN12usartHelpers16ChangeAngleRangeEv>:
+00000cbe <_ZN12usartHelpers16ChangeAngleRangeEv>:
 	 * \brief 
 	 *  uart submenu for changing the angle range of a Servo
 	 * 
 	 * \return void
 	 */
 	void ChangeAngleRange() {
-     cb8:	ff 92       	push	r15
-     cba:	0f 93       	push	r16
-     cbc:	1f 93       	push	r17
-     cbe:	cf 93       	push	r28
-     cc0:	df 93       	push	r29
-     cc2:	cd b7       	in	r28, 0x3d	; 61
-     cc4:	de b7       	in	r29, 0x3e	; 62
-     cc6:	e9 97       	sbiw	r28, 0x39	; 57
-     cc8:	0f b6       	in	r0, 0x3f	; 63
-     cca:	f8 94       	cli
-     ccc:	de bf       	out	0x3e, r29	; 62
-     cce:	0f be       	out	0x3f, r0	; 63
-     cd0:	cd bf       	out	0x3d, r28	; 61
+     cbe:	ff 92       	push	r15
+     cc0:	0f 93       	push	r16
+     cc2:	1f 93       	push	r17
+     cc4:	cf 93       	push	r28
+     cc6:	df 93       	push	r29
+     cc8:	cd b7       	in	r28, 0x3d	; 61
+     cca:	de b7       	in	r29, 0x3e	; 62
+     ccc:	e9 97       	sbiw	r28, 0x39	; 57
+     cce:	0f b6       	in	r0, 0x3f	; 63
+     cd0:	f8 94       	cli
+     cd2:	de bf       	out	0x3e, r29	; 62
+     cd4:	0f be       	out	0x3f, r0	; 63
+     cd6:	cd bf       	out	0x3d, r28	; 61
 		char dev[4];
 		bool exit;
 		uint8_t maxRange = 0;
 		if (initValues.getInitValues(false).SNullStellung < 0) {
-     cd2:	40 e0       	ldi	r20, 0x00	; 0
-     cd4:	68 e0       	ldi	r22, 0x08	; 8
-     cd6:	77 e0       	ldi	r23, 0x07	; 7
-     cd8:	ce 01       	movw	r24, r28
-     cda:	05 96       	adiw	r24, 0x05	; 5
-     cdc:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     ce0:	8e a9       	ldd	r24, Y+54	; 0x36
-     ce2:	88 23       	and	r24, r24
-     ce4:	74 f4       	brge	.+28     	; 0xd02 <_ZN12usartHelpers16ChangeAngleRangeEv+0x4a>
+     cd8:	40 e0       	ldi	r20, 0x00	; 0
+     cda:	68 e0       	ldi	r22, 0x08	; 8
+     cdc:	77 e0       	ldi	r23, 0x07	; 7
+     cde:	ce 01       	movw	r24, r28
+     ce0:	05 96       	adiw	r24, 0x05	; 5
+     ce2:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     ce6:	8e a9       	ldd	r24, Y+54	; 0x36
+     ce8:	88 23       	and	r24, r24
+     cea:	74 f4       	brge	.+28     	; 0xd08 <_ZN12usartHelpers16ChangeAngleRangeEv+0x4a>
 			maxRange = (uint8_t)(180 + initValues.getInitValues(false).SNullStellung);
-     ce6:	40 e0       	ldi	r20, 0x00	; 0
-     ce8:	68 e0       	ldi	r22, 0x08	; 8
-     cea:	77 e0       	ldi	r23, 0x07	; 7
-     cec:	ce 01       	movw	r24, r28
-     cee:	05 96       	adiw	r24, 0x05	; 5
-     cf0:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     cf4:	8e a9       	ldd	r24, Y+54	; 0x36
-     cf6:	0f 2e       	mov	r0, r31
-     cf8:	f4 eb       	ldi	r31, 0xB4	; 180
-     cfa:	ff 2e       	mov	r15, r31
-     cfc:	f0 2d       	mov	r31, r0
-     cfe:	f8 0e       	add	r15, r24
-     d00:	0b c0       	rjmp	.+22     	; 0xd18 <_ZN12usartHelpers16ChangeAngleRangeEv+0x60>
+     cec:	40 e0       	ldi	r20, 0x00	; 0
+     cee:	68 e0       	ldi	r22, 0x08	; 8
+     cf0:	77 e0       	ldi	r23, 0x07	; 7
+     cf2:	ce 01       	movw	r24, r28
+     cf4:	05 96       	adiw	r24, 0x05	; 5
+     cf6:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     cfa:	8e a9       	ldd	r24, Y+54	; 0x36
+     cfc:	0f 2e       	mov	r0, r31
+     cfe:	f4 eb       	ldi	r31, 0xB4	; 180
+     d00:	ff 2e       	mov	r15, r31
+     d02:	f0 2d       	mov	r31, r0
+     d04:	f8 0e       	add	r15, r24
+     d06:	0b c0       	rjmp	.+22     	; 0xd1e <_ZN12usartHelpers16ChangeAngleRangeEv+0x60>
 		} else	{
 			maxRange = (uint8_t)(180 - initValues.getInitValues(false).SNullStellung);
-     d02:	40 e0       	ldi	r20, 0x00	; 0
-     d04:	68 e0       	ldi	r22, 0x08	; 8
-     d06:	77 e0       	ldi	r23, 0x07	; 7
-     d08:	ce 01       	movw	r24, r28
-     d0a:	05 96       	adiw	r24, 0x05	; 5
-     d0c:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     d10:	9e a9       	ldd	r25, Y+54	; 0x36
-     d12:	84 eb       	ldi	r24, 0xB4	; 180
-     d14:	f8 2e       	mov	r15, r24
-     d16:	f9 1a       	sub	r15, r25
+     d08:	40 e0       	ldi	r20, 0x00	; 0
+     d0a:	68 e0       	ldi	r22, 0x08	; 8
+     d0c:	77 e0       	ldi	r23, 0x07	; 7
+     d0e:	ce 01       	movw	r24, r28
+     d10:	05 96       	adiw	r24, 0x05	; 5
+     d12:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     d16:	9e a9       	ldd	r25, Y+54	; 0x36
+     d18:	84 eb       	ldi	r24, 0xB4	; 180
+     d1a:	f8 2e       	mov	r15, r24
+     d1c:	f9 1a       	sub	r15, r25
 			exit = false;
 			uart.write((char*)"Servo Multiplier --> Change Anglerange\0", true);
 			uart.LfCr();
 			uart.write((char*)"Anglerange in degree up to 180 degree\0", true);
 			uart.write((char*)"If zeroing is not 0 the range must be below 180! \0", true);
 			uart.write((char*)"Therefore the max. range is \0"); uart.write((uint16_t) maxRange); uart.write((char*)" degree\0", true);
-     d18:	0f 2d       	mov	r16, r15
-     d1a:	10 e0       	ldi	r17, 0x00	; 0
+     d1e:	0f 2d       	mov	r16, r15
+     d20:	10 e0       	ldi	r17, 0x00	; 0
 			maxRange = (uint8_t)(180 + initValues.getInitValues(false).SNullStellung);
 		} else	{
 			maxRange = (uint8_t)(180 - initValues.getInitValues(false).SNullStellung);
 		}
 		do {
 			uart.cls();
-     d1c:	86 e0       	ldi	r24, 0x06	; 6
-     d1e:	97 e0       	ldi	r25, 0x07	; 7
-     d20:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
+     d22:	86 e0       	ldi	r24, 0x06	; 6
+     d24:	97 e0       	ldi	r25, 0x07	; 7
+     d26:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
 			exit = false;
 			uart.write((char*)"Servo Multiplier --> Change Anglerange\0", true);
-     d24:	41 e0       	ldi	r20, 0x01	; 1
-     d26:	65 e5       	ldi	r22, 0x55	; 85
-     d28:	73 e0       	ldi	r23, 0x03	; 3
-     d2a:	86 e0       	ldi	r24, 0x06	; 6
-     d2c:	97 e0       	ldi	r25, 0x07	; 7
-     d2e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d2a:	41 e0       	ldi	r20, 0x01	; 1
+     d2c:	65 e5       	ldi	r22, 0x55	; 85
+     d2e:	73 e0       	ldi	r23, 0x03	; 3
+     d30:	86 e0       	ldi	r24, 0x06	; 6
+     d32:	97 e0       	ldi	r25, 0x07	; 7
+     d34:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     d32:	86 e0       	ldi	r24, 0x06	; 6
-     d34:	97 e0       	ldi	r25, 0x07	; 7
-     d36:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     d38:	86 e0       	ldi	r24, 0x06	; 6
+     d3a:	97 e0       	ldi	r25, 0x07	; 7
+     d3c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Anglerange in degree up to 180 degree\0", true);
-     d3a:	41 e0       	ldi	r20, 0x01	; 1
-     d3c:	6d e7       	ldi	r22, 0x7D	; 125
-     d3e:	73 e0       	ldi	r23, 0x03	; 3
-     d40:	86 e0       	ldi	r24, 0x06	; 6
-     d42:	97 e0       	ldi	r25, 0x07	; 7
-     d44:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d40:	41 e0       	ldi	r20, 0x01	; 1
+     d42:	6d e7       	ldi	r22, 0x7D	; 125
+     d44:	73 e0       	ldi	r23, 0x03	; 3
+     d46:	86 e0       	ldi	r24, 0x06	; 6
+     d48:	97 e0       	ldi	r25, 0x07	; 7
+     d4a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"If zeroing is not 0 the range must be below 180! \0", true);
-     d48:	41 e0       	ldi	r20, 0x01	; 1
-     d4a:	64 ea       	ldi	r22, 0xA4	; 164
-     d4c:	73 e0       	ldi	r23, 0x03	; 3
-     d4e:	86 e0       	ldi	r24, 0x06	; 6
-     d50:	97 e0       	ldi	r25, 0x07	; 7
-     d52:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d4e:	41 e0       	ldi	r20, 0x01	; 1
+     d50:	64 ea       	ldi	r22, 0xA4	; 164
+     d52:	73 e0       	ldi	r23, 0x03	; 3
+     d54:	86 e0       	ldi	r24, 0x06	; 6
+     d56:	97 e0       	ldi	r25, 0x07	; 7
+     d58:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Therefore the max. range is \0"); uart.write((uint16_t) maxRange); uart.write((char*)" degree\0", true);
-     d56:	40 e0       	ldi	r20, 0x00	; 0
-     d58:	67 ed       	ldi	r22, 0xD7	; 215
-     d5a:	73 e0       	ldi	r23, 0x03	; 3
-     d5c:	86 e0       	ldi	r24, 0x06	; 6
-     d5e:	97 e0       	ldi	r25, 0x07	; 7
-     d60:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     d64:	40 e0       	ldi	r20, 0x00	; 0
-     d66:	b8 01       	movw	r22, r16
-     d68:	86 e0       	ldi	r24, 0x06	; 6
-     d6a:	97 e0       	ldi	r25, 0x07	; 7
-     d6c:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-     d70:	41 e0       	ldi	r20, 0x01	; 1
-     d72:	64 ed       	ldi	r22, 0xD4	; 212
-     d74:	72 e0       	ldi	r23, 0x02	; 2
-     d76:	86 e0       	ldi	r24, 0x06	; 6
-     d78:	97 e0       	ldi	r25, 0x07	; 7
-     d7a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d5c:	40 e0       	ldi	r20, 0x00	; 0
+     d5e:	67 ed       	ldi	r22, 0xD7	; 215
+     d60:	73 e0       	ldi	r23, 0x03	; 3
+     d62:	86 e0       	ldi	r24, 0x06	; 6
+     d64:	97 e0       	ldi	r25, 0x07	; 7
+     d66:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d6a:	40 e0       	ldi	r20, 0x00	; 0
+     d6c:	b8 01       	movw	r22, r16
+     d6e:	86 e0       	ldi	r24, 0x06	; 6
+     d70:	97 e0       	ldi	r25, 0x07	; 7
+     d72:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+     d76:	41 e0       	ldi	r20, 0x01	; 1
+     d78:	64 ed       	ldi	r22, 0xD4	; 212
+     d7a:	72 e0       	ldi	r23, 0x02	; 2
+     d7c:	86 e0       	ldi	r24, 0x06	; 6
+     d7e:	97 e0       	ldi	r25, 0x07	; 7
+     d80:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"The minimum Range is 2 and the value is an integer value! \0", true);
-     d7e:	41 e0       	ldi	r20, 0x01	; 1
-     d80:	65 ef       	ldi	r22, 0xF5	; 245
-     d82:	73 e0       	ldi	r23, 0x03	; 3
-     d84:	86 e0       	ldi	r24, 0x06	; 6
-     d86:	97 e0       	ldi	r25, 0x07	; 7
-     d88:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d84:	41 e0       	ldi	r20, 0x01	; 1
+     d86:	65 ef       	ldi	r22, 0xF5	; 245
+     d88:	73 e0       	ldi	r23, 0x03	; 3
+     d8a:	86 e0       	ldi	r24, 0x06	; 6
+     d8c:	97 e0       	ldi	r25, 0x07	; 7
+     d8e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     d8c:	86 e0       	ldi	r24, 0x06	; 6
-     d8e:	97 e0       	ldi	r25, 0x07	; 7
-     d90:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     d92:	86 e0       	ldi	r24, 0x06	; 6
+     d94:	97 e0       	ldi	r25, 0x07	; 7
+     d96:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Current range: \0"); uart.write((uint16_t)initValues.getInitValues().AngleRange); uart.write((char*)" degree\0", true);
-     d94:	40 e0       	ldi	r20, 0x00	; 0
-     d96:	61 e3       	ldi	r22, 0x31	; 49
-     d98:	74 e0       	ldi	r23, 0x04	; 4
-     d9a:	86 e0       	ldi	r24, 0x06	; 6
-     d9c:	97 e0       	ldi	r25, 0x07	; 7
-     d9e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     da2:	40 e0       	ldi	r20, 0x00	; 0
-     da4:	68 e0       	ldi	r22, 0x08	; 8
-     da6:	77 e0       	ldi	r23, 0x07	; 7
-     da8:	ce 01       	movw	r24, r28
-     daa:	05 96       	adiw	r24, 0x05	; 5
-     dac:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     db0:	6f a9       	ldd	r22, Y+55	; 0x37
-     db2:	70 e0       	ldi	r23, 0x00	; 0
-     db4:	40 e0       	ldi	r20, 0x00	; 0
-     db6:	86 e0       	ldi	r24, 0x06	; 6
-     db8:	97 e0       	ldi	r25, 0x07	; 7
-     dba:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-     dbe:	41 e0       	ldi	r20, 0x01	; 1
-     dc0:	64 ed       	ldi	r22, 0xD4	; 212
-     dc2:	72 e0       	ldi	r23, 0x02	; 2
-     dc4:	86 e0       	ldi	r24, 0x06	; 6
-     dc6:	97 e0       	ldi	r25, 0x07	; 7
-     dc8:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     d9a:	40 e0       	ldi	r20, 0x00	; 0
+     d9c:	61 e3       	ldi	r22, 0x31	; 49
+     d9e:	74 e0       	ldi	r23, 0x04	; 4
+     da0:	86 e0       	ldi	r24, 0x06	; 6
+     da2:	97 e0       	ldi	r25, 0x07	; 7
+     da4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     da8:	40 e0       	ldi	r20, 0x00	; 0
+     daa:	68 e0       	ldi	r22, 0x08	; 8
+     dac:	77 e0       	ldi	r23, 0x07	; 7
+     dae:	ce 01       	movw	r24, r28
+     db0:	05 96       	adiw	r24, 0x05	; 5
+     db2:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     db6:	6f a9       	ldd	r22, Y+55	; 0x37
+     db8:	70 e0       	ldi	r23, 0x00	; 0
+     dba:	40 e0       	ldi	r20, 0x00	; 0
+     dbc:	86 e0       	ldi	r24, 0x06	; 6
+     dbe:	97 e0       	ldi	r25, 0x07	; 7
+     dc0:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+     dc4:	41 e0       	ldi	r20, 0x01	; 1
+     dc6:	64 ed       	ldi	r22, 0xD4	; 212
+     dc8:	72 e0       	ldi	r23, 0x02	; 2
+     dca:	86 e0       	ldi	r24, 0x06	; 6
+     dcc:	97 e0       	ldi	r25, 0x07	; 7
+     dce:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Enter new Range or press 'q' for quit without changes: \0", true);
-     dcc:	41 e0       	ldi	r20, 0x01	; 1
-     dce:	62 e4       	ldi	r22, 0x42	; 66
-     dd0:	74 e0       	ldi	r23, 0x04	; 4
-     dd2:	86 e0       	ldi	r24, 0x06	; 6
-     dd4:	97 e0       	ldi	r25, 0x07	; 7
-     dd6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     dd2:	41 e0       	ldi	r20, 0x01	; 1
+     dd4:	62 e4       	ldi	r22, 0x42	; 66
+     dd6:	74 e0       	ldi	r23, 0x04	; 4
+     dd8:	86 e0       	ldi	r24, 0x06	; 6
+     dda:	97 e0       	ldi	r25, 0x07	; 7
+     ddc:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"New range: \0");
-     dda:	40 e0       	ldi	r20, 0x00	; 0
-     ddc:	6b e7       	ldi	r22, 0x7B	; 123
-     dde:	74 e0       	ldi	r23, 0x04	; 4
-     de0:	86 e0       	ldi	r24, 0x06	; 6
-     de2:	97 e0       	ldi	r25, 0x07	; 7
-     de4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     de0:	40 e0       	ldi	r20, 0x00	; 0
+     de2:	6b e7       	ldi	r22, 0x7B	; 123
+     de4:	74 e0       	ldi	r23, 0x04	; 4
+     de6:	86 e0       	ldi	r24, 0x06	; 6
+     de8:	97 e0       	ldi	r25, 0x07	; 7
+     dea:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.read((unsigned char*)dev, 4);
-     de8:	44 e0       	ldi	r20, 0x04	; 4
-     dea:	be 01       	movw	r22, r28
-     dec:	6f 5f       	subi	r22, 0xFF	; 255
-     dee:	7f 4f       	sbci	r23, 0xFF	; 255
-     df0:	86 e0       	ldi	r24, 0x06	; 6
-     df2:	97 e0       	ldi	r25, 0x07	; 7
-     df4:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
+     dee:	44 e0       	ldi	r20, 0x04	; 4
+     df0:	be 01       	movw	r22, r28
+     df2:	6f 5f       	subi	r22, 0xFF	; 255
+     df4:	7f 4f       	sbci	r23, 0xFF	; 255
+     df6:	86 e0       	ldi	r24, 0x06	; 6
+     df8:	97 e0       	ldi	r25, 0x07	; 7
+     dfa:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
 			uint8_t lauf = 0;
 			if (dev[lauf] == 'q') {
-     df8:	89 81       	ldd	r24, Y+1	; 0x01
-     dfa:	81 37       	cpi	r24, 0x71	; 113
-     dfc:	e9 f0       	breq	.+58     	; 0xe38 <_ZN12usartHelpers16ChangeAngleRangeEv+0x180>
+     dfe:	89 81       	ldd	r24, Y+1	; 0x01
+     e00:	81 37       	cpi	r24, 0x71	; 113
+     e02:	e9 f0       	breq	.+58     	; 0xe3e <_ZN12usartHelpers16ChangeAngleRangeEv+0x180>
 				exit = true;
 				} else {
 				uint8_t newVal = (uint8_t)atoi(dev);
-     dfe:	ce 01       	movw	r24, r28
-     e00:	01 96       	adiw	r24, 0x01	; 1
-     e02:	0e 94 e3 09 	call	0x13c6	; 0x13c6 <atoi>
+     e04:	ce 01       	movw	r24, r28
+     e06:	01 96       	adiw	r24, 0x01	; 1
+     e08:	0e 94 e6 09 	call	0x13cc	; 0x13cc <atoi>
 				if (newVal < 2 || newVal > maxRange) {
-     e06:	82 30       	cpi	r24, 0x02	; 2
-     e08:	10 f0       	brcs	.+4      	; 0xe0e <_ZN12usartHelpers16ChangeAngleRangeEv+0x156>
-     e0a:	f8 16       	cp	r15, r24
-     e0c:	70 f4       	brcc	.+28     	; 0xe2a <_ZN12usartHelpers16ChangeAngleRangeEv+0x172>
+     e0c:	82 30       	cpi	r24, 0x02	; 2
+     e0e:	10 f0       	brcs	.+4      	; 0xe14 <_ZN12usartHelpers16ChangeAngleRangeEv+0x156>
+     e10:	f8 16       	cp	r15, r24
+     e12:	70 f4       	brcc	.+28     	; 0xe30 <_ZN12usartHelpers16ChangeAngleRangeEv+0x172>
 					uart.write((char*)"Value must be an integer between 2 and \0", true); uart.write((uint16_t)maxRange, true); 
-     e0e:	41 e0       	ldi	r20, 0x01	; 1
-     e10:	68 e8       	ldi	r22, 0x88	; 136
-     e12:	74 e0       	ldi	r23, 0x04	; 4
-     e14:	86 e0       	ldi	r24, 0x06	; 6
-     e16:	97 e0       	ldi	r25, 0x07	; 7
-     e18:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     e1c:	41 e0       	ldi	r20, 0x01	; 1
-     e1e:	b8 01       	movw	r22, r16
-     e20:	86 e0       	ldi	r24, 0x06	; 6
-     e22:	97 e0       	ldi	r25, 0x07	; 7
-     e24:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-     e28:	0c c0       	rjmp	.+24     	; 0xe42 <_ZN12usartHelpers16ChangeAngleRangeEv+0x18a>
+     e14:	41 e0       	ldi	r20, 0x01	; 1
+     e16:	68 e8       	ldi	r22, 0x88	; 136
+     e18:	74 e0       	ldi	r23, 0x04	; 4
+     e1a:	86 e0       	ldi	r24, 0x06	; 6
+     e1c:	97 e0       	ldi	r25, 0x07	; 7
+     e1e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     e22:	41 e0       	ldi	r20, 0x01	; 1
+     e24:	b8 01       	movw	r22, r16
+     e26:	86 e0       	ldi	r24, 0x06	; 6
+     e28:	97 e0       	ldi	r25, 0x07	; 7
+     e2a:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+     e2e:	0c c0       	rjmp	.+24     	; 0xe48 <_ZN12usartHelpers16ChangeAngleRangeEv+0x18a>
 				} else {
 					initValues.setAngleRange(newVal);
-     e2a:	40 e0       	ldi	r20, 0x00	; 0
-     e2c:	68 2f       	mov	r22, r24
-     e2e:	88 e0       	ldi	r24, 0x08	; 8
-     e30:	97 e0       	ldi	r25, 0x07	; 7
-     e32:	0e 94 16 04 	call	0x82c	; 0x82c <_ZN11ServoEEPROM13setAngleRangeEhb>
-     e36:	05 c0       	rjmp	.+10     	; 0xe42 <_ZN12usartHelpers16ChangeAngleRangeEv+0x18a>
+     e30:	40 e0       	ldi	r20, 0x00	; 0
+     e32:	68 2f       	mov	r22, r24
+     e34:	88 e0       	ldi	r24, 0x08	; 8
+     e36:	97 e0       	ldi	r25, 0x07	; 7
+     e38:	0e 94 19 04 	call	0x832	; 0x832 <_ZN11ServoEEPROM13setAngleRangeEhb>
+     e3c:	05 c0       	rjmp	.+10     	; 0xe48 <_ZN12usartHelpers16ChangeAngleRangeEv+0x18a>
 				}
 			} // if (dev[lauf] == 'q')
 			uart.LfCr();
-     e38:	86 e0       	ldi	r24, 0x06	; 6
-     e3a:	97 e0       	ldi	r25, 0x07	; 7
-     e3c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     e3e:	86 e0       	ldi	r24, 0x06	; 6
+     e40:	97 e0       	ldi	r25, 0x07	; 7
+     e42:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 		} while (!exit);	
 	}
-     e40:	05 c0       	rjmp	.+10     	; 0xe4c <_ZN12usartHelpers16ChangeAngleRangeEv+0x194>
+     e46:	05 c0       	rjmp	.+10     	; 0xe52 <_ZN12usartHelpers16ChangeAngleRangeEv+0x194>
 					uart.write((char*)"Value must be an integer between 2 and \0", true); uart.write((uint16_t)maxRange, true); 
 				} else {
 					initValues.setAngleRange(newVal);
 				}
 			} // if (dev[lauf] == 'q')
 			uart.LfCr();
-     e42:	86 e0       	ldi	r24, 0x06	; 6
-     e44:	97 e0       	ldi	r25, 0x07	; 7
-     e46:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
-     e4a:	68 cf       	rjmp	.-304    	; 0xd1c <_ZN12usartHelpers16ChangeAngleRangeEv+0x64>
+     e48:	86 e0       	ldi	r24, 0x06	; 6
+     e4a:	97 e0       	ldi	r25, 0x07	; 7
+     e4c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     e50:	68 cf       	rjmp	.-304    	; 0xd22 <_ZN12usartHelpers16ChangeAngleRangeEv+0x64>
 		} while (!exit);	
 	}
-     e4c:	e9 96       	adiw	r28, 0x39	; 57
-     e4e:	0f b6       	in	r0, 0x3f	; 63
-     e50:	f8 94       	cli
-     e52:	de bf       	out	0x3e, r29	; 62
-     e54:	0f be       	out	0x3f, r0	; 63
-     e56:	cd bf       	out	0x3d, r28	; 61
-     e58:	df 91       	pop	r29
-     e5a:	cf 91       	pop	r28
-     e5c:	1f 91       	pop	r17
-     e5e:	0f 91       	pop	r16
-     e60:	ff 90       	pop	r15
-     e62:	08 95       	ret
+     e52:	e9 96       	adiw	r28, 0x39	; 57
+     e54:	0f b6       	in	r0, 0x3f	; 63
+     e56:	f8 94       	cli
+     e58:	de bf       	out	0x3e, r29	; 62
+     e5a:	0f be       	out	0x3f, r0	; 63
+     e5c:	cd bf       	out	0x3d, r28	; 61
+     e5e:	df 91       	pop	r29
+     e60:	cf 91       	pop	r28
+     e62:	1f 91       	pop	r17
+     e64:	0f 91       	pop	r16
+     e66:	ff 90       	pop	r15
+     e68:	08 95       	ret
 
-00000e64 <_ZN12usartHelpers14ChangePWMDelayEv>:
+00000e6a <_ZN12usartHelpers14ChangePWMDelayEv>:
 	 * \brief 
 	 *  Uart submenu for changing the PWM delaytimer
 	 * 
 	 * \return void
 	 */
 	void ChangePWMDelay() {
-     e64:	cf 93       	push	r28
-     e66:	df 93       	push	r29
-     e68:	cd b7       	in	r28, 0x3d	; 61
-     e6a:	de b7       	in	r29, 0x3e	; 62
-     e6c:	eb 97       	sbiw	r28, 0x3b	; 59
-     e6e:	0f b6       	in	r0, 0x3f	; 63
-     e70:	f8 94       	cli
-     e72:	de bf       	out	0x3e, r29	; 62
-     e74:	0f be       	out	0x3f, r0	; 63
-     e76:	cd bf       	out	0x3d, r28	; 61
+     e6a:	cf 93       	push	r28
+     e6c:	df 93       	push	r29
+     e6e:	cd b7       	in	r28, 0x3d	; 61
+     e70:	de b7       	in	r29, 0x3e	; 62
+     e72:	eb 97       	sbiw	r28, 0x3b	; 59
+     e74:	0f b6       	in	r0, 0x3f	; 63
+     e76:	f8 94       	cli
+     e78:	de bf       	out	0x3e, r29	; 62
+     e7a:	0f be       	out	0x3f, r0	; 63
+     e7c:	cd bf       	out	0x3d, r28	; 61
 		const uint8_t length = 6;
 		char dev[length];
 		uart.cls();
-     e78:	86 e0       	ldi	r24, 0x06	; 6
-     e7a:	97 e0       	ldi	r25, 0x07	; 7
-     e7c:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
+     e7e:	86 e0       	ldi	r24, 0x06	; 6
+     e80:	97 e0       	ldi	r25, 0x07	; 7
+     e82:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
 		bool exit = false;
 		do {
 			uart.write((char*)"Servo Multiplier --> Change PWM delay\0", true);
-     e80:	41 e0       	ldi	r20, 0x01	; 1
-     e82:	61 eb       	ldi	r22, 0xB1	; 177
-     e84:	74 e0       	ldi	r23, 0x04	; 4
-     e86:	86 e0       	ldi	r24, 0x06	; 6
-     e88:	97 e0       	ldi	r25, 0x07	; 7
-     e8a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     e86:	41 e0       	ldi	r20, 0x01	; 1
+     e88:	61 eb       	ldi	r22, 0xB1	; 177
+     e8a:	74 e0       	ldi	r23, 0x04	; 4
+     e8c:	86 e0       	ldi	r24, 0x06	; 6
+     e8e:	97 e0       	ldi	r25, 0x07	; 7
+     e90:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     e8e:	86 e0       	ldi	r24, 0x06	; 6
-     e90:	97 e0       	ldi	r25, 0x07	; 7
-     e92:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     e94:	86 e0       	ldi	r24, 0x06	; 6
+     e96:	97 e0       	ldi	r25, 0x07	; 7
+     e98:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"PWM delay sets the time [ms] the generated PWM lasts after \0", true);
-     e96:	41 e0       	ldi	r20, 0x01	; 1
-     e98:	68 ed       	ldi	r22, 0xD8	; 216
-     e9a:	74 e0       	ldi	r23, 0x04	; 4
-     e9c:	86 e0       	ldi	r24, 0x06	; 6
-     e9e:	97 e0       	ldi	r25, 0x07	; 7
-     ea0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     e9c:	41 e0       	ldi	r20, 0x01	; 1
+     e9e:	68 ed       	ldi	r22, 0xD8	; 216
+     ea0:	74 e0       	ldi	r23, 0x04	; 4
+     ea2:	86 e0       	ldi	r24, 0x06	; 6
+     ea4:	97 e0       	ldi	r25, 0x07	; 7
+     ea6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"changing the Servo output PORT. The min Value is 100 for 100ms! \0", true);
-     ea4:	41 e0       	ldi	r20, 0x01	; 1
-     ea6:	65 e1       	ldi	r22, 0x15	; 21
-     ea8:	75 e0       	ldi	r23, 0x05	; 5
-     eaa:	86 e0       	ldi	r24, 0x06	; 6
-     eac:	97 e0       	ldi	r25, 0x07	; 7
-     eae:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     eaa:	41 e0       	ldi	r20, 0x01	; 1
+     eac:	65 e1       	ldi	r22, 0x15	; 21
+     eae:	75 e0       	ldi	r23, 0x05	; 5
+     eb0:	86 e0       	ldi	r24, 0x06	; 6
+     eb2:	97 e0       	ldi	r25, 0x07	; 7
+     eb4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-     eb2:	86 e0       	ldi	r24, 0x06	; 6
-     eb4:	97 e0       	ldi	r25, 0x07	; 7
-     eb6:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     eb8:	86 e0       	ldi	r24, 0x06	; 6
+     eba:	97 e0       	ldi	r25, 0x07	; 7
+     ebc:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"Current delay: \0"); uart.write((uint16_t)initValues.getInitValues().PWMDelay); uart.write((char*)"ms\0", true);
-     eba:	40 e0       	ldi	r20, 0x00	; 0
-     ebc:	67 e5       	ldi	r22, 0x57	; 87
-     ebe:	75 e0       	ldi	r23, 0x05	; 5
-     ec0:	86 e0       	ldi	r24, 0x06	; 6
-     ec2:	97 e0       	ldi	r25, 0x07	; 7
-     ec4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     ec8:	40 e0       	ldi	r20, 0x00	; 0
-     eca:	68 e0       	ldi	r22, 0x08	; 8
-     ecc:	77 e0       	ldi	r23, 0x07	; 7
-     ece:	ce 01       	movw	r24, r28
-     ed0:	07 96       	adiw	r24, 0x07	; 7
-     ed2:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-     ed6:	6a ad       	ldd	r22, Y+58	; 0x3a
-     ed8:	7b ad       	ldd	r23, Y+59	; 0x3b
-     eda:	40 e0       	ldi	r20, 0x00	; 0
-     edc:	86 e0       	ldi	r24, 0x06	; 6
-     ede:	97 e0       	ldi	r25, 0x07	; 7
-     ee0:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-     ee4:	41 e0       	ldi	r20, 0x01	; 1
-     ee6:	68 e6       	ldi	r22, 0x68	; 104
-     ee8:	75 e0       	ldi	r23, 0x05	; 5
-     eea:	86 e0       	ldi	r24, 0x06	; 6
-     eec:	97 e0       	ldi	r25, 0x07	; 7
-     eee:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     ec0:	40 e0       	ldi	r20, 0x00	; 0
+     ec2:	67 e5       	ldi	r22, 0x57	; 87
+     ec4:	75 e0       	ldi	r23, 0x05	; 5
+     ec6:	86 e0       	ldi	r24, 0x06	; 6
+     ec8:	97 e0       	ldi	r25, 0x07	; 7
+     eca:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     ece:	40 e0       	ldi	r20, 0x00	; 0
+     ed0:	68 e0       	ldi	r22, 0x08	; 8
+     ed2:	77 e0       	ldi	r23, 0x07	; 7
+     ed4:	ce 01       	movw	r24, r28
+     ed6:	07 96       	adiw	r24, 0x07	; 7
+     ed8:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+     edc:	6a ad       	ldd	r22, Y+58	; 0x3a
+     ede:	7b ad       	ldd	r23, Y+59	; 0x3b
+     ee0:	40 e0       	ldi	r20, 0x00	; 0
+     ee2:	86 e0       	ldi	r24, 0x06	; 6
+     ee4:	97 e0       	ldi	r25, 0x07	; 7
+     ee6:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+     eea:	41 e0       	ldi	r20, 0x01	; 1
+     eec:	68 e6       	ldi	r22, 0x68	; 104
+     eee:	75 e0       	ldi	r23, 0x05	; 5
+     ef0:	86 e0       	ldi	r24, 0x06	; 6
+     ef2:	97 e0       	ldi	r25, 0x07	; 7
+     ef4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Enter new PWM delay or press 'q' for quit without changes! \0", true);
-     ef2:	41 e0       	ldi	r20, 0x01	; 1
-     ef4:	6c e6       	ldi	r22, 0x6C	; 108
-     ef6:	75 e0       	ldi	r23, 0x05	; 5
-     ef8:	86 e0       	ldi	r24, 0x06	; 6
-     efa:	97 e0       	ldi	r25, 0x07	; 7
-     efc:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     ef8:	41 e0       	ldi	r20, 0x01	; 1
+     efa:	6c e6       	ldi	r22, 0x6C	; 108
+     efc:	75 e0       	ldi	r23, 0x05	; 5
+     efe:	86 e0       	ldi	r24, 0x06	; 6
+     f00:	97 e0       	ldi	r25, 0x07	; 7
+     f02:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"New delay: \0");
-     f00:	40 e0       	ldi	r20, 0x00	; 0
-     f02:	69 ea       	ldi	r22, 0xA9	; 169
-     f04:	75 e0       	ldi	r23, 0x05	; 5
-     f06:	86 e0       	ldi	r24, 0x06	; 6
-     f08:	97 e0       	ldi	r25, 0x07	; 7
-     f0a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     f06:	40 e0       	ldi	r20, 0x00	; 0
+     f08:	69 ea       	ldi	r22, 0xA9	; 169
+     f0a:	75 e0       	ldi	r23, 0x05	; 5
+     f0c:	86 e0       	ldi	r24, 0x06	; 6
+     f0e:	97 e0       	ldi	r25, 0x07	; 7
+     f10:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.read((unsigned char*)dev, length);
-     f0e:	46 e0       	ldi	r20, 0x06	; 6
-     f10:	be 01       	movw	r22, r28
-     f12:	6f 5f       	subi	r22, 0xFF	; 255
-     f14:	7f 4f       	sbci	r23, 0xFF	; 255
-     f16:	86 e0       	ldi	r24, 0x06	; 6
-     f18:	97 e0       	ldi	r25, 0x07	; 7
-     f1a:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
+     f14:	46 e0       	ldi	r20, 0x06	; 6
+     f16:	be 01       	movw	r22, r28
+     f18:	6f 5f       	subi	r22, 0xFF	; 255
+     f1a:	7f 4f       	sbci	r23, 0xFF	; 255
+     f1c:	86 e0       	ldi	r24, 0x06	; 6
+     f1e:	97 e0       	ldi	r25, 0x07	; 7
+     f20:	0e 94 c3 01 	call	0x386	; 0x386 <_ZN6myUart4readEPhh>
 			uint8_t lauf = 0;
 			if (dev[lauf] == 'q') {
-     f1e:	89 81       	ldd	r24, Y+1	; 0x01
-     f20:	81 37       	cpi	r24, 0x71	; 113
-     f22:	d1 f0       	breq	.+52     	; 0xf58 <_ZN12usartHelpers14ChangePWMDelayEv+0xf4>
+     f24:	89 81       	ldd	r24, Y+1	; 0x01
+     f26:	81 37       	cpi	r24, 0x71	; 113
+     f28:	d1 f0       	breq	.+52     	; 0xf5e <_ZN12usartHelpers14ChangePWMDelayEv+0xf4>
 				exit = true;
 			} else {
 				uint16_t newVal = (uint16_t)atoi(dev);
-     f24:	ce 01       	movw	r24, r28
-     f26:	01 96       	adiw	r24, 0x01	; 1
-     f28:	0e 94 e3 09 	call	0x13c6	; 0x13c6 <atoi>
+     f2a:	ce 01       	movw	r24, r28
+     f2c:	01 96       	adiw	r24, 0x01	; 1
+     f2e:	0e 94 e6 09 	call	0x13cc	; 0x13cc <atoi>
 				if (newVal < 100 ) {
-     f2c:	84 36       	cpi	r24, 0x64	; 100
-     f2e:	91 05       	cpc	r25, r1
-     f30:	40 f4       	brcc	.+16     	; 0xf42 <_ZN12usartHelpers14ChangePWMDelayEv+0xde>
+     f32:	84 36       	cpi	r24, 0x64	; 100
+     f34:	91 05       	cpc	r25, r1
+     f36:	40 f4       	brcc	.+16     	; 0xf48 <_ZN12usartHelpers14ChangePWMDelayEv+0xde>
 					uart.write((char*)"Value must be an integer between 100 and 65535\0", true); 
-     f32:	41 e0       	ldi	r20, 0x01	; 1
-     f34:	66 eb       	ldi	r22, 0xB6	; 182
-     f36:	75 e0       	ldi	r23, 0x05	; 5
-     f38:	86 e0       	ldi	r24, 0x06	; 6
-     f3a:	97 e0       	ldi	r25, 0x07	; 7
-     f3c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-     f40:	06 c0       	rjmp	.+12     	; 0xf4e <_ZN12usartHelpers14ChangePWMDelayEv+0xea>
+     f38:	41 e0       	ldi	r20, 0x01	; 1
+     f3a:	66 eb       	ldi	r22, 0xB6	; 182
+     f3c:	75 e0       	ldi	r23, 0x05	; 5
+     f3e:	86 e0       	ldi	r24, 0x06	; 6
+     f40:	97 e0       	ldi	r25, 0x07	; 7
+     f42:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+     f46:	06 c0       	rjmp	.+12     	; 0xf54 <_ZN12usartHelpers14ChangePWMDelayEv+0xea>
 				} else {
 					initValues.setPWMDelay(newVal);
-     f42:	40 e0       	ldi	r20, 0x00	; 0
-     f44:	bc 01       	movw	r22, r24
-     f46:	88 e0       	ldi	r24, 0x08	; 8
-     f48:	97 e0       	ldi	r25, 0x07	; 7
-     f4a:	0e 94 1c 04 	call	0x838	; 0x838 <_ZN11ServoEEPROM11setPWMDelayEjb>
+     f48:	40 e0       	ldi	r20, 0x00	; 0
+     f4a:	bc 01       	movw	r22, r24
+     f4c:	88 e0       	ldi	r24, 0x08	; 8
+     f4e:	97 e0       	ldi	r25, 0x07	; 7
+     f50:	0e 94 1f 04 	call	0x83e	; 0x83e <_ZN11ServoEEPROM11setPWMDelayEjb>
 				}
 			} // if (dev[lauf] == 'q')
 			uart.LfCr();
-     f4e:	86 e0       	ldi	r24, 0x06	; 6
-     f50:	97 e0       	ldi	r25, 0x07	; 7
-     f52:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
-     f56:	94 cf       	rjmp	.-216    	; 0xe80 <_ZN12usartHelpers14ChangePWMDelayEv+0x1c>
-     f58:	86 e0       	ldi	r24, 0x06	; 6
-     f5a:	97 e0       	ldi	r25, 0x07	; 7
-     f5c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     f54:	86 e0       	ldi	r24, 0x06	; 6
+     f56:	97 e0       	ldi	r25, 0x07	; 7
+     f58:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+     f5c:	94 cf       	rjmp	.-216    	; 0xe86 <_ZN12usartHelpers14ChangePWMDelayEv+0x1c>
+     f5e:	86 e0       	ldi	r24, 0x06	; 6
+     f60:	97 e0       	ldi	r25, 0x07	; 7
+     f62:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 		} while (!exit);
 	}
-     f60:	eb 96       	adiw	r28, 0x3b	; 59
-     f62:	0f b6       	in	r0, 0x3f	; 63
-     f64:	f8 94       	cli
-     f66:	de bf       	out	0x3e, r29	; 62
-     f68:	0f be       	out	0x3f, r0	; 63
-     f6a:	cd bf       	out	0x3d, r28	; 61
-     f6c:	df 91       	pop	r29
-     f6e:	cf 91       	pop	r28
-     f70:	08 95       	ret
+     f66:	eb 96       	adiw	r28, 0x3b	; 59
+     f68:	0f b6       	in	r0, 0x3f	; 63
+     f6a:	f8 94       	cli
+     f6c:	de bf       	out	0x3e, r29	; 62
+     f6e:	0f be       	out	0x3f, r0	; 63
+     f70:	cd bf       	out	0x3d, r28	; 61
+     f72:	df 91       	pop	r29
+     f74:	cf 91       	pop	r28
+     f76:	08 95       	ret
 
-00000f72 <_ZN12usartHelpers8MainMenuEv>:
+00000f78 <_ZN12usartHelpers8MainMenuEv>:
 	  * \brief 
 	  *  shows the Startup Menu on uart
 	  * 
 	  * \return void
 	  */
 	 void MainMenu() {
-     f72:	4f 92       	push	r4
-     f74:	5f 92       	push	r5
-     f76:	7f 92       	push	r7
-     f78:	8f 92       	push	r8
-     f7a:	9f 92       	push	r9
-     f7c:	af 92       	push	r10
-     f7e:	bf 92       	push	r11
-     f80:	cf 92       	push	r12
-     f82:	df 92       	push	r13
-     f84:	ef 92       	push	r14
-     f86:	ff 92       	push	r15
-     f88:	1f 93       	push	r17
-     f8a:	cf 93       	push	r28
-     f8c:	df 93       	push	r29
-     f8e:	cd b7       	in	r28, 0x3d	; 61
-     f90:	de b7       	in	r29, 0x3e	; 62
-     f92:	cf 59       	subi	r28, 0x9F	; 159
-     f94:	d1 09       	sbc	r29, r1
-     f96:	0f b6       	in	r0, 0x3f	; 63
-     f98:	f8 94       	cli
-     f9a:	de bf       	out	0x3e, r29	; 62
-     f9c:	0f be       	out	0x3f, r0	; 63
-     f9e:	cd bf       	out	0x3d, r28	; 61
+     f78:	4f 92       	push	r4
+     f7a:	5f 92       	push	r5
+     f7c:	7f 92       	push	r7
+     f7e:	8f 92       	push	r8
+     f80:	9f 92       	push	r9
+     f82:	af 92       	push	r10
+     f84:	bf 92       	push	r11
+     f86:	cf 92       	push	r12
+     f88:	df 92       	push	r13
+     f8a:	ef 92       	push	r14
+     f8c:	ff 92       	push	r15
+     f8e:	1f 93       	push	r17
+     f90:	cf 93       	push	r28
+     f92:	df 93       	push	r29
+     f94:	cd b7       	in	r28, 0x3d	; 61
+     f96:	de b7       	in	r29, 0x3e	; 62
+     f98:	cf 59       	subi	r28, 0x9F	; 159
+     f9a:	d1 09       	sbc	r29, r1
+     f9c:	0f b6       	in	r0, 0x3f	; 63
+     f9e:	f8 94       	cli
+     fa0:	de bf       	out	0x3e, r29	; 62
+     fa2:	0f be       	out	0x3f, r0	; 63
+     fa4:	cd bf       	out	0x3d, r28	; 61
 
 		EEPROM_initValues actv = initValues.getInitValues(true);
-     fa0:	41 e0       	ldi	r20, 0x01	; 1
-     fa2:	68 e0       	ldi	r22, 0x08	; 8
-     fa4:	77 e0       	ldi	r23, 0x07	; 7
-     fa6:	ce 01       	movw	r24, r28
-     fa8:	01 96       	adiw	r24, 0x01	; 1
-     faa:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
+     fa6:	41 e0       	ldi	r20, 0x01	; 1
+     fa8:	68 e0       	ldi	r22, 0x08	; 8
+     faa:	77 e0       	ldi	r23, 0x07	; 7
+     fac:	ce 01       	movw	r24, r28
+     fae:	01 96       	adiw	r24, 0x01	; 1
+     fb0:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
 		while (x != 'q')  {
 			uart.cls();
 			uart.write((char*)"ServoPortmultiplier Configuration Menu\0", true);
 			uart.LfCr();
 			uart.write((char*)"SerienNr: \0"); uart.write(initValues.getInitValues().SerialNr, true); 
 			uart.write((char*)"Author:   \0"); uart.write((char*)initValues.getInitValues().author, true); 
-     fae:	0f 2e       	mov	r0, r31
-     fb0:	fb e6       	ldi	r31, 0x6B	; 107
-     fb2:	cf 2e       	mov	r12, r31
-     fb4:	d1 2c       	mov	r13, r1
-     fb6:	f0 2d       	mov	r31, r0
-     fb8:	cc 0e       	add	r12, r28
-     fba:	dd 1e       	adc	r13, r29
-     fbc:	82 e0       	ldi	r24, 0x02	; 2
-     fbe:	c8 0e       	add	r12, r24
-     fc0:	d1 1c       	adc	r13, r1
+     fb4:	0f 2e       	mov	r0, r31
+     fb6:	fb e6       	ldi	r31, 0x6B	; 107
+     fb8:	cf 2e       	mov	r12, r31
+     fba:	d1 2c       	mov	r13, r1
+     fbc:	f0 2d       	mov	r31, r0
+     fbe:	cc 0e       	add	r12, r28
+     fc0:	dd 1e       	adc	r13, r29
+     fc2:	82 e0       	ldi	r24, 0x02	; 2
+     fc4:	c8 0e       	add	r12, r24
+     fc6:	d1 1c       	adc	r13, r1
 			uart.write((char*)"Company:  \0"); uart.write((char*)initValues.getInitValues().company, true); 
-     fc2:	0f 2e       	mov	r0, r31
-     fc4:	fb e6       	ldi	r31, 0x6B	; 107
-     fc6:	ef 2e       	mov	r14, r31
-     fc8:	f1 2c       	mov	r15, r1
-     fca:	f0 2d       	mov	r31, r0
-     fcc:	ec 0e       	add	r14, r28
-     fce:	fd 1e       	adc	r15, r29
-     fd0:	96 e1       	ldi	r25, 0x16	; 22
-     fd2:	e9 0e       	add	r14, r25
-     fd4:	f1 1c       	adc	r15, r1
+     fc8:	0f 2e       	mov	r0, r31
+     fca:	fb e6       	ldi	r31, 0x6B	; 107
+     fcc:	ef 2e       	mov	r14, r31
+     fce:	f1 2c       	mov	r15, r1
+     fd0:	f0 2d       	mov	r31, r0
+     fd2:	ec 0e       	add	r14, r28
+     fd4:	fd 1e       	adc	r15, r29
+     fd6:	96 e1       	ldi	r25, 0x16	; 22
+     fd8:	e9 0e       	add	r14, r25
+     fda:	f1 1c       	adc	r15, r1
 			uart.write((char*)"Version:  \0"); uart.write(initValues.getInitValues().version, true);
-     fd6:	0f 2e       	mov	r0, r31
-     fd8:	fb e6       	ldi	r31, 0x6B	; 107
-     fda:	4f 2e       	mov	r4, r31
-     fdc:	51 2c       	mov	r5, r1
-     fde:	f0 2d       	mov	r31, r0
-     fe0:	4c 0e       	add	r4, r28
-     fe2:	5d 1e       	adc	r5, r29
-     fe4:	8a e2       	ldi	r24, 0x2A	; 42
-     fe6:	48 0e       	add	r4, r24
-     fe8:	51 1c       	adc	r5, r1
-     fea:	03 c0       	rjmp	.+6      	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+     fdc:	0f 2e       	mov	r0, r31
+     fde:	fb e6       	ldi	r31, 0x6B	; 107
+     fe0:	4f 2e       	mov	r4, r31
+     fe2:	51 2c       	mov	r5, r1
+     fe4:	f0 2d       	mov	r31, r0
+     fe6:	4c 0e       	add	r4, r28
+     fe8:	5d 1e       	adc	r5, r29
+     fea:	8a e2       	ldi	r24, 0x2A	; 42
+     fec:	48 0e       	add	r4, r24
+     fee:	51 1c       	adc	r5, r1
+     ff0:	03 c0       	rjmp	.+6      	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 	 void MainMenu() {
 
 		EEPROM_initValues actv = initValues.getInitValues(true);
 		bool changesMade = false;
 		unsigned char x = '0';
 		while (x != 'q')  {
-     fec:	81 37       	cpi	r24, 0x71	; 113
-     fee:	09 f4       	brne	.+2      	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
-     ff0:	ce c1       	rjmp	.+924    	; 0x138e <_ZN12usartHelpers8MainMenuEv+0x41c>
+     ff2:	81 37       	cpi	r24, 0x71	; 113
+     ff4:	09 f4       	brne	.+2      	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
+     ff6:	ce c1       	rjmp	.+924    	; 0x1394 <_ZN12usartHelpers8MainMenuEv+0x41c>
 			uart.cls();
-     ff2:	86 e0       	ldi	r24, 0x06	; 6
-     ff4:	97 e0       	ldi	r25, 0x07	; 7
-     ff6:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
+     ff8:	86 e0       	ldi	r24, 0x06	; 6
+     ffa:	97 e0       	ldi	r25, 0x07	; 7
+     ffc:	0e 94 2b 02 	call	0x456	; 0x456 <_ZN6myUart3clsEv>
 			uart.write((char*)"ServoPortmultiplier Configuration Menu\0", true);
-     ffa:	41 e0       	ldi	r20, 0x01	; 1
-     ffc:	66 ee       	ldi	r22, 0xE6	; 230
-     ffe:	75 e0       	ldi	r23, 0x05	; 5
-    1000:	86 e0       	ldi	r24, 0x06	; 6
-    1002:	97 e0       	ldi	r25, 0x07	; 7
-    1004:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1000:	41 e0       	ldi	r20, 0x01	; 1
+    1002:	66 ee       	ldi	r22, 0xE6	; 230
+    1004:	75 e0       	ldi	r23, 0x05	; 5
+    1006:	86 e0       	ldi	r24, 0x06	; 6
+    1008:	97 e0       	ldi	r25, 0x07	; 7
+    100a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-    1008:	86 e0       	ldi	r24, 0x06	; 6
-    100a:	97 e0       	ldi	r25, 0x07	; 7
-    100c:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+    100e:	86 e0       	ldi	r24, 0x06	; 6
+    1010:	97 e0       	ldi	r25, 0x07	; 7
+    1012:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"SerienNr: \0"); uart.write(initValues.getInitValues().SerialNr, true); 
-    1010:	40 e0       	ldi	r20, 0x00	; 0
-    1012:	6e e0       	ldi	r22, 0x0E	; 14
-    1014:	76 e0       	ldi	r23, 0x06	; 6
-    1016:	86 e0       	ldi	r24, 0x06	; 6
-    1018:	97 e0       	ldi	r25, 0x07	; 7
-    101a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    101e:	40 e0       	ldi	r20, 0x00	; 0
-    1020:	68 e0       	ldi	r22, 0x08	; 8
-    1022:	77 e0       	ldi	r23, 0x07	; 7
-    1024:	ce 01       	movw	r24, r28
-    1026:	85 59       	subi	r24, 0x95	; 149
-    1028:	9f 4f       	sbci	r25, 0xFF	; 255
-    102a:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    102e:	ad 96       	adiw	r28, 0x2d	; 45
-    1030:	6e ad       	ldd	r22, Y+62	; 0x3e
-    1032:	7f ad       	ldd	r23, Y+63	; 0x3f
-    1034:	ad 97       	sbiw	r28, 0x2d	; 45
-    1036:	41 e0       	ldi	r20, 0x01	; 1
-    1038:	86 e0       	ldi	r24, 0x06	; 6
-    103a:	97 e0       	ldi	r25, 0x07	; 7
-    103c:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+    1016:	40 e0       	ldi	r20, 0x00	; 0
+    1018:	6e e0       	ldi	r22, 0x0E	; 14
+    101a:	76 e0       	ldi	r23, 0x06	; 6
+    101c:	86 e0       	ldi	r24, 0x06	; 6
+    101e:	97 e0       	ldi	r25, 0x07	; 7
+    1020:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1024:	40 e0       	ldi	r20, 0x00	; 0
+    1026:	68 e0       	ldi	r22, 0x08	; 8
+    1028:	77 e0       	ldi	r23, 0x07	; 7
+    102a:	ce 01       	movw	r24, r28
+    102c:	85 59       	subi	r24, 0x95	; 149
+    102e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1030:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1034:	ad 96       	adiw	r28, 0x2d	; 45
+    1036:	6e ad       	ldd	r22, Y+62	; 0x3e
+    1038:	7f ad       	ldd	r23, Y+63	; 0x3f
+    103a:	ad 97       	sbiw	r28, 0x2d	; 45
+    103c:	41 e0       	ldi	r20, 0x01	; 1
+    103e:	86 e0       	ldi	r24, 0x06	; 6
+    1040:	97 e0       	ldi	r25, 0x07	; 7
+    1042:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
 			uart.write((char*)"Author:   \0"); uart.write((char*)initValues.getInitValues().author, true); 
-    1040:	40 e0       	ldi	r20, 0x00	; 0
-    1042:	6a e1       	ldi	r22, 0x1A	; 26
-    1044:	76 e0       	ldi	r23, 0x06	; 6
-    1046:	86 e0       	ldi	r24, 0x06	; 6
-    1048:	97 e0       	ldi	r25, 0x07	; 7
-    104a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    104e:	40 e0       	ldi	r20, 0x00	; 0
-    1050:	68 e0       	ldi	r22, 0x08	; 8
-    1052:	77 e0       	ldi	r23, 0x07	; 7
-    1054:	ce 01       	movw	r24, r28
-    1056:	85 59       	subi	r24, 0x95	; 149
-    1058:	9f 4f       	sbci	r25, 0xFF	; 255
-    105a:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    105e:	41 e0       	ldi	r20, 0x01	; 1
-    1060:	b6 01       	movw	r22, r12
-    1062:	86 e0       	ldi	r24, 0x06	; 6
-    1064:	97 e0       	ldi	r25, 0x07	; 7
-    1066:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1046:	40 e0       	ldi	r20, 0x00	; 0
+    1048:	6a e1       	ldi	r22, 0x1A	; 26
+    104a:	76 e0       	ldi	r23, 0x06	; 6
+    104c:	86 e0       	ldi	r24, 0x06	; 6
+    104e:	97 e0       	ldi	r25, 0x07	; 7
+    1050:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1054:	40 e0       	ldi	r20, 0x00	; 0
+    1056:	68 e0       	ldi	r22, 0x08	; 8
+    1058:	77 e0       	ldi	r23, 0x07	; 7
+    105a:	ce 01       	movw	r24, r28
+    105c:	85 59       	subi	r24, 0x95	; 149
+    105e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1060:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1064:	41 e0       	ldi	r20, 0x01	; 1
+    1066:	b6 01       	movw	r22, r12
+    1068:	86 e0       	ldi	r24, 0x06	; 6
+    106a:	97 e0       	ldi	r25, 0x07	; 7
+    106c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Company:  \0"); uart.write((char*)initValues.getInitValues().company, true); 
-    106a:	40 e0       	ldi	r20, 0x00	; 0
-    106c:	66 e2       	ldi	r22, 0x26	; 38
-    106e:	76 e0       	ldi	r23, 0x06	; 6
-    1070:	86 e0       	ldi	r24, 0x06	; 6
-    1072:	97 e0       	ldi	r25, 0x07	; 7
-    1074:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    1078:	40 e0       	ldi	r20, 0x00	; 0
-    107a:	68 e0       	ldi	r22, 0x08	; 8
-    107c:	77 e0       	ldi	r23, 0x07	; 7
-    107e:	ce 01       	movw	r24, r28
-    1080:	85 59       	subi	r24, 0x95	; 149
-    1082:	9f 4f       	sbci	r25, 0xFF	; 255
-    1084:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    1088:	41 e0       	ldi	r20, 0x01	; 1
-    108a:	b7 01       	movw	r22, r14
-    108c:	86 e0       	ldi	r24, 0x06	; 6
-    108e:	97 e0       	ldi	r25, 0x07	; 7
-    1090:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1070:	40 e0       	ldi	r20, 0x00	; 0
+    1072:	66 e2       	ldi	r22, 0x26	; 38
+    1074:	76 e0       	ldi	r23, 0x06	; 6
+    1076:	86 e0       	ldi	r24, 0x06	; 6
+    1078:	97 e0       	ldi	r25, 0x07	; 7
+    107a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    107e:	40 e0       	ldi	r20, 0x00	; 0
+    1080:	68 e0       	ldi	r22, 0x08	; 8
+    1082:	77 e0       	ldi	r23, 0x07	; 7
+    1084:	ce 01       	movw	r24, r28
+    1086:	85 59       	subi	r24, 0x95	; 149
+    1088:	9f 4f       	sbci	r25, 0xFF	; 255
+    108a:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    108e:	41 e0       	ldi	r20, 0x01	; 1
+    1090:	b7 01       	movw	r22, r14
+    1092:	86 e0       	ldi	r24, 0x06	; 6
+    1094:	97 e0       	ldi	r25, 0x07	; 7
+    1096:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Version:  \0"); uart.write(initValues.getInitValues().version, true);
-    1094:	40 e0       	ldi	r20, 0x00	; 0
-    1096:	62 e3       	ldi	r22, 0x32	; 50
-    1098:	76 e0       	ldi	r23, 0x06	; 6
-    109a:	86 e0       	ldi	r24, 0x06	; 6
-    109c:	97 e0       	ldi	r25, 0x07	; 7
-    109e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    10a2:	40 e0       	ldi	r20, 0x00	; 0
-    10a4:	68 e0       	ldi	r22, 0x08	; 8
-    10a6:	77 e0       	ldi	r23, 0x07	; 7
-    10a8:	ce 01       	movw	r24, r28
-    10aa:	85 59       	subi	r24, 0x95	; 149
-    10ac:	9f 4f       	sbci	r25, 0xFF	; 255
-    10ae:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    10b2:	41 e0       	ldi	r20, 0x01	; 1
-    10b4:	b2 01       	movw	r22, r4
-    10b6:	86 e0       	ldi	r24, 0x06	; 6
-    10b8:	97 e0       	ldi	r25, 0x07	; 7
-    10ba:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    109a:	40 e0       	ldi	r20, 0x00	; 0
+    109c:	62 e3       	ldi	r22, 0x32	; 50
+    109e:	76 e0       	ldi	r23, 0x06	; 6
+    10a0:	86 e0       	ldi	r24, 0x06	; 6
+    10a2:	97 e0       	ldi	r25, 0x07	; 7
+    10a4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    10a8:	40 e0       	ldi	r20, 0x00	; 0
+    10aa:	68 e0       	ldi	r22, 0x08	; 8
+    10ac:	77 e0       	ldi	r23, 0x07	; 7
+    10ae:	ce 01       	movw	r24, r28
+    10b0:	85 59       	subi	r24, 0x95	; 149
+    10b2:	9f 4f       	sbci	r25, 0xFF	; 255
+    10b4:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    10b8:	41 e0       	ldi	r20, 0x01	; 1
+    10ba:	b2 01       	movw	r22, r4
+    10bc:	86 e0       	ldi	r24, 0x06	; 6
+    10be:	97 e0       	ldi	r25, 0x07	; 7
+    10c0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-    10be:	86 e0       	ldi	r24, 0x06	; 6
-    10c0:	97 e0       	ldi	r25, 0x07	; 7
-    10c2:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+    10c4:	86 e0       	ldi	r24, 0x06	; 6
+    10c6:	97 e0       	ldi	r25, 0x07	; 7
+    10c8:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"1 Servotype:  \0"); ServoTypeMenu(initValues.getInitValues().servoType);
-    10c6:	40 e0       	ldi	r20, 0x00	; 0
-    10c8:	6e e3       	ldi	r22, 0x3E	; 62
-    10ca:	76 e0       	ldi	r23, 0x06	; 6
-    10cc:	86 e0       	ldi	r24, 0x06	; 6
-    10ce:	97 e0       	ldi	r25, 0x07	; 7
-    10d0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    10d4:	40 e0       	ldi	r20, 0x00	; 0
-    10d6:	68 e0       	ldi	r22, 0x08	; 8
-    10d8:	77 e0       	ldi	r23, 0x07	; 7
-    10da:	ce 01       	movw	r24, r28
-    10dc:	85 59       	subi	r24, 0x95	; 149
-    10de:	9f 4f       	sbci	r25, 0xFF	; 255
-    10e0:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    10e4:	c6 56       	subi	r28, 0x66	; 102
-    10e6:	df 4f       	sbci	r29, 0xFF	; 255
-    10e8:	88 81       	ld	r24, Y
-    10ea:	99 81       	ldd	r25, Y+1	; 0x01
-    10ec:	ca 59       	subi	r28, 0x9A	; 154
-    10ee:	d0 40       	sbci	r29, 0x00	; 0
-    10f0:	0e 94 7f 04 	call	0x8fe	; 0x8fe <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
+    10cc:	40 e0       	ldi	r20, 0x00	; 0
+    10ce:	6e e3       	ldi	r22, 0x3E	; 62
+    10d0:	76 e0       	ldi	r23, 0x06	; 6
+    10d2:	86 e0       	ldi	r24, 0x06	; 6
+    10d4:	97 e0       	ldi	r25, 0x07	; 7
+    10d6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    10da:	40 e0       	ldi	r20, 0x00	; 0
+    10dc:	68 e0       	ldi	r22, 0x08	; 8
+    10de:	77 e0       	ldi	r23, 0x07	; 7
+    10e0:	ce 01       	movw	r24, r28
+    10e2:	85 59       	subi	r24, 0x95	; 149
+    10e4:	9f 4f       	sbci	r25, 0xFF	; 255
+    10e6:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    10ea:	c6 56       	subi	r28, 0x66	; 102
+    10ec:	df 4f       	sbci	r29, 0xFF	; 255
+    10ee:	88 81       	ld	r24, Y
+    10f0:	99 81       	ldd	r25, Y+1	; 0x01
+    10f2:	ca 59       	subi	r28, 0x9A	; 154
+    10f4:	d0 40       	sbci	r29, 0x00	; 0
+    10f6:	0e 94 82 04 	call	0x904	; 0x904 <_ZN12usartHelpers13ServoTypeMenuE9ServoType>
 			uart.write((char*)"2 Zeroing:    \0"); uart.write((uint16_t)initValues.getInitValues().SNullStellung); uart.write((char*)" degree\0", true);
-    10f4:	40 e0       	ldi	r20, 0x00	; 0
-    10f6:	6e e4       	ldi	r22, 0x4E	; 78
-    10f8:	76 e0       	ldi	r23, 0x06	; 6
-    10fa:	86 e0       	ldi	r24, 0x06	; 6
-    10fc:	97 e0       	ldi	r25, 0x07	; 7
-    10fe:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    1102:	40 e0       	ldi	r20, 0x00	; 0
-    1104:	68 e0       	ldi	r22, 0x08	; 8
-    1106:	77 e0       	ldi	r23, 0x07	; 7
-    1108:	ce 01       	movw	r24, r28
-    110a:	85 59       	subi	r24, 0x95	; 149
-    110c:	9f 4f       	sbci	r25, 0xFF	; 255
-    110e:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    1112:	c4 56       	subi	r28, 0x64	; 100
-    1114:	df 4f       	sbci	r29, 0xFF	; 255
-    1116:	68 81       	ld	r22, Y
-    1118:	cc 59       	subi	r28, 0x9C	; 156
-    111a:	d0 40       	sbci	r29, 0x00	; 0
-    111c:	06 2e       	mov	r0, r22
-    111e:	00 0c       	add	r0, r0
-    1120:	77 0b       	sbc	r23, r23
-    1122:	40 e0       	ldi	r20, 0x00	; 0
-    1124:	86 e0       	ldi	r24, 0x06	; 6
-    1126:	97 e0       	ldi	r25, 0x07	; 7
-    1128:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-    112c:	41 e0       	ldi	r20, 0x01	; 1
-    112e:	64 ed       	ldi	r22, 0xD4	; 212
-    1130:	72 e0       	ldi	r23, 0x02	; 2
-    1132:	86 e0       	ldi	r24, 0x06	; 6
-    1134:	97 e0       	ldi	r25, 0x07	; 7
-    1136:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    10fa:	40 e0       	ldi	r20, 0x00	; 0
+    10fc:	6e e4       	ldi	r22, 0x4E	; 78
+    10fe:	76 e0       	ldi	r23, 0x06	; 6
+    1100:	86 e0       	ldi	r24, 0x06	; 6
+    1102:	97 e0       	ldi	r25, 0x07	; 7
+    1104:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1108:	40 e0       	ldi	r20, 0x00	; 0
+    110a:	68 e0       	ldi	r22, 0x08	; 8
+    110c:	77 e0       	ldi	r23, 0x07	; 7
+    110e:	ce 01       	movw	r24, r28
+    1110:	85 59       	subi	r24, 0x95	; 149
+    1112:	9f 4f       	sbci	r25, 0xFF	; 255
+    1114:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1118:	c4 56       	subi	r28, 0x64	; 100
+    111a:	df 4f       	sbci	r29, 0xFF	; 255
+    111c:	68 81       	ld	r22, Y
+    111e:	cc 59       	subi	r28, 0x9C	; 156
+    1120:	d0 40       	sbci	r29, 0x00	; 0
+    1122:	06 2e       	mov	r0, r22
+    1124:	00 0c       	add	r0, r0
+    1126:	77 0b       	sbc	r23, r23
+    1128:	40 e0       	ldi	r20, 0x00	; 0
+    112a:	86 e0       	ldi	r24, 0x06	; 6
+    112c:	97 e0       	ldi	r25, 0x07	; 7
+    112e:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+    1132:	41 e0       	ldi	r20, 0x01	; 1
+    1134:	64 ed       	ldi	r22, 0xD4	; 212
+    1136:	72 e0       	ldi	r23, 0x02	; 2
+    1138:	86 e0       	ldi	r24, 0x06	; 6
+    113a:	97 e0       	ldi	r25, 0x07	; 7
+    113c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"3 Anglerange: \0"); uart.write((uint16_t)initValues.getInitValues().AngleRange); uart.write((char*)" degree\0", true);
-    113a:	40 e0       	ldi	r20, 0x00	; 0
-    113c:	6e e5       	ldi	r22, 0x5E	; 94
-    113e:	76 e0       	ldi	r23, 0x06	; 6
-    1140:	86 e0       	ldi	r24, 0x06	; 6
-    1142:	97 e0       	ldi	r25, 0x07	; 7
-    1144:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    1148:	40 e0       	ldi	r20, 0x00	; 0
-    114a:	68 e0       	ldi	r22, 0x08	; 8
-    114c:	77 e0       	ldi	r23, 0x07	; 7
-    114e:	ce 01       	movw	r24, r28
-    1150:	85 59       	subi	r24, 0x95	; 149
-    1152:	9f 4f       	sbci	r25, 0xFF	; 255
-    1154:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    1158:	c3 56       	subi	r28, 0x63	; 99
-    115a:	df 4f       	sbci	r29, 0xFF	; 255
-    115c:	68 81       	ld	r22, Y
-    115e:	cd 59       	subi	r28, 0x9D	; 157
-    1160:	d0 40       	sbci	r29, 0x00	; 0
-    1162:	70 e0       	ldi	r23, 0x00	; 0
-    1164:	40 e0       	ldi	r20, 0x00	; 0
-    1166:	86 e0       	ldi	r24, 0x06	; 6
-    1168:	97 e0       	ldi	r25, 0x07	; 7
-    116a:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-    116e:	41 e0       	ldi	r20, 0x01	; 1
-    1170:	64 ed       	ldi	r22, 0xD4	; 212
-    1172:	72 e0       	ldi	r23, 0x02	; 2
-    1174:	86 e0       	ldi	r24, 0x06	; 6
-    1176:	97 e0       	ldi	r25, 0x07	; 7
-    1178:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1140:	40 e0       	ldi	r20, 0x00	; 0
+    1142:	6e e5       	ldi	r22, 0x5E	; 94
+    1144:	76 e0       	ldi	r23, 0x06	; 6
+    1146:	86 e0       	ldi	r24, 0x06	; 6
+    1148:	97 e0       	ldi	r25, 0x07	; 7
+    114a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    114e:	40 e0       	ldi	r20, 0x00	; 0
+    1150:	68 e0       	ldi	r22, 0x08	; 8
+    1152:	77 e0       	ldi	r23, 0x07	; 7
+    1154:	ce 01       	movw	r24, r28
+    1156:	85 59       	subi	r24, 0x95	; 149
+    1158:	9f 4f       	sbci	r25, 0xFF	; 255
+    115a:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    115e:	c3 56       	subi	r28, 0x63	; 99
+    1160:	df 4f       	sbci	r29, 0xFF	; 255
+    1162:	68 81       	ld	r22, Y
+    1164:	cd 59       	subi	r28, 0x9D	; 157
+    1166:	d0 40       	sbci	r29, 0x00	; 0
+    1168:	70 e0       	ldi	r23, 0x00	; 0
+    116a:	40 e0       	ldi	r20, 0x00	; 0
+    116c:	86 e0       	ldi	r24, 0x06	; 6
+    116e:	97 e0       	ldi	r25, 0x07	; 7
+    1170:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+    1174:	41 e0       	ldi	r20, 0x01	; 1
+    1176:	64 ed       	ldi	r22, 0xD4	; 212
+    1178:	72 e0       	ldi	r23, 0x02	; 2
+    117a:	86 e0       	ldi	r24, 0x06	; 6
+    117c:	97 e0       	ldi	r25, 0x07	; 7
+    117e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"4 PWM delay:  \0"); uart.write((uint16_t)initValues.getInitValues().PWMDelay); uart.write((char*)"ms\0", true);
-    117c:	40 e0       	ldi	r20, 0x00	; 0
-    117e:	6e e6       	ldi	r22, 0x6E	; 110
-    1180:	76 e0       	ldi	r23, 0x06	; 6
-    1182:	86 e0       	ldi	r24, 0x06	; 6
-    1184:	97 e0       	ldi	r25, 0x07	; 7
-    1186:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
-    118a:	40 e0       	ldi	r20, 0x00	; 0
-    118c:	68 e0       	ldi	r22, 0x08	; 8
-    118e:	77 e0       	ldi	r23, 0x07	; 7
-    1190:	ce 01       	movw	r24, r28
-    1192:	85 59       	subi	r24, 0x95	; 149
-    1194:	9f 4f       	sbci	r25, 0xFF	; 255
-    1196:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    119a:	c2 56       	subi	r28, 0x62	; 98
-    119c:	df 4f       	sbci	r29, 0xFF	; 255
-    119e:	68 81       	ld	r22, Y
-    11a0:	79 81       	ldd	r23, Y+1	; 0x01
-    11a2:	ce 59       	subi	r28, 0x9E	; 158
-    11a4:	d0 40       	sbci	r29, 0x00	; 0
-    11a6:	40 e0       	ldi	r20, 0x00	; 0
-    11a8:	86 e0       	ldi	r24, 0x06	; 6
-    11aa:	97 e0       	ldi	r25, 0x07	; 7
-    11ac:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
-    11b0:	41 e0       	ldi	r20, 0x01	; 1
-    11b2:	68 e6       	ldi	r22, 0x68	; 104
-    11b4:	75 e0       	ldi	r23, 0x05	; 5
-    11b6:	86 e0       	ldi	r24, 0x06	; 6
-    11b8:	97 e0       	ldi	r25, 0x07	; 7
-    11ba:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1182:	40 e0       	ldi	r20, 0x00	; 0
+    1184:	6e e6       	ldi	r22, 0x6E	; 110
+    1186:	76 e0       	ldi	r23, 0x06	; 6
+    1188:	86 e0       	ldi	r24, 0x06	; 6
+    118a:	97 e0       	ldi	r25, 0x07	; 7
+    118c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1190:	40 e0       	ldi	r20, 0x00	; 0
+    1192:	68 e0       	ldi	r22, 0x08	; 8
+    1194:	77 e0       	ldi	r23, 0x07	; 7
+    1196:	ce 01       	movw	r24, r28
+    1198:	85 59       	subi	r24, 0x95	; 149
+    119a:	9f 4f       	sbci	r25, 0xFF	; 255
+    119c:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    11a0:	c2 56       	subi	r28, 0x62	; 98
+    11a2:	df 4f       	sbci	r29, 0xFF	; 255
+    11a4:	68 81       	ld	r22, Y
+    11a6:	79 81       	ldd	r23, Y+1	; 0x01
+    11a8:	ce 59       	subi	r28, 0x9E	; 158
+    11aa:	d0 40       	sbci	r29, 0x00	; 0
+    11ac:	40 e0       	ldi	r20, 0x00	; 0
+    11ae:	86 e0       	ldi	r24, 0x06	; 6
+    11b0:	97 e0       	ldi	r25, 0x07	; 7
+    11b2:	0e 94 9a 02 	call	0x534	; 0x534 <_ZN6myUart5writeEjb>
+    11b6:	41 e0       	ldi	r20, 0x01	; 1
+    11b8:	68 e6       	ldi	r22, 0x68	; 104
+    11ba:	75 e0       	ldi	r23, 0x05	; 5
+    11bc:	86 e0       	ldi	r24, 0x06	; 6
+    11be:	97 e0       	ldi	r25, 0x07	; 7
+    11c0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-    11be:	86 e0       	ldi	r24, 0x06	; 6
-    11c0:	97 e0       	ldi	r25, 0x07	; 7
-    11c2:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+    11c4:	86 e0       	ldi	r24, 0x06	; 6
+    11c6:	97 e0       	ldi	r25, 0x07	; 7
+    11c8:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			uart.write((char*)"5 Refresh menu-values\0", true);
-    11c6:	41 e0       	ldi	r20, 0x01	; 1
-    11c8:	6e e7       	ldi	r22, 0x7E	; 126
-    11ca:	76 e0       	ldi	r23, 0x06	; 6
-    11cc:	86 e0       	ldi	r24, 0x06	; 6
-    11ce:	97 e0       	ldi	r25, 0x07	; 7
-    11d0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    11cc:	41 e0       	ldi	r20, 0x01	; 1
+    11ce:	6e e7       	ldi	r22, 0x7E	; 126
+    11d0:	76 e0       	ldi	r23, 0x06	; 6
+    11d2:	86 e0       	ldi	r24, 0x06	; 6
+    11d4:	97 e0       	ldi	r25, 0x07	; 7
+    11d6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.LfCr();
-    11d4:	86 e0       	ldi	r24, 0x06	; 6
-    11d6:	97 e0       	ldi	r25, 0x07	; 7
-    11d8:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
+    11da:	86 e0       	ldi	r24, 0x06	; 6
+    11dc:	97 e0       	ldi	r25, 0x07	; 7
+    11de:	0e 94 0c 02 	call	0x418	; 0x418 <_ZN6myUart4LfCrEv>
 			changesMade = false;
 			if(actv.servoType != initValues.getInitValues(false).servoType) changesMade = true;
-    11dc:	88 a8       	ldd	r8, Y+48	; 0x30
-    11de:	99 a8       	ldd	r9, Y+49	; 0x31
-    11e0:	40 e0       	ldi	r20, 0x00	; 0
-    11e2:	68 e0       	ldi	r22, 0x08	; 8
-    11e4:	77 e0       	ldi	r23, 0x07	; 7
-    11e6:	ce 01       	movw	r24, r28
-    11e8:	85 59       	subi	r24, 0x95	; 149
-    11ea:	9f 4f       	sbci	r25, 0xFF	; 255
-    11ec:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    11f0:	c6 56       	subi	r28, 0x66	; 102
-    11f2:	df 4f       	sbci	r29, 0xFF	; 255
-    11f4:	a8 80       	ld	r10, Y
-    11f6:	b9 80       	ldd	r11, Y+1	; 0x01
-    11f8:	ca 59       	subi	r28, 0x9A	; 154
-    11fa:	d0 40       	sbci	r29, 0x00	; 0
+    11e2:	88 a8       	ldd	r8, Y+48	; 0x30
+    11e4:	99 a8       	ldd	r9, Y+49	; 0x31
+    11e6:	40 e0       	ldi	r20, 0x00	; 0
+    11e8:	68 e0       	ldi	r22, 0x08	; 8
+    11ea:	77 e0       	ldi	r23, 0x07	; 7
+    11ec:	ce 01       	movw	r24, r28
+    11ee:	85 59       	subi	r24, 0x95	; 149
+    11f0:	9f 4f       	sbci	r25, 0xFF	; 255
+    11f2:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    11f6:	c6 56       	subi	r28, 0x66	; 102
+    11f8:	df 4f       	sbci	r29, 0xFF	; 255
+    11fa:	a8 80       	ld	r10, Y
+    11fc:	b9 80       	ldd	r11, Y+1	; 0x01
+    11fe:	ca 59       	subi	r28, 0x9A	; 154
+    1200:	d0 40       	sbci	r29, 0x00	; 0
 			if(actv.SNullStellung != initValues.getInitValues(false).SNullStellung) changesMade = true;
-    11fc:	7a a8       	ldd	r7, Y+50	; 0x32
-    11fe:	40 e0       	ldi	r20, 0x00	; 0
-    1200:	68 e0       	ldi	r22, 0x08	; 8
-    1202:	77 e0       	ldi	r23, 0x07	; 7
-    1204:	ce 01       	movw	r24, r28
-    1206:	85 59       	subi	r24, 0x95	; 149
-    1208:	9f 4f       	sbci	r25, 0xFF	; 255
-    120a:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    120e:	c4 56       	subi	r28, 0x64	; 100
-    1210:	df 4f       	sbci	r29, 0xFF	; 255
-    1212:	88 81       	ld	r24, Y
-    1214:	cc 59       	subi	r28, 0x9C	; 156
-    1216:	d0 40       	sbci	r29, 0x00	; 0
-    1218:	78 12       	cpse	r7, r24
-    121a:	06 c0       	rjmp	.+12     	; 0x1228 <_ZN12usartHelpers8MainMenuEv+0x2b6>
+    1202:	7a a8       	ldd	r7, Y+50	; 0x32
+    1204:	40 e0       	ldi	r20, 0x00	; 0
+    1206:	68 e0       	ldi	r22, 0x08	; 8
+    1208:	77 e0       	ldi	r23, 0x07	; 7
+    120a:	ce 01       	movw	r24, r28
+    120c:	85 59       	subi	r24, 0x95	; 149
+    120e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1210:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1214:	c4 56       	subi	r28, 0x64	; 100
+    1216:	df 4f       	sbci	r29, 0xFF	; 255
+    1218:	88 81       	ld	r24, Y
+    121a:	cc 59       	subi	r28, 0x9C	; 156
+    121c:	d0 40       	sbci	r29, 0x00	; 0
+    121e:	78 12       	cpse	r7, r24
+    1220:	06 c0       	rjmp	.+12     	; 0x122e <_ZN12usartHelpers8MainMenuEv+0x2b6>
 			uart.write((char*)"4 PWM delay:  \0"); uart.write((uint16_t)initValues.getInitValues().PWMDelay); uart.write((char*)"ms\0", true);
 			uart.LfCr();
 			uart.write((char*)"5 Refresh menu-values\0", true);
 			uart.LfCr();
 			changesMade = false;
 			if(actv.servoType != initValues.getInitValues(false).servoType) changesMade = true;
-    121c:	11 e0       	ldi	r17, 0x01	; 1
-    121e:	8a 14       	cp	r8, r10
-    1220:	9b 04       	cpc	r9, r11
-    1222:	19 f4       	brne	.+6      	; 0x122a <_ZN12usartHelpers8MainMenuEv+0x2b8>
-    1224:	10 e0       	ldi	r17, 0x00	; 0
-    1226:	01 c0       	rjmp	.+2      	; 0x122a <_ZN12usartHelpers8MainMenuEv+0x2b8>
+    1222:	11 e0       	ldi	r17, 0x01	; 1
+    1224:	8a 14       	cp	r8, r10
+    1226:	9b 04       	cpc	r9, r11
+    1228:	19 f4       	brne	.+6      	; 0x1230 <_ZN12usartHelpers8MainMenuEv+0x2b8>
+    122a:	10 e0       	ldi	r17, 0x00	; 0
+    122c:	01 c0       	rjmp	.+2      	; 0x1230 <_ZN12usartHelpers8MainMenuEv+0x2b8>
 			if(actv.SNullStellung != initValues.getInitValues(false).SNullStellung) changesMade = true;
-    1228:	11 e0       	ldi	r17, 0x01	; 1
+    122e:	11 e0       	ldi	r17, 0x01	; 1
 			if(actv.AngleRange != initValues.getInitValues(false).AngleRange) changesMade = true;
-    122a:	bb a8       	ldd	r11, Y+51	; 0x33
-    122c:	40 e0       	ldi	r20, 0x00	; 0
-    122e:	68 e0       	ldi	r22, 0x08	; 8
-    1230:	77 e0       	ldi	r23, 0x07	; 7
-    1232:	ce 01       	movw	r24, r28
-    1234:	85 59       	subi	r24, 0x95	; 149
-    1236:	9f 4f       	sbci	r25, 0xFF	; 255
-    1238:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    123c:	c3 56       	subi	r28, 0x63	; 99
-    123e:	df 4f       	sbci	r29, 0xFF	; 255
-    1240:	88 81       	ld	r24, Y
-    1242:	cd 59       	subi	r28, 0x9D	; 157
-    1244:	d0 40       	sbci	r29, 0x00	; 0
-    1246:	b8 12       	cpse	r11, r24
-    1248:	99 c0       	rjmp	.+306    	; 0x137c <_ZN12usartHelpers8MainMenuEv+0x40a>
+    1230:	bb a8       	ldd	r11, Y+51	; 0x33
+    1232:	40 e0       	ldi	r20, 0x00	; 0
+    1234:	68 e0       	ldi	r22, 0x08	; 8
+    1236:	77 e0       	ldi	r23, 0x07	; 7
+    1238:	ce 01       	movw	r24, r28
+    123a:	85 59       	subi	r24, 0x95	; 149
+    123c:	9f 4f       	sbci	r25, 0xFF	; 255
+    123e:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1242:	c3 56       	subi	r28, 0x63	; 99
+    1244:	df 4f       	sbci	r29, 0xFF	; 255
+    1246:	88 81       	ld	r24, Y
+    1248:	cd 59       	subi	r28, 0x9D	; 157
+    124a:	d0 40       	sbci	r29, 0x00	; 0
+    124c:	b8 12       	cpse	r11, r24
+    124e:	99 c0       	rjmp	.+306    	; 0x1382 <_ZN12usartHelpers8MainMenuEv+0x40a>
 			if(actv.PWMDelay != initValues.getInitValues(false).PWMDelay) changesMade = true;
-    124a:	ac a8       	ldd	r10, Y+52	; 0x34
-    124c:	bd a8       	ldd	r11, Y+53	; 0x35
-    124e:	40 e0       	ldi	r20, 0x00	; 0
-    1250:	68 e0       	ldi	r22, 0x08	; 8
-    1252:	77 e0       	ldi	r23, 0x07	; 7
-    1254:	ce 01       	movw	r24, r28
-    1256:	85 59       	subi	r24, 0x95	; 149
-    1258:	9f 4f       	sbci	r25, 0xFF	; 255
-    125a:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    125e:	c2 56       	subi	r28, 0x62	; 98
-    1260:	df 4f       	sbci	r29, 0xFF	; 255
-    1262:	88 81       	ld	r24, Y
-    1264:	99 81       	ldd	r25, Y+1	; 0x01
-    1266:	ce 59       	subi	r28, 0x9E	; 158
-    1268:	d0 40       	sbci	r29, 0x00	; 0
-    126a:	a8 16       	cp	r10, r24
-    126c:	b9 06       	cpc	r11, r25
-    126e:	11 f4       	brne	.+4      	; 0x1274 <_ZN12usartHelpers8MainMenuEv+0x302>
+    1250:	ac a8       	ldd	r10, Y+52	; 0x34
+    1252:	bd a8       	ldd	r11, Y+53	; 0x35
+    1254:	40 e0       	ldi	r20, 0x00	; 0
+    1256:	68 e0       	ldi	r22, 0x08	; 8
+    1258:	77 e0       	ldi	r23, 0x07	; 7
+    125a:	ce 01       	movw	r24, r28
+    125c:	85 59       	subi	r24, 0x95	; 149
+    125e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1260:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1264:	c2 56       	subi	r28, 0x62	; 98
+    1266:	df 4f       	sbci	r29, 0xFF	; 255
+    1268:	88 81       	ld	r24, Y
+    126a:	99 81       	ldd	r25, Y+1	; 0x01
+    126c:	ce 59       	subi	r28, 0x9E	; 158
+    126e:	d0 40       	sbci	r29, 0x00	; 0
+    1270:	a8 16       	cp	r10, r24
+    1272:	b9 06       	cpc	r11, r25
+    1274:	11 f4       	brne	.+4      	; 0x127a <_ZN12usartHelpers8MainMenuEv+0x302>
 
 			if (changesMade) uart.write((char*)"s Save changes to EEPROM\0", true);			
-    1270:	11 23       	and	r17, r17
-    1272:	51 f1       	breq	.+84     	; 0x12c8 <_ZN12usartHelpers8MainMenuEv+0x356>
-    1274:	41 e0       	ldi	r20, 0x01	; 1
-    1276:	65 e9       	ldi	r22, 0x95	; 149
-    1278:	76 e0       	ldi	r23, 0x06	; 6
-    127a:	86 e0       	ldi	r24, 0x06	; 6
-    127c:	97 e0       	ldi	r25, 0x07	; 7
-    127e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1276:	11 23       	and	r17, r17
+    1278:	51 f1       	breq	.+84     	; 0x12ce <_ZN12usartHelpers8MainMenuEv+0x356>
+    127a:	41 e0       	ldi	r20, 0x01	; 1
+    127c:	65 e9       	ldi	r22, 0x95	; 149
+    127e:	76 e0       	ldi	r23, 0x06	; 6
+    1280:	86 e0       	ldi	r24, 0x06	; 6
+    1282:	97 e0       	ldi	r25, 0x07	; 7
+    1284:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"q Exit", true);
-    1282:	41 e0       	ldi	r20, 0x01	; 1
-    1284:	6f ef       	ldi	r22, 0xFF	; 255
-    1286:	76 e0       	ldi	r23, 0x06	; 6
-    1288:	86 e0       	ldi	r24, 0x06	; 6
-    128a:	97 e0       	ldi	r25, 0x07	; 7
-    128c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1288:	41 e0       	ldi	r20, 0x01	; 1
+    128a:	6f ef       	ldi	r22, 0xFF	; 255
+    128c:	76 e0       	ldi	r23, 0x06	; 6
+    128e:	86 e0       	ldi	r24, 0x06	; 6
+    1290:	97 e0       	ldi	r25, 0x07	; 7
+    1292:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Select-->\0", false);
-    1290:	40 e0       	ldi	r20, 0x00	; 0
-    1292:	6d ef       	ldi	r22, 0xFD	; 253
-    1294:	71 e0       	ldi	r23, 0x01	; 1
-    1296:	86 e0       	ldi	r24, 0x06	; 6
-    1298:	97 e0       	ldi	r25, 0x07	; 7
-    129a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    1296:	40 e0       	ldi	r20, 0x00	; 0
+    1298:	6d ef       	ldi	r22, 0xFD	; 253
+    129a:	71 e0       	ldi	r23, 0x01	; 1
+    129c:	86 e0       	ldi	r24, 0x06	; 6
+    129e:	97 e0       	ldi	r25, 0x07	; 7
+    12a0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			x = uart.read();
-    129e:	86 e0       	ldi	r24, 0x06	; 6
-    12a0:	97 e0       	ldi	r25, 0x07	; 7
-    12a2:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
+    12a4:	86 e0       	ldi	r24, 0x06	; 6
+    12a6:	97 e0       	ldi	r25, 0x07	; 7
+    12a8:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
 			switch (x) {
-    12a6:	83 33       	cpi	r24, 0x33	; 51
-    12a8:	c9 f1       	breq	.+114    	; 0x131c <_ZN12usartHelpers8MainMenuEv+0x3aa>
-    12aa:	28 f4       	brcc	.+10     	; 0x12b6 <_ZN12usartHelpers8MainMenuEv+0x344>
-    12ac:	81 33       	cpi	r24, 0x31	; 49
-    12ae:	81 f1       	breq	.+96     	; 0x1310 <_ZN12usartHelpers8MainMenuEv+0x39e>
-    12b0:	82 33       	cpi	r24, 0x32	; 50
-    12b2:	89 f1       	breq	.+98     	; 0x1316 <_ZN12usartHelpers8MainMenuEv+0x3a4>
-    12b4:	9b ce       	rjmp	.-714    	; 0xfec <_ZN12usartHelpers8MainMenuEv+0x7a>
-    12b6:	81 37       	cpi	r24, 0x71	; 113
-    12b8:	09 f4       	brne	.+2      	; 0x12bc <_ZN12usartHelpers8MainMenuEv+0x34a>
-    12ba:	69 c0       	rjmp	.+210    	; 0x138e <_ZN12usartHelpers8MainMenuEv+0x41c>
-    12bc:	83 37       	cpi	r24, 0x73	; 115
-    12be:	a1 f1       	breq	.+104    	; 0x1328 <_ZN12usartHelpers8MainMenuEv+0x3b6>
-    12c0:	84 33       	cpi	r24, 0x34	; 52
-    12c2:	09 f0       	breq	.+2      	; 0x12c6 <_ZN12usartHelpers8MainMenuEv+0x354>
-    12c4:	93 ce       	rjmp	.-730    	; 0xfec <_ZN12usartHelpers8MainMenuEv+0x7a>
-    12c6:	2d c0       	rjmp	.+90     	; 0x1322 <_ZN12usartHelpers8MainMenuEv+0x3b0>
+    12ac:	83 33       	cpi	r24, 0x33	; 51
+    12ae:	c9 f1       	breq	.+114    	; 0x1322 <_ZN12usartHelpers8MainMenuEv+0x3aa>
+    12b0:	28 f4       	brcc	.+10     	; 0x12bc <_ZN12usartHelpers8MainMenuEv+0x344>
+    12b2:	81 33       	cpi	r24, 0x31	; 49
+    12b4:	81 f1       	breq	.+96     	; 0x1316 <_ZN12usartHelpers8MainMenuEv+0x39e>
+    12b6:	82 33       	cpi	r24, 0x32	; 50
+    12b8:	89 f1       	breq	.+98     	; 0x131c <_ZN12usartHelpers8MainMenuEv+0x3a4>
+    12ba:	9b ce       	rjmp	.-714    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x7a>
+    12bc:	81 37       	cpi	r24, 0x71	; 113
+    12be:	09 f4       	brne	.+2      	; 0x12c2 <_ZN12usartHelpers8MainMenuEv+0x34a>
+    12c0:	69 c0       	rjmp	.+210    	; 0x1394 <_ZN12usartHelpers8MainMenuEv+0x41c>
+    12c2:	83 37       	cpi	r24, 0x73	; 115
+    12c4:	a1 f1       	breq	.+104    	; 0x132e <_ZN12usartHelpers8MainMenuEv+0x3b6>
+    12c6:	84 33       	cpi	r24, 0x34	; 52
+    12c8:	09 f0       	breq	.+2      	; 0x12cc <_ZN12usartHelpers8MainMenuEv+0x354>
+    12ca:	93 ce       	rjmp	.-730    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x7a>
+    12cc:	2d c0       	rjmp	.+90     	; 0x1328 <_ZN12usartHelpers8MainMenuEv+0x3b0>
 			if(actv.SNullStellung != initValues.getInitValues(false).SNullStellung) changesMade = true;
 			if(actv.AngleRange != initValues.getInitValues(false).AngleRange) changesMade = true;
 			if(actv.PWMDelay != initValues.getInitValues(false).PWMDelay) changesMade = true;
 
 			if (changesMade) uart.write((char*)"s Save changes to EEPROM\0", true);			
 			uart.write((char*)"q Exit", true);
-    12c8:	41 e0       	ldi	r20, 0x01	; 1
-    12ca:	6f ef       	ldi	r22, 0xFF	; 255
-    12cc:	76 e0       	ldi	r23, 0x06	; 6
-    12ce:	86 e0       	ldi	r24, 0x06	; 6
-    12d0:	97 e0       	ldi	r25, 0x07	; 7
-    12d2:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    12ce:	41 e0       	ldi	r20, 0x01	; 1
+    12d0:	6f ef       	ldi	r22, 0xFF	; 255
+    12d2:	76 e0       	ldi	r23, 0x06	; 6
+    12d4:	86 e0       	ldi	r24, 0x06	; 6
+    12d6:	97 e0       	ldi	r25, 0x07	; 7
+    12d8:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			uart.write((char*)"Select-->\0", false);
-    12d6:	40 e0       	ldi	r20, 0x00	; 0
-    12d8:	6d ef       	ldi	r22, 0xFD	; 253
-    12da:	71 e0       	ldi	r23, 0x01	; 1
-    12dc:	86 e0       	ldi	r24, 0x06	; 6
-    12de:	97 e0       	ldi	r25, 0x07	; 7
-    12e0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
+    12dc:	40 e0       	ldi	r20, 0x00	; 0
+    12de:	6d ef       	ldi	r22, 0xFD	; 253
+    12e0:	71 e0       	ldi	r23, 0x01	; 1
+    12e2:	86 e0       	ldi	r24, 0x06	; 6
+    12e4:	97 e0       	ldi	r25, 0x07	; 7
+    12e6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN6myUart5writeEPcb>
 			x = uart.read();
-    12e4:	86 e0       	ldi	r24, 0x06	; 6
-    12e6:	97 e0       	ldi	r25, 0x07	; 7
-    12e8:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
+    12ea:	86 e0       	ldi	r24, 0x06	; 6
+    12ec:	97 e0       	ldi	r25, 0x07	; 7
+    12ee:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_ZN6myUart4readEv>
 			switch (x) {
-    12ec:	83 33       	cpi	r24, 0x33	; 51
-    12ee:	b1 f0       	breq	.+44     	; 0x131c <_ZN12usartHelpers8MainMenuEv+0x3aa>
-    12f0:	28 f4       	brcc	.+10     	; 0x12fc <_ZN12usartHelpers8MainMenuEv+0x38a>
-    12f2:	81 33       	cpi	r24, 0x31	; 49
-    12f4:	69 f0       	breq	.+26     	; 0x1310 <_ZN12usartHelpers8MainMenuEv+0x39e>
-    12f6:	82 33       	cpi	r24, 0x32	; 50
-    12f8:	71 f0       	breq	.+28     	; 0x1316 <_ZN12usartHelpers8MainMenuEv+0x3a4>
-    12fa:	78 ce       	rjmp	.-784    	; 0xfec <_ZN12usartHelpers8MainMenuEv+0x7a>
-    12fc:	81 37       	cpi	r24, 0x71	; 113
-    12fe:	09 f4       	brne	.+2      	; 0x1302 <_ZN12usartHelpers8MainMenuEv+0x390>
-    1300:	46 c0       	rjmp	.+140    	; 0x138e <_ZN12usartHelpers8MainMenuEv+0x41c>
-    1302:	83 37       	cpi	r24, 0x73	; 115
-    1304:	09 f4       	brne	.+2      	; 0x1308 <_ZN12usartHelpers8MainMenuEv+0x396>
-    1306:	75 ce       	rjmp	.-790    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
-    1308:	84 33       	cpi	r24, 0x34	; 52
-    130a:	09 f0       	breq	.+2      	; 0x130e <_ZN12usartHelpers8MainMenuEv+0x39c>
-    130c:	6f ce       	rjmp	.-802    	; 0xfec <_ZN12usartHelpers8MainMenuEv+0x7a>
-    130e:	09 c0       	rjmp	.+18     	; 0x1322 <_ZN12usartHelpers8MainMenuEv+0x3b0>
+    12f2:	83 33       	cpi	r24, 0x33	; 51
+    12f4:	b1 f0       	breq	.+44     	; 0x1322 <_ZN12usartHelpers8MainMenuEv+0x3aa>
+    12f6:	28 f4       	brcc	.+10     	; 0x1302 <_ZN12usartHelpers8MainMenuEv+0x38a>
+    12f8:	81 33       	cpi	r24, 0x31	; 49
+    12fa:	69 f0       	breq	.+26     	; 0x1316 <_ZN12usartHelpers8MainMenuEv+0x39e>
+    12fc:	82 33       	cpi	r24, 0x32	; 50
+    12fe:	71 f0       	breq	.+28     	; 0x131c <_ZN12usartHelpers8MainMenuEv+0x3a4>
+    1300:	78 ce       	rjmp	.-784    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x7a>
+    1302:	81 37       	cpi	r24, 0x71	; 113
+    1304:	09 f4       	brne	.+2      	; 0x1308 <_ZN12usartHelpers8MainMenuEv+0x390>
+    1306:	46 c0       	rjmp	.+140    	; 0x1394 <_ZN12usartHelpers8MainMenuEv+0x41c>
+    1308:	83 37       	cpi	r24, 0x73	; 115
+    130a:	09 f4       	brne	.+2      	; 0x130e <_ZN12usartHelpers8MainMenuEv+0x396>
+    130c:	75 ce       	rjmp	.-790    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
+    130e:	84 33       	cpi	r24, 0x34	; 52
+    1310:	09 f0       	breq	.+2      	; 0x1314 <_ZN12usartHelpers8MainMenuEv+0x39c>
+    1312:	6f ce       	rjmp	.-802    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x7a>
+    1314:	09 c0       	rjmp	.+18     	; 0x1328 <_ZN12usartHelpers8MainMenuEv+0x3b0>
 							} // switch
 						} // while
 					} // if (changesMade)
 					break;
 				 case '1':
 					ChangeServoType();
-    1310:	0e 94 ad 04 	call	0x95a	; 0x95a <_ZN12usartHelpers15ChangeServoTypeEv>
+    1316:	0e 94 b0 04 	call	0x960	; 0x960 <_ZN12usartHelpers15ChangeServoTypeEv>
 					break;
-    1314:	6e ce       	rjmp	.-804    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+    131a:	6e ce       	rjmp	.-804    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 				 case '2':
 					ChangeNullstellung();
-    1316:	0e 94 6d 05 	call	0xada	; 0xada <_ZN12usartHelpers18ChangeNullstellungEv>
+    131c:	0e 94 70 05 	call	0xae0	; 0xae0 <_ZN12usartHelpers18ChangeNullstellungEv>
 					break;
-    131a:	6b ce       	rjmp	.-810    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+    1320:	6b ce       	rjmp	.-810    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 				 case '3':
 					ChangeAngleRange();
-    131c:	0e 94 5c 06 	call	0xcb8	; 0xcb8 <_ZN12usartHelpers16ChangeAngleRangeEv>
+    1322:	0e 94 5f 06 	call	0xcbe	; 0xcbe <_ZN12usartHelpers16ChangeAngleRangeEv>
 					break;
-    1320:	68 ce       	rjmp	.-816    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+    1326:	68 ce       	rjmp	.-816    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 				case '4':
 					ChangePWMDelay();
-    1322:	0e 94 32 07 	call	0xe64	; 0xe64 <_ZN12usartHelpers14ChangePWMDelayEv>
+    1328:	0e 94 35 07 	call	0xe6a	; 0xe6a <_ZN12usartHelpers14ChangePWMDelayEv>
 					break;
-    1326:	65 ce       	rjmp	.-822    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+    132c:	65 ce       	rjmp	.-822    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 				case '5':
 					break;
 				case 's':
 					if (changesMade) {
 						initValues.setInitValues(initValues.getInitValues(false));
-    1328:	40 e0       	ldi	r20, 0x00	; 0
-    132a:	68 e0       	ldi	r22, 0x08	; 8
-    132c:	77 e0       	ldi	r23, 0x07	; 7
-    132e:	ce 01       	movw	r24, r28
-    1330:	c6 96       	adiw	r24, 0x36	; 54
-    1332:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    1336:	8d b7       	in	r24, 0x3d	; 61
-    1338:	9e b7       	in	r25, 0x3e	; 62
-    133a:	c5 97       	sbiw	r24, 0x35	; 53
-    133c:	0f b6       	in	r0, 0x3f	; 63
-    133e:	f8 94       	cli
-    1340:	9e bf       	out	0x3e, r25	; 62
-    1342:	0f be       	out	0x3f, r0	; 63
-    1344:	8d bf       	out	0x3d, r24	; 61
-    1346:	ad b7       	in	r26, 0x3d	; 61
-    1348:	be b7       	in	r27, 0x3e	; 62
-    134a:	11 96       	adiw	r26, 0x01	; 1
-    134c:	85 e3       	ldi	r24, 0x35	; 53
-    134e:	fe 01       	movw	r30, r28
-    1350:	f6 96       	adiw	r30, 0x36	; 54
-    1352:	01 90       	ld	r0, Z+
-    1354:	0d 92       	st	X+, r0
-    1356:	8a 95       	dec	r24
-    1358:	e1 f7       	brne	.-8      	; 0x1352 <_ZN12usartHelpers8MainMenuEv+0x3e0>
-    135a:	88 e0       	ldi	r24, 0x08	; 8
-    135c:	97 e0       	ldi	r25, 0x07	; 7
-    135e:	0e 94 ee 03 	call	0x7dc	; 0x7dc <_ZN11ServoEEPROM13setInitValuesE17EEPROM_initValues>
+    132e:	40 e0       	ldi	r20, 0x00	; 0
+    1330:	68 e0       	ldi	r22, 0x08	; 8
+    1332:	77 e0       	ldi	r23, 0x07	; 7
+    1334:	ce 01       	movw	r24, r28
+    1336:	c6 96       	adiw	r24, 0x36	; 54
+    1338:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    133c:	8d b7       	in	r24, 0x3d	; 61
+    133e:	9e b7       	in	r25, 0x3e	; 62
+    1340:	c5 97       	sbiw	r24, 0x35	; 53
+    1342:	0f b6       	in	r0, 0x3f	; 63
+    1344:	f8 94       	cli
+    1346:	9e bf       	out	0x3e, r25	; 62
+    1348:	0f be       	out	0x3f, r0	; 63
+    134a:	8d bf       	out	0x3d, r24	; 61
+    134c:	ad b7       	in	r26, 0x3d	; 61
+    134e:	be b7       	in	r27, 0x3e	; 62
+    1350:	11 96       	adiw	r26, 0x01	; 1
+    1352:	85 e3       	ldi	r24, 0x35	; 53
+    1354:	fe 01       	movw	r30, r28
+    1356:	f6 96       	adiw	r30, 0x36	; 54
+    1358:	01 90       	ld	r0, Z+
+    135a:	0d 92       	st	X+, r0
+    135c:	8a 95       	dec	r24
+    135e:	e1 f7       	brne	.-8      	; 0x1358 <_ZN12usartHelpers8MainMenuEv+0x3e0>
+    1360:	88 e0       	ldi	r24, 0x08	; 8
+    1362:	97 e0       	ldi	r25, 0x07	; 7
+    1364:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <_ZN11ServoEEPROM13setInitValuesE17EEPROM_initValues>
 						actv = initValues.getInitValues(false);
-    1362:	0f b6       	in	r0, 0x3f	; 63
-    1364:	f8 94       	cli
-    1366:	de bf       	out	0x3e, r29	; 62
-    1368:	0f be       	out	0x3f, r0	; 63
-    136a:	cd bf       	out	0x3d, r28	; 61
-    136c:	40 e0       	ldi	r20, 0x00	; 0
-    136e:	68 e0       	ldi	r22, 0x08	; 8
-    1370:	77 e0       	ldi	r23, 0x07	; 7
-    1372:	ce 01       	movw	r24, r28
-    1374:	01 96       	adiw	r24, 0x01	; 1
-    1376:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    137a:	3b ce       	rjmp	.-906    	; 0xff2 <_ZN12usartHelpers8MainMenuEv+0x80>
+    1368:	0f b6       	in	r0, 0x3f	; 63
+    136a:	f8 94       	cli
+    136c:	de bf       	out	0x3e, r29	; 62
+    136e:	0f be       	out	0x3f, r0	; 63
+    1370:	cd bf       	out	0x3d, r28	; 61
+    1372:	40 e0       	ldi	r20, 0x00	; 0
+    1374:	68 e0       	ldi	r22, 0x08	; 8
+    1376:	77 e0       	ldi	r23, 0x07	; 7
+    1378:	ce 01       	movw	r24, r28
+    137a:	01 96       	adiw	r24, 0x01	; 1
+    137c:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1380:	3b ce       	rjmp	.-906    	; 0xff8 <_ZN12usartHelpers8MainMenuEv+0x80>
 			uart.LfCr();
 			changesMade = false;
 			if(actv.servoType != initValues.getInitValues(false).servoType) changesMade = true;
 			if(actv.SNullStellung != initValues.getInitValues(false).SNullStellung) changesMade = true;
 			if(actv.AngleRange != initValues.getInitValues(false).AngleRange) changesMade = true;
 			if(actv.PWMDelay != initValues.getInitValues(false).PWMDelay) changesMade = true;
-    137c:	40 e0       	ldi	r20, 0x00	; 0
-    137e:	68 e0       	ldi	r22, 0x08	; 8
-    1380:	77 e0       	ldi	r23, 0x07	; 7
-    1382:	ce 01       	movw	r24, r28
-    1384:	85 59       	subi	r24, 0x95	; 149
-    1386:	9f 4f       	sbci	r25, 0xFF	; 255
-    1388:	0e 94 63 04 	call	0x8c6	; 0x8c6 <_ZN11ServoEEPROM13getInitValuesEb>
-    138c:	73 cf       	rjmp	.-282    	; 0x1274 <_ZN12usartHelpers8MainMenuEv+0x302>
+    1382:	40 e0       	ldi	r20, 0x00	; 0
+    1384:	68 e0       	ldi	r22, 0x08	; 8
+    1386:	77 e0       	ldi	r23, 0x07	; 7
+    1388:	ce 01       	movw	r24, r28
+    138a:	85 59       	subi	r24, 0x95	; 149
+    138c:	9f 4f       	sbci	r25, 0xFF	; 255
+    138e:	0e 94 66 04 	call	0x8cc	; 0x8cc <_ZN11ServoEEPROM13getInitValuesEb>
+    1392:	73 cf       	rjmp	.-282    	; 0x127a <_ZN12usartHelpers8MainMenuEv+0x302>
 						actv = initValues.getInitValues(false);
 					}
 					break;
 			 } // switch
 		 } // while (x != 'q')
 	 }
-    138e:	c1 56       	subi	r28, 0x61	; 97
-    1390:	df 4f       	sbci	r29, 0xFF	; 255
-    1392:	0f b6       	in	r0, 0x3f	; 63
-    1394:	f8 94       	cli
-    1396:	de bf       	out	0x3e, r29	; 62
-    1398:	0f be       	out	0x3f, r0	; 63
-    139a:	cd bf       	out	0x3d, r28	; 61
-    139c:	df 91       	pop	r29
-    139e:	cf 91       	pop	r28
-    13a0:	1f 91       	pop	r17
-    13a2:	ff 90       	pop	r15
-    13a4:	ef 90       	pop	r14
-    13a6:	df 90       	pop	r13
-    13a8:	cf 90       	pop	r12
-    13aa:	bf 90       	pop	r11
-    13ac:	af 90       	pop	r10
-    13ae:	9f 90       	pop	r9
-    13b0:	8f 90       	pop	r8
-    13b2:	7f 90       	pop	r7
-    13b4:	5f 90       	pop	r5
-    13b6:	4f 90       	pop	r4
-    13b8:	08 95       	ret
+    1394:	c1 56       	subi	r28, 0x61	; 97
+    1396:	df 4f       	sbci	r29, 0xFF	; 255
+    1398:	0f b6       	in	r0, 0x3f	; 63
+    139a:	f8 94       	cli
+    139c:	de bf       	out	0x3e, r29	; 62
+    139e:	0f be       	out	0x3f, r0	; 63
+    13a0:	cd bf       	out	0x3d, r28	; 61
+    13a2:	df 91       	pop	r29
+    13a4:	cf 91       	pop	r28
+    13a6:	1f 91       	pop	r17
+    13a8:	ff 90       	pop	r15
+    13aa:	ef 90       	pop	r14
+    13ac:	df 90       	pop	r13
+    13ae:	cf 90       	pop	r12
+    13b0:	bf 90       	pop	r11
+    13b2:	af 90       	pop	r10
+    13b4:	9f 90       	pop	r9
+    13b6:	8f 90       	pop	r8
+    13b8:	7f 90       	pop	r7
+    13ba:	5f 90       	pop	r5
+    13bc:	4f 90       	pop	r4
+    13be:	08 95       	ret
 
-000013ba <__tablejump2__>:
-    13ba:	ee 0f       	add	r30, r30
-    13bc:	ff 1f       	adc	r31, r31
-    13be:	05 90       	lpm	r0, Z+
-    13c0:	f4 91       	lpm	r31, Z
-    13c2:	e0 2d       	mov	r30, r0
-    13c4:	09 94       	ijmp
+000013c0 <__tablejump2__>:
+    13c0:	ee 0f       	add	r30, r30
+    13c2:	ff 1f       	adc	r31, r31
+    13c4:	05 90       	lpm	r0, Z+
+    13c6:	f4 91       	lpm	r31, Z
+    13c8:	e0 2d       	mov	r30, r0
+    13ca:	09 94       	ijmp
 
-000013c6 <atoi>:
-    13c6:	fc 01       	movw	r30, r24
-    13c8:	88 27       	eor	r24, r24
-    13ca:	99 27       	eor	r25, r25
-    13cc:	e8 94       	clt
-    13ce:	21 91       	ld	r18, Z+
-    13d0:	20 32       	cpi	r18, 0x20	; 32
-    13d2:	e9 f3       	breq	.-6      	; 0x13ce <atoi+0x8>
-    13d4:	29 30       	cpi	r18, 0x09	; 9
-    13d6:	10 f0       	brcs	.+4      	; 0x13dc <atoi+0x16>
-    13d8:	2e 30       	cpi	r18, 0x0E	; 14
-    13da:	c8 f3       	brcs	.-14     	; 0x13ce <atoi+0x8>
-    13dc:	2b 32       	cpi	r18, 0x2B	; 43
-    13de:	41 f0       	breq	.+16     	; 0x13f0 <atoi+0x2a>
-    13e0:	2d 32       	cpi	r18, 0x2D	; 45
-    13e2:	39 f4       	brne	.+14     	; 0x13f2 <atoi+0x2c>
-    13e4:	68 94       	set
-    13e6:	04 c0       	rjmp	.+8      	; 0x13f0 <atoi+0x2a>
-    13e8:	0e 94 0c 0a 	call	0x1418	; 0x1418 <__mulhi_const_10>
-    13ec:	82 0f       	add	r24, r18
-    13ee:	91 1d       	adc	r25, r1
-    13f0:	21 91       	ld	r18, Z+
-    13f2:	20 53       	subi	r18, 0x30	; 48
-    13f4:	2a 30       	cpi	r18, 0x0A	; 10
-    13f6:	c0 f3       	brcs	.-16     	; 0x13e8 <atoi+0x22>
-    13f8:	1e f4       	brtc	.+6      	; 0x1400 <atoi+0x3a>
-    13fa:	90 95       	com	r25
-    13fc:	81 95       	neg	r24
-    13fe:	9f 4f       	sbci	r25, 0xFF	; 255
-    1400:	08 95       	ret
+000013cc <atoi>:
+    13cc:	fc 01       	movw	r30, r24
+    13ce:	88 27       	eor	r24, r24
+    13d0:	99 27       	eor	r25, r25
+    13d2:	e8 94       	clt
+    13d4:	21 91       	ld	r18, Z+
+    13d6:	20 32       	cpi	r18, 0x20	; 32
+    13d8:	e9 f3       	breq	.-6      	; 0x13d4 <atoi+0x8>
+    13da:	29 30       	cpi	r18, 0x09	; 9
+    13dc:	10 f0       	brcs	.+4      	; 0x13e2 <atoi+0x16>
+    13de:	2e 30       	cpi	r18, 0x0E	; 14
+    13e0:	c8 f3       	brcs	.-14     	; 0x13d4 <atoi+0x8>
+    13e2:	2b 32       	cpi	r18, 0x2B	; 43
+    13e4:	41 f0       	breq	.+16     	; 0x13f6 <atoi+0x2a>
+    13e6:	2d 32       	cpi	r18, 0x2D	; 45
+    13e8:	39 f4       	brne	.+14     	; 0x13f8 <atoi+0x2c>
+    13ea:	68 94       	set
+    13ec:	04 c0       	rjmp	.+8      	; 0x13f6 <atoi+0x2a>
+    13ee:	0e 94 0f 0a 	call	0x141e	; 0x141e <__mulhi_const_10>
+    13f2:	82 0f       	add	r24, r18
+    13f4:	91 1d       	adc	r25, r1
+    13f6:	21 91       	ld	r18, Z+
+    13f8:	20 53       	subi	r18, 0x30	; 48
+    13fa:	2a 30       	cpi	r18, 0x0A	; 10
+    13fc:	c0 f3       	brcs	.-16     	; 0x13ee <atoi+0x22>
+    13fe:	1e f4       	brtc	.+6      	; 0x1406 <atoi+0x3a>
+    1400:	90 95       	com	r25
+    1402:	81 95       	neg	r24
+    1404:	9f 4f       	sbci	r25, 0xFF	; 255
+    1406:	08 95       	ret
 
-00001402 <__itoa_ncheck>:
-    1402:	bb 27       	eor	r27, r27
-    1404:	4a 30       	cpi	r20, 0x0A	; 10
-    1406:	31 f4       	brne	.+12     	; 0x1414 <__itoa_ncheck+0x12>
-    1408:	99 23       	and	r25, r25
-    140a:	22 f4       	brpl	.+8      	; 0x1414 <__itoa_ncheck+0x12>
-    140c:	bd e2       	ldi	r27, 0x2D	; 45
-    140e:	90 95       	com	r25
-    1410:	81 95       	neg	r24
-    1412:	9f 4f       	sbci	r25, 0xFF	; 255
-    1414:	0c 94 15 0a 	jmp	0x142a	; 0x142a <__utoa_common>
+00001408 <__itoa_ncheck>:
+    1408:	bb 27       	eor	r27, r27
+    140a:	4a 30       	cpi	r20, 0x0A	; 10
+    140c:	31 f4       	brne	.+12     	; 0x141a <__itoa_ncheck+0x12>
+    140e:	99 23       	and	r25, r25
+    1410:	22 f4       	brpl	.+8      	; 0x141a <__itoa_ncheck+0x12>
+    1412:	bd e2       	ldi	r27, 0x2D	; 45
+    1414:	90 95       	com	r25
+    1416:	81 95       	neg	r24
+    1418:	9f 4f       	sbci	r25, 0xFF	; 255
+    141a:	0c 94 18 0a 	jmp	0x1430	; 0x1430 <__utoa_common>
 
-00001418 <__mulhi_const_10>:
-    1418:	7a e0       	ldi	r23, 0x0A	; 10
-    141a:	97 9f       	mul	r25, r23
-    141c:	90 2d       	mov	r25, r0
-    141e:	87 9f       	mul	r24, r23
-    1420:	80 2d       	mov	r24, r0
-    1422:	91 0d       	add	r25, r1
-    1424:	11 24       	eor	r1, r1
-    1426:	08 95       	ret
+0000141e <__mulhi_const_10>:
+    141e:	7a e0       	ldi	r23, 0x0A	; 10
+    1420:	97 9f       	mul	r25, r23
+    1422:	90 2d       	mov	r25, r0
+    1424:	87 9f       	mul	r24, r23
+    1426:	80 2d       	mov	r24, r0
+    1428:	91 0d       	add	r25, r1
+    142a:	11 24       	eor	r1, r1
+    142c:	08 95       	ret
 
-00001428 <__utoa_ncheck>:
-    1428:	bb 27       	eor	r27, r27
+0000142e <__utoa_ncheck>:
+    142e:	bb 27       	eor	r27, r27
 
-0000142a <__utoa_common>:
-    142a:	fb 01       	movw	r30, r22
-    142c:	55 27       	eor	r21, r21
-    142e:	aa 27       	eor	r26, r26
-    1430:	88 0f       	add	r24, r24
-    1432:	99 1f       	adc	r25, r25
-    1434:	aa 1f       	adc	r26, r26
-    1436:	a4 17       	cp	r26, r20
-    1438:	10 f0       	brcs	.+4      	; 0x143e <__utoa_common+0x14>
-    143a:	a4 1b       	sub	r26, r20
-    143c:	83 95       	inc	r24
-    143e:	50 51       	subi	r21, 0x10	; 16
-    1440:	b9 f7       	brne	.-18     	; 0x1430 <__utoa_common+0x6>
-    1442:	a0 5d       	subi	r26, 0xD0	; 208
-    1444:	aa 33       	cpi	r26, 0x3A	; 58
-    1446:	08 f0       	brcs	.+2      	; 0x144a <__utoa_common+0x20>
-    1448:	a9 5d       	subi	r26, 0xD9	; 217
-    144a:	a1 93       	st	Z+, r26
-    144c:	00 97       	sbiw	r24, 0x00	; 0
-    144e:	79 f7       	brne	.-34     	; 0x142e <__utoa_common+0x4>
-    1450:	b1 11       	cpse	r27, r1
-    1452:	b1 93       	st	Z+, r27
-    1454:	11 92       	st	Z+, r1
-    1456:	cb 01       	movw	r24, r22
-    1458:	0c 94 2e 0a 	jmp	0x145c	; 0x145c <strrev>
+00001430 <__utoa_common>:
+    1430:	fb 01       	movw	r30, r22
+    1432:	55 27       	eor	r21, r21
+    1434:	aa 27       	eor	r26, r26
+    1436:	88 0f       	add	r24, r24
+    1438:	99 1f       	adc	r25, r25
+    143a:	aa 1f       	adc	r26, r26
+    143c:	a4 17       	cp	r26, r20
+    143e:	10 f0       	brcs	.+4      	; 0x1444 <__utoa_common+0x14>
+    1440:	a4 1b       	sub	r26, r20
+    1442:	83 95       	inc	r24
+    1444:	50 51       	subi	r21, 0x10	; 16
+    1446:	b9 f7       	brne	.-18     	; 0x1436 <__utoa_common+0x6>
+    1448:	a0 5d       	subi	r26, 0xD0	; 208
+    144a:	aa 33       	cpi	r26, 0x3A	; 58
+    144c:	08 f0       	brcs	.+2      	; 0x1450 <__utoa_common+0x20>
+    144e:	a9 5d       	subi	r26, 0xD9	; 217
+    1450:	a1 93       	st	Z+, r26
+    1452:	00 97       	sbiw	r24, 0x00	; 0
+    1454:	79 f7       	brne	.-34     	; 0x1434 <__utoa_common+0x4>
+    1456:	b1 11       	cpse	r27, r1
+    1458:	b1 93       	st	Z+, r27
+    145a:	11 92       	st	Z+, r1
+    145c:	cb 01       	movw	r24, r22
+    145e:	0c 94 31 0a 	jmp	0x1462	; 0x1462 <strrev>
 
-0000145c <strrev>:
-    145c:	dc 01       	movw	r26, r24
-    145e:	fc 01       	movw	r30, r24
-    1460:	67 2f       	mov	r22, r23
-    1462:	71 91       	ld	r23, Z+
-    1464:	77 23       	and	r23, r23
-    1466:	e1 f7       	brne	.-8      	; 0x1460 <strrev+0x4>
-    1468:	32 97       	sbiw	r30, 0x02	; 2
-    146a:	04 c0       	rjmp	.+8      	; 0x1474 <strrev+0x18>
-    146c:	7c 91       	ld	r23, X
-    146e:	6d 93       	st	X+, r22
-    1470:	70 83       	st	Z, r23
-    1472:	62 91       	ld	r22, -Z
-    1474:	ae 17       	cp	r26, r30
-    1476:	bf 07       	cpc	r27, r31
-    1478:	c8 f3       	brcs	.-14     	; 0x146c <strrev+0x10>
-    147a:	08 95       	ret
+00001462 <strrev>:
+    1462:	dc 01       	movw	r26, r24
+    1464:	fc 01       	movw	r30, r24
+    1466:	67 2f       	mov	r22, r23
+    1468:	71 91       	ld	r23, Z+
+    146a:	77 23       	and	r23, r23
+    146c:	e1 f7       	brne	.-8      	; 0x1466 <strrev+0x4>
+    146e:	32 97       	sbiw	r30, 0x02	; 2
+    1470:	04 c0       	rjmp	.+8      	; 0x147a <strrev+0x18>
+    1472:	7c 91       	ld	r23, X
+    1474:	6d 93       	st	X+, r22
+    1476:	70 83       	st	Z, r23
+    1478:	62 91       	ld	r22, -Z
+    147a:	ae 17       	cp	r26, r30
+    147c:	bf 07       	cpc	r27, r31
+    147e:	c8 f3       	brcs	.-14     	; 0x1472 <strrev+0x10>
+    1480:	08 95       	ret
 
-0000147c <eeprom_read_block>:
-    147c:	dc 01       	movw	r26, r24
-    147e:	cb 01       	movw	r24, r22
+00001482 <eeprom_read_block>:
+    1482:	dc 01       	movw	r26, r24
+    1484:	cb 01       	movw	r24, r22
 
-00001480 <eeprom_read_blraw>:
-    1480:	fc 01       	movw	r30, r24
-    1482:	f9 99       	sbic	0x1f, 1	; 31
-    1484:	fe cf       	rjmp	.-4      	; 0x1482 <eeprom_read_blraw+0x2>
-    1486:	06 c0       	rjmp	.+12     	; 0x1494 <eeprom_read_blraw+0x14>
-    1488:	f2 bd       	out	0x22, r31	; 34
-    148a:	e1 bd       	out	0x21, r30	; 33
-    148c:	f8 9a       	sbi	0x1f, 0	; 31
-    148e:	31 96       	adiw	r30, 0x01	; 1
-    1490:	00 b4       	in	r0, 0x20	; 32
-    1492:	0d 92       	st	X+, r0
-    1494:	41 50       	subi	r20, 0x01	; 1
-    1496:	50 40       	sbci	r21, 0x00	; 0
-    1498:	b8 f7       	brcc	.-18     	; 0x1488 <eeprom_read_blraw+0x8>
-    149a:	08 95       	ret
+00001486 <eeprom_read_blraw>:
+    1486:	fc 01       	movw	r30, r24
+    1488:	f9 99       	sbic	0x1f, 1	; 31
+    148a:	fe cf       	rjmp	.-4      	; 0x1488 <eeprom_read_blraw+0x2>
+    148c:	06 c0       	rjmp	.+12     	; 0x149a <eeprom_read_blraw+0x14>
+    148e:	f2 bd       	out	0x22, r31	; 34
+    1490:	e1 bd       	out	0x21, r30	; 33
+    1492:	f8 9a       	sbi	0x1f, 0	; 31
+    1494:	31 96       	adiw	r30, 0x01	; 1
+    1496:	00 b4       	in	r0, 0x20	; 32
+    1498:	0d 92       	st	X+, r0
+    149a:	41 50       	subi	r20, 0x01	; 1
+    149c:	50 40       	sbci	r21, 0x00	; 0
+    149e:	b8 f7       	brcc	.-18     	; 0x148e <eeprom_read_blraw+0x8>
+    14a0:	08 95       	ret
 
-0000149c <eeprom_update_block>:
-    149c:	dc 01       	movw	r26, r24
-    149e:	a4 0f       	add	r26, r20
-    14a0:	b5 1f       	adc	r27, r21
-    14a2:	41 50       	subi	r20, 0x01	; 1
-    14a4:	50 40       	sbci	r21, 0x00	; 0
-    14a6:	48 f0       	brcs	.+18     	; 0x14ba <eeprom_update_block+0x1e>
-    14a8:	cb 01       	movw	r24, r22
-    14aa:	84 0f       	add	r24, r20
-    14ac:	95 1f       	adc	r25, r21
-    14ae:	2e 91       	ld	r18, -X
-    14b0:	0e 94 5f 0a 	call	0x14be	; 0x14be <eeprom_update_r18>
-    14b4:	41 50       	subi	r20, 0x01	; 1
-    14b6:	50 40       	sbci	r21, 0x00	; 0
-    14b8:	d0 f7       	brcc	.-12     	; 0x14ae <eeprom_update_block+0x12>
-    14ba:	08 95       	ret
+000014a2 <eeprom_update_block>:
+    14a2:	dc 01       	movw	r26, r24
+    14a4:	a4 0f       	add	r26, r20
+    14a6:	b5 1f       	adc	r27, r21
+    14a8:	41 50       	subi	r20, 0x01	; 1
+    14aa:	50 40       	sbci	r21, 0x00	; 0
+    14ac:	48 f0       	brcs	.+18     	; 0x14c0 <eeprom_update_block+0x1e>
+    14ae:	cb 01       	movw	r24, r22
+    14b0:	84 0f       	add	r24, r20
+    14b2:	95 1f       	adc	r25, r21
+    14b4:	2e 91       	ld	r18, -X
+    14b6:	0e 94 62 0a 	call	0x14c4	; 0x14c4 <eeprom_update_r18>
+    14ba:	41 50       	subi	r20, 0x01	; 1
+    14bc:	50 40       	sbci	r21, 0x00	; 0
+    14be:	d0 f7       	brcc	.-12     	; 0x14b4 <eeprom_update_block+0x12>
+    14c0:	08 95       	ret
 
-000014bc <eeprom_update_byte>:
-    14bc:	26 2f       	mov	r18, r22
+000014c2 <eeprom_update_byte>:
+    14c2:	26 2f       	mov	r18, r22
 
-000014be <eeprom_update_r18>:
-    14be:	f9 99       	sbic	0x1f, 1	; 31
-    14c0:	fe cf       	rjmp	.-4      	; 0x14be <eeprom_update_r18>
-    14c2:	92 bd       	out	0x22, r25	; 34
-    14c4:	81 bd       	out	0x21, r24	; 33
-    14c6:	f8 9a       	sbi	0x1f, 0	; 31
-    14c8:	01 97       	sbiw	r24, 0x01	; 1
-    14ca:	00 b4       	in	r0, 0x20	; 32
-    14cc:	02 16       	cp	r0, r18
-    14ce:	39 f0       	breq	.+14     	; 0x14de <eeprom_update_r18+0x20>
-    14d0:	1f ba       	out	0x1f, r1	; 31
-    14d2:	20 bd       	out	0x20, r18	; 32
-    14d4:	0f b6       	in	r0, 0x3f	; 63
-    14d6:	f8 94       	cli
-    14d8:	fa 9a       	sbi	0x1f, 2	; 31
-    14da:	f9 9a       	sbi	0x1f, 1	; 31
-    14dc:	0f be       	out	0x3f, r0	; 63
-    14de:	08 95       	ret
+000014c4 <eeprom_update_r18>:
+    14c4:	f9 99       	sbic	0x1f, 1	; 31
+    14c6:	fe cf       	rjmp	.-4      	; 0x14c4 <eeprom_update_r18>
+    14c8:	92 bd       	out	0x22, r25	; 34
+    14ca:	81 bd       	out	0x21, r24	; 33
+    14cc:	f8 9a       	sbi	0x1f, 0	; 31
+    14ce:	01 97       	sbiw	r24, 0x01	; 1
+    14d0:	00 b4       	in	r0, 0x20	; 32
+    14d2:	02 16       	cp	r0, r18
+    14d4:	39 f0       	breq	.+14     	; 0x14e4 <eeprom_update_r18+0x20>
+    14d6:	1f ba       	out	0x1f, r1	; 31
+    14d8:	20 bd       	out	0x20, r18	; 32
+    14da:	0f b6       	in	r0, 0x3f	; 63
+    14dc:	f8 94       	cli
+    14de:	fa 9a       	sbi	0x1f, 2	; 31
+    14e0:	f9 9a       	sbi	0x1f, 1	; 31
+    14e2:	0f be       	out	0x3f, r0	; 63
+    14e4:	08 95       	ret
 
-000014e0 <__do_global_dtors>:
-    14e0:	10 e0       	ldi	r17, 0x00	; 0
-    14e2:	c5 e3       	ldi	r28, 0x35	; 53
-    14e4:	d0 e0       	ldi	r29, 0x00	; 0
-    14e6:	04 c0       	rjmp	.+8      	; 0x14f0 <__do_global_dtors+0x10>
-    14e8:	fe 01       	movw	r30, r28
-    14ea:	0e 94 dd 09 	call	0x13ba	; 0x13ba <__tablejump2__>
-    14ee:	21 96       	adiw	r28, 0x01	; 1
-    14f0:	c6 33       	cpi	r28, 0x36	; 54
-    14f2:	d1 07       	cpc	r29, r17
-    14f4:	c9 f7       	brne	.-14     	; 0x14e8 <__do_global_dtors+0x8>
-    14f6:	f8 94       	cli
+000014e6 <__do_global_dtors>:
+    14e6:	10 e0       	ldi	r17, 0x00	; 0
+    14e8:	c5 e3       	ldi	r28, 0x35	; 53
+    14ea:	d0 e0       	ldi	r29, 0x00	; 0
+    14ec:	04 c0       	rjmp	.+8      	; 0x14f6 <__do_global_dtors+0x10>
+    14ee:	fe 01       	movw	r30, r28
+    14f0:	0e 94 e0 09 	call	0x13c0	; 0x13c0 <__tablejump2__>
+    14f4:	21 96       	adiw	r28, 0x01	; 1
+    14f6:	c6 33       	cpi	r28, 0x36	; 54
+    14f8:	d1 07       	cpc	r29, r17
+    14fa:	c9 f7       	brne	.-14     	; 0x14ee <__do_global_dtors+0x8>
+    14fc:	f8 94       	cli
 
-000014f8 <__stop_program>:
-    14f8:	ff cf       	rjmp	.-2      	; 0x14f8 <__stop_program>
+000014fe <__stop_program>:
+    14fe:	ff cf       	rjmp	.-2      	; 0x14fe <__stop_program>

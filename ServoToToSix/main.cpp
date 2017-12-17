@@ -14,6 +14,19 @@ myUart uart;
 
 int main(void) {
 
+	//DEBUG: EEPROM new
+	//initValues.setAuthor((char*)AUTHOR);
+	//initValues.setCompany((char*)COMPANY);
+	//initValues.setVersion((char*)VERSION);
+	//initValues.setSerialNr((uint16_t)SERIALNR);
+	//initValues.setServoType(ServoType::analog);
+	//initValues.setNullStellung((int8_t)0);
+	//initValues.setAngleRange((uint8_t)180);
+	//initValues.setPWMDelay((uint16_t)500, true);
+
+	
+
+
 	initValues.getInitValues(true);
 	bool isActiveUart = ((UARTPin & (1 << UARTVcc)) > 0);
 	if(isActiveUart) {

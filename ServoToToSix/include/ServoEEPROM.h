@@ -23,26 +23,26 @@
 	 int8_t SNullStellung;
 	 uint8_t AngleRange;
 	 uint16_t PWMDelay;
-	 bool operator==(const EEPROM_initValues& other) const {		
-		if(SerialNr != other.SerialNr) return false;
-		if(author != other.author) return false;
-		if(company != other.company) return false;
-		if(version != other.company) return false;
-		if(servoType != other.servoType) return false;
-		if(SNullStellung != other.SNullStellung) return false;
-		if(AngleRange != other.AngleRange) return false;
-		return true;
-	 }
-	 bool operator!=(const EEPROM_initValues& other) const {
-		if(SerialNr != other.SerialNr) return true;
-		if(author != other.author) return true;
-		if(company != other.company) return true;
-		if(version != other.company) return true;
-		if(servoType != other.servoType) return true;
-		if(SNullStellung != other.SNullStellung) return true;
-		if(AngleRange != other.AngleRange) return true;
-		return false;
-	}
+	 //bool operator==(const EEPROM_initValues& other) const {		
+		//if(SerialNr != other.SerialNr) return false;
+		//if(author != other.author) return false;
+		//if(company != other.company) return false;
+		//if(version != other.company) return false;
+		//if(servoType != other.servoType) return false;
+		//if(SNullStellung != other.SNullStellung) return false;
+		//if(AngleRange != other.AngleRange) return false;
+		//return true;
+	 //}
+	 //bool operator!=(const EEPROM_initValues& other) const {
+		//if(SerialNr != other.SerialNr) return true;
+		//if(author != other.author) return true;
+		//if(company != other.company) return true;
+		//if(version != other.company) return true;
+		//if(servoType != other.servoType) return true;
+		//if(SNullStellung != other.SNullStellung) return true;
+		//if(AngleRange != other.AngleRange) return true;
+		//return false;
+	//}
 };
  
 
