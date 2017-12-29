@@ -41,7 +41,7 @@ int main(void) {
 
 	Servo2To6::init(initValues.getInitValues().servoType, initValues.getInitValues().SNullStellung, initValues.getInitValues().AngleRange, initValues.getInitValues().PWMDelay);
 
-	DDRB |= (1 << PORTB0); // TODO: test------------------------------------
+	DDRB |= (1 << PORTB0); //DEBUG: 
 	DDRC |= (1 << PORTC5);
 	DDRD |= (1 << PORTD7);
 
