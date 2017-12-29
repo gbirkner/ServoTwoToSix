@@ -3,6 +3,7 @@
 *
 * Created: 12.04.2017 17:19:27
 * Author: gert
+* Description: 
 */
 
 
@@ -11,7 +12,11 @@
 
 #include <General.h>
 
-
+/**
+ * \brief 
+ *  class to manage the servo signal signals
+ *
+*/
 class Servo2To6
 {
 //variables

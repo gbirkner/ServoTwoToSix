@@ -93,6 +93,16 @@
 
 
 
+/**
+ * \brief 
+ *  gets the current position as index 
+ *
+ * \param position
+ *  timer value for calculating the index
+ * 
+ * \return uint8_t
+ *  index 0..left, 1..middle, 2..right
+ */
 uint8_t Servo2To6::getPosition(uint8_t position) {
 	if (position <= _MinDecision) {
 		return 0;
@@ -103,10 +113,19 @@ uint8_t Servo2To6::getPosition(uint8_t position) {
 	}
 }
 
+
+/**
+ * \brief 
+ *  sets new position dependent on new and current position
+ *  sets and deletes the tristate input signals to guide the 
+ *  Servo Signals to the correct outputpair and the 
+ *  µController PWM to the last active outputpair
+ * 
+ * \return void
+ */
 void Servo2To6::setNewPositions() {
 
 	ServoOpenPort &= ~(SV1To6OpenPins);
-
 
 	switch (NewSwitchPosition) {
 		case 0:
