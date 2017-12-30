@@ -50,9 +50,7 @@ class ServoEEPROM
 {
 //variables
 public:
-protected:
-private:
-	EEPROM_initValues m_initValues;
+	EEPROM_initValues eepromValues;
 
 //functions
 public:

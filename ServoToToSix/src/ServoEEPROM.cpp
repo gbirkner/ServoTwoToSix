@@ -24,7 +24,7 @@ EEPROM_initValues ServoEEPROM::getInitValues(bool readAnew) {
 	if (readAnew) {
 		readData();
 	}
-	return m_initValues;
+	return eepromValues;
 }
 
 /**
@@ -39,11 +39,11 @@ EEPROM_initValues ServoEEPROM::getInitValues(bool readAnew) {
 void ServoEEPROM::setInitValues(EEPROM_initValues newInitValues)
 {
 	//TODO: validate parameter
-	m_initValues.SerialNr = (uint16_t)SERIALNR;
-	m_initValues.servoType = newInitValues.servoType;
-	m_initValues.SNullStellung = newInitValues.SNullStellung;
-	m_initValues.AngleRange = newInitValues.AngleRange;
-	m_initValues.PWMDelay = newInitValues.PWMDelay;
+	eepromValues.SerialNr = (uint16_t)SERIALNR;
+	eepromValues.servoType = newInitValues.servoType;
+	eepromValues.SNullStellung = newInitValues.SNullStellung;
+	eepromValues.AngleRange = newInitValues.AngleRange;
+	eepromValues.PWMDelay = newInitValues.PWMDelay;
 	writeData();
 }
 
@@ -61,7 +61,7 @@ void ServoEEPROM::setInitValues(EEPROM_initValues newInitValues)
  */
 void ServoEEPROM::setSerialNr(uint16_t s, bool write /*= false*/)
 {
-	m_initValues.SerialNr = s;
+	eepromValues.SerialNr = s;
 	if (write) writeData();
 	
 }
@@ -83,50 +83,127 @@ void ServoEEPROM::setAuthor(char* a, bool write /*= false*/)
 {
 	uint8_t actLength = strlen(a);
 	if (actLength > 20) actLength = 20;
-	memcpy(m_initValues.author, a, actLength + 1);
+	memcpy(eepromValues.author, a, actLength + 1);
 	if(write) writeData();
 }
 
+/**
+ * \brief 
+ *  Company as string[20] is written to eepromvalue and EEPROM if wished
+ *
+ * \param c
+ *  string (pointer to char) to be saved
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setCompany(char* c, bool write /*= false*/)
 {
 	uint8_t actLength = strlen(c);
 	if (actLength > 20) actLength = 20;
-	memcpy(m_initValues.company, c, actLength + 1);
+	memcpy(eepromValues.company, c, actLength + 1);
 	if(write) writeData();
 }
 
+/**
+ * \brief 
+ *  Version as string[5] is written to eepromvalue and EEPROM if wished
+ *
+ * \param v
+ *  string (pointer to char) to be saved
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setVersion(char* v, bool write /*= false*/)
 {
 	uint8_t actLength = strlen(v);
 	if (actLength > 5) actLength = 5;
-	memcpy(m_initValues.version, v, actLength + 1);
+	memcpy(eepromValues.version, v, actLength + 1);
 	if(write) writeData();
 }
 
+/**
+ * \brief 
+ *  ServoTypoe as enum ServoType is written to eepromvalue and EEPROM if wished
+ *
+ * \param st
+ *  ServoType enum value to be saved
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setServoType(ServoType st, bool write /*= false*/)
 {
-	m_initValues.servoType = st;
+	eepromValues.servoType = st;
 	if(write) writeData();
 }
 
+/**
+ * \brief 
+ *  Zeroing Position as int8_t is written to eepromvalue and EEPROM if wished
+ *
+ * \param ns
+ *  Zero Position (-+ abreviation to 90° == 0 to be saved)
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setNullStellung(int8_t ns, bool write /*= false*/)
 {
-	m_initValues.SNullStellung = ns;
+	eepromValues.SNullStellung = ns;
 	if(write) writeData();
 }
 
+/**
+ * \brief 
+ *  Angle range as uint8_t is written to eepromvalue and EEPROM if wished
+ *
+ * \param ar
+ *  Angle Range to be saved)
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setAngleRange(uint8_t ar, bool write /*= false*/)
 {
-	m_initValues.AngleRange = ar;
+	eepromValues.AngleRange = ar;
 	if(write) writeData();
 }
 
 
-
+/**
+ * \brief 
+ *  PWM delay in ms as uin16_t is written to eepromvalue and EEPROM if wished
+ *
+ * \param del
+ *  PWM delay in ms to be saved
+ *
+ * \param write
+ *  0 .. write only to eepromvalue
+ *  1 .. write to eepromvalue and save to EEPROM
+ * 
+ * \return void
+ */
 void ServoEEPROM::setPWMDelay( uint16_t del, bool write /*= false*/ )
 {
 	if(del > 100) {
-		m_initValues.PWMDelay = del;
+		eepromValues.PWMDelay = del;
 		if(write) writeData();
 	}
 }
@@ -137,34 +214,50 @@ ServoEEPROM::ServoEEPROM()
 	readData();
 } //ServoEEPROM
 
-void ServoEEPROM::readData() {
-	eeprom_read_block(&m_initValues, (void*)EEPROMADRESS, sizeof(m_initValues));
-	if (m_initValues.SerialNr != (uint16_t)SERIALNR) {
-		m_initValues.SerialNr = (uint16_t)SERIALNR;
 
-		memset(m_initValues.author, ' ', 20);
-		memset(m_initValues.company, ' ', 20);
-		memset(m_initValues.version, ' ', 5);
-		uint8_t actLen;
-		actLen = strlen(AUTHOR);
-		if (actLen > 20) actLen = 20;
-		memcpy(m_initValues.author, AUTHOR, actLen + 1);
-		actLen = strlen(COMPANY);
-		if (actLen > 20) actLen = 20;
-		memcpy(m_initValues.company, COMPANY, actLen + 1);
-		actLen = strlen(VERSION);
-		if (actLen > 5) actLen = 5;
-		memcpy(m_initValues.version, VERSION, actLen + 1);
-		m_initValues.servoType = ServoType::analog;
-		m_initValues.SNullStellung = 0;
-		m_initValues.AngleRange = 180;
-		m_initValues.PWMDelay = 500;
-		writeData();
-	}
+
+/**
+ * \brief 
+ *  reads the EEPROM Data as block (struct) and saves it in eepromvalue
+ *  if the SERIALNR is not the same as in board.h then all variables are
+ *  replaced with default/constant values and written to EEPROM as block (struct)
+ * 
+ * \return void
+ */
+void ServoEEPROM::readData() {
+	eeprom_read_block(&eepromValues, (void*)EEPROMADRESS, sizeof(eepromValues));
+	//if (eepromValues.SerialNr != (uint16_t)SERIALNR) {
+		//eepromValues.SerialNr = (uint16_t)SERIALNR;
+		//memset(eepromValues.author, ' ', 20);
+		//memset(eepromValues.company, ' ', 20);
+		//memset(eepromValues.version, ' ', 5);
+		//uint8_t actLen;
+		//actLen = strlen(AUTHOR);
+		//if (actLen > 20) actLen = 20;
+		//memcpy(eepromValues.author, AUTHOR, actLen + 1);
+		//actLen = strlen(COMPANY);
+		//if (actLen > 20) actLen = 20;
+		//memcpy(eepromValues.company, COMPANY, actLen + 1);
+		//actLen = strlen(VERSION);
+		//if (actLen > 5) actLen = 5;
+		//memcpy(eepromValues.version, VERSION, actLen + 1);
+		//eepromValues.servoType = ServoType::analog;
+		//eepromValues.SNullStellung = 0;
+		//eepromValues.AngleRange = 180;
+		//eepromValues.PWMDelay = 500;
+		//writeData();
+	//}
 }
 
+/**
+ * \brief 
+ *  content of eepromvalues is saved to EEPROM as block (struct) 
+ *  to constant EEPROMADress
+ * 
+ * \return void
+ */
 void ServoEEPROM::writeData() {
-	eeprom_update_block(&m_initValues, (void*)EEPROMADRESS, sizeof(m_initValues));
+	eeprom_update_block(&eepromValues, (void*)EEPROMADRESS, sizeof(eepromValues));
 }
 
 // default destructor

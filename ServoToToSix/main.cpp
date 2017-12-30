@@ -28,9 +28,10 @@ int main(void) {
 
 
 	initValues.getInitValues(true);
+
 	bool isActiveUart = ((UARTPin & (1 << UARTVcc)) > 0);
 	if(isActiveUart) {
-		uart.enable();			
+		uart.enable();		
 		usartHelpers::MainMenu();
 		uart.cls();
 		uart.write((char*)"Setup per UART is inactive and Port multiplier is running .....\0");		
