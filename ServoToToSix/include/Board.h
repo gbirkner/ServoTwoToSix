@@ -66,7 +66,7 @@
 #define PwmOn12Pin				PORTC0
 #define PwmOn34Pin				PORTC1
 #define PwmOn56Pin				PORTC2
-#define PwmON1To6Pins			0b00000111	// alle Pwm On Pins together
+#define PwmON1To6Pins			0b00000111	// all Pwm On Pins together
 #define PWMRunning				5
 #define ServoToChange			4
 
@@ -89,6 +89,13 @@ enum class ServoType {
 	digital300 = 300
 };
 
+enum class ServoStatus {
+	inActive,
+	SigSwitchMeassure,	// is Switch Position meassurement active
+	setNewValues,		// are the new Values different and therefor to change
+	PWMSynchronizing,	// next Sig PCINT up: a PWM start is required
+	PWMActive			// is PWM active
+};
 
 #endif
 

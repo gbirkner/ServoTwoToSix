@@ -10,10 +10,6 @@
 #define MYISRS_H_
 
 
-//#ifdef __cplusplus
-	//extern "C" {
-//#endif
-
 /**
  * \brief
  *  Switch position Interrupt
@@ -29,26 +25,23 @@ ISR(SwitchSenseInterrupt) {
 	if(SigInSwitchInput & (1 << SigInSwitchPin)) {
 		PORTB |= (1 << PORTB0);	//DEBUG
 		TCNT0 = 0;
-		Servo2To6::SigSwitchMeassure = true;
+		Servo2To6::Status = ServoStatus::SigSwitchMeassure;
 		Servo2To6::SwitchTimer(true);
 	} else {
 		PORTB &= ~(1 << PORTB0);	//DEBUG
-		if (Servo2To6::SigSwitchMeassure) {			
-			Servo2To6::SigSwitchMeassure = false;
+		if (Servo2To6::Status == ServoStatus::SigSwitchMeassure) {			
 			Servo2To6::NewSwitchPosition = Servo2To6::getPosition(cValue);
 			if (Servo2To6::NewSwitchPosition != Servo2To6::SwitchPosition) {
 				Servo2To6::SwitchSenseISR(false);
 				Servo2To6::DTZValue = 0;
-				Servo2To6::setNewValues = true;
+				Servo2To6::Status = ServoStatus::setNewValues;
 				Servo2To6::SigInServo1ISR(true);
 			} else {
-				Servo2To6::setNewValues = false;				
+				Servo2To6::Status = ServoStatus::inActive;				
 			} // if (Servo2To6::NewSwitchPosition != Servo2To6::SwitchPosition)
 		} // if (Servo2To6::SigSwitchMeassure)
 	} // if(SigInSwitchInput & (1 << SigInSwitchPin))
 }
-
-
 
 
 /**
@@ -60,22 +53,20 @@ ISR(SigInServo1Interrupt) {
 	
 	if(SigInInput & (1 << SigInServo1Pin)) {
 		
-		if(Servo2To6::setNewValues) {
+		if(Servo2To6::Status == ServoStatus::setNewValues) {
 			PORTD ^= (1 << PORTD7); //DEBUG
 			TCNT2 = 0;
-			Servo2To6::setNewValues=false;
 			Servo2To6::ThreeMsCounter(true);
 			Servo2To6::SigInServo1ISR(false);
-		} else if (Servo2To6::PWMSynchronizing) {
-			Servo2To6::PWMActive = true;
-			Servo2To6::PWMSynchronizing = false;
+		} else if (Servo2To6::Status == ServoStatus::PWMSynchronizing) {
+			Servo2To6::Status = ServoStatus::PWMActive;
 			Servo2To6::PWMTimer(true);
-		} else if (Servo2To6::PWMActive) {
+		} else if (Servo2To6::Status == ServoStatus::PWMActive) {
 			Servo2To6::DTZValue++;
 			if (Servo2To6::DTZValue >= Servo2To6::DelayValue) {
 				Servo2To6::PWMTimer(false);
 				PwmOnPort &= PwmON1To6Pins;
-				Servo2To6::PWMActive = false;
+				Servo2To6::Status = ServoStatus::inActive;
 			}
 			TCNT0 = 0;
 			Servo2To6::SwitchTimer(true);	
@@ -93,8 +84,8 @@ ISR(ThreeMsCountInterrupt) {
 	PORTC ^= (1 << PORTC5);
 	Servo2To6::setNewPositions();
 	Servo2To6::ThreeMsCounter(false);
-	if (Servo2To6::PWMActive == false) {
-		Servo2To6::PWMSynchronizing = true;
+	if (Servo2To6::Status != ServoStatus::PWMActive) {
+		Servo2To6::Status = ServoStatus::PWMSynchronizing;
 	}
 	Servo2To6::SigInServo1ISR(true);
 }

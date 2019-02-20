@@ -9,11 +9,8 @@
 #include <Servo2To6.h>
 
 	uint8_t	Servo2To6::DelayValue = 50;				// times the Sig1 PCINT ISR counts for the delay of the servo
-	bool	Servo2To6::SigSwitchMeassure = false;	// is Switch Position meassurement active
-	bool	Servo2To6::setNewValues = false;		// are the new Values different and therefor to change
-	bool	Servo2To6::PWMSynchronizing = false;	// next Sig PCINT up: a PWM start is required
-	bool	Servo2To6::PWMActive = false;			// is PWM active
 	uint8_t	Servo2To6::SwitchPosition = 0;			// current SwitchPosition to compare with new meassure
+	ServoStatus Servo2To6::Status = ServoStatus::inActive;
 	uint8_t	Servo2To6::NewSwitchPosition =  0;		// next SwitchPosition to assign
 	uint8_t	Servo2To6::DTZValue = 0;				// current Counter Value for DTZ (reaching DelayValue)
 	ServoType	Servo2To6::_servoType = ServoType::analog;	// ServoType to calculate the ICR value of PWM timer
@@ -39,8 +36,9 @@
   * \return 
   *		no return value
   */
- void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange) {
+ void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay) {
 	_servoType = servotype;
+	Status = ServoStatus::inActive;
 	if (zeroing < -90) 
 		zeroing = -90;
 	else if (zeroing > 90)
@@ -48,11 +46,22 @@
 	_MidAngle = 3000 + (20 * zeroing);
 	_MinAngle = _MidAngle - (20 * (anglerange/2));
 	_MaxAngle = _MidAngle + (20 * (anglerange/2));
-	DelayValue = 50;			// at 50Hz = 50 is one second delay
-	SigSwitchMeassure = false;
-	setNewValues = false;
-	PWMSynchronizing = false;
-	PWMActive = false;
+	
+	switch(_servoType) {
+		case(ServoType::analog):
+			DelayValue = (uint16_t)(pwmdelay / 20);
+			break;
+		case ServoType::digital100:
+			DelayValue = (uint16_t)(pwmdelay / 10);
+			break;
+		case ServoType::digital200:
+			DelayValue = (uint16_t)(pwmdelay / 5);
+			break;
+		case ServoType::digital300:
+			DelayValue = (uint16_t)(pwmdelay / 3);
+			break;
+	} // switch
+	DelayValue = pwmdelay;			// at 50Hz = 50 is one second delay
 	_MinDecision = 78; //(uint8_t)((23.4375 - (0.15625 * ((float)anglerange/4.0))) + 0.5);
 	_MaxDecision = 137; //(uint8_t)((23.4375 + (0.15625 * ((float)anglerange/4.0))) + 0.5);
 
@@ -78,6 +87,16 @@
 
 
 
+/**
+ * \brief 
+ *  gets the current position as index 
+ *
+ * \param position
+ *  timer value for calculating the index
+ * 
+ * \return uint8_t
+ *  index 0..left, 1..middle, 2..right
+ */
 uint8_t Servo2To6::getPosition(uint8_t position) {
 	if (position <= _MinDecision) {
 		return 0;
@@ -88,6 +107,16 @@ uint8_t Servo2To6::getPosition(uint8_t position) {
 	}
 }
 
+
+/**
+ * \brief 
+ *  sets new position dependent on new and current position
+ *  sets and deletes the tristate input signals to guide the 
+ *  Servo Signals to the correct outputpair and the 
+ *  µController PWM to the last active outputpair
+ * 
+ * \return void
+ */
 void Servo2To6::setNewPositions() {
 
 	ServoOpenPort &= ~(SV1To6OpenPins);
@@ -119,7 +148,7 @@ void Servo2To6::setNewPositions() {
 			}
 			break;
 		case 2:
-			PwmOnPort &= ~(1 << PwmOn34Pin);
+			PwmOnPort &= ~(1 << PwmOn56Pin);
 			ServoOpenPort |= (1 << SV56OpenPin);
 			switch(SwitchPosition) {
 				case 0:
@@ -191,10 +220,12 @@ void Servo2To6::SwitchSenseISR(bool enable)
  */
 void Servo2To6::PWMTimer(bool start)
 {
+	PwmOnPort &= ~(PwmON1To6Pins);
 	if(start) {
 		TCCR1B |= (1 << CS11);
 	} else {
-		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));
+		TCCR1B &= ~((1 << CS12) | (1 << CS11) | ( 1 << CS10));	
+			
 	}
 }
 

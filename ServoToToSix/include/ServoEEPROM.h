@@ -22,26 +22,27 @@
 	 ServoType servoType;
 	 int8_t SNullStellung;
 	 uint8_t AngleRange;
-	 bool operator==(const EEPROM_initValues& other) const {		
-		if(SerialNr != other.SerialNr) return false;
-		if(author != other.author) return false;
-		if(company != other.company) return false;
-		if(version != other.company) return false;
-		if(servoType != other.servoType) return false;
-		if(SNullStellung != other.SNullStellung) return false;
-		if(AngleRange != other.AngleRange) return false;
-		return true;
-	 }
-	 bool operator!=(const EEPROM_initValues& other) const {
-		if(SerialNr != other.SerialNr) return true;
-		if(author != other.author) return true;
-		if(company != other.company) return true;
-		if(version != other.company) return true;
-		if(servoType != other.servoType) return true;
-		if(SNullStellung != other.SNullStellung) return true;
-		if(AngleRange != other.AngleRange) return true;
-		return false;
-	}
+	 uint16_t PWMDelay;
+	 //bool operator==(const EEPROM_initValues& other) const {		
+		//if(SerialNr != other.SerialNr) return false;
+		//if(author != other.author) return false;
+		//if(company != other.company) return false;
+		//if(version != other.company) return false;
+		//if(servoType != other.servoType) return false;
+		//if(SNullStellung != other.SNullStellung) return false;
+		//if(AngleRange != other.AngleRange) return false;
+		//return true;
+	 //}
+	 //bool operator!=(const EEPROM_initValues& other) const {
+		//if(SerialNr != other.SerialNr) return true;
+		//if(author != other.author) return true;
+		//if(company != other.company) return true;
+		//if(version != other.company) return true;
+		//if(servoType != other.servoType) return true;
+		//if(SNullStellung != other.SNullStellung) return true;
+		//if(AngleRange != other.AngleRange) return true;
+		//return false;
+	//}
 };
  
 
@@ -49,9 +50,7 @@ class ServoEEPROM
 {
 //variables
 public:
-protected:
-private:
-	EEPROM_initValues m_initValues;
+	EEPROM_initValues eepromValues;
 
 //functions
 public:
@@ -64,6 +63,7 @@ public:
 	void setServoType(ServoType st, bool write = false);
 	void setNullStellung(int8_t ns, bool write = false);
 	void setAngleRange(uint8_t ar, bool write = false);
+	void setPWMDelay(uint16_t del, bool write = false);
 	ServoEEPROM();
 	~ServoEEPROM();
 protected:

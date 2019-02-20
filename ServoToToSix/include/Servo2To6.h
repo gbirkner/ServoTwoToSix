@@ -3,6 +3,7 @@
 *
 * Created: 12.04.2017 17:19:27
 * Author: gert
+* Description: 
 */
 
 
@@ -11,16 +12,17 @@
 
 #include <General.h>
 
-
+/**
+ * \brief 
+ *  class to manage the servo signal signals
+ *
+*/
 class Servo2To6
 {
 //variables
 public:
 	static uint8_t		DelayValue;			// times the Sig1 PCINT ISR counts for the delay of the servo
-	static bool			SigSwitchMeassure;	// is Switch Position meassurement active
-	static bool			setNewValues;		// are the new Values different and therefor to change
-	static bool			PWMSynchronizing;	// next Sig PCINT up: a PWM start is required 
-	static bool			PWMActive;			// is PWM active
+	static ServoStatus	Status;				// Flags for the status the servo is in
 	static uint8_t		SwitchPosition;		// current SwitchPosition to compare with new meassure
 	static uint8_t		NewSwitchPosition;	// next SwitchPosition to assign
 	static uint8_t		DTZValue;			// current Counter Value for DTZ (reaching DelayValue)
@@ -36,7 +38,7 @@ private:
 //functions
 public:
 	// ------- ISR Inlines -----------------
-	static void init(ServoType servotype, int8_t zeroing, uint8_t anglerange);
+	static void init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay);
 	static uint8_t getPosition(uint8_t position);
 	static void setNewPositions();
 	static void SigInServo1ISR(bool enable);

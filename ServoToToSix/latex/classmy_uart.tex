@@ -1,0 +1,311 @@
+\hypertarget{classmy_uart}{}\section{my\+Uart Class Reference}
+\label{classmy_uart}\index{my\+Uart@{my\+Uart}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmy_uart_a1f58c3b9bd581805e64120e1c03a83af}{my\+Uart} ()
+\begin{DoxyCompactList}\small\item\em default constructor inits the U\+A\+R\+T0 Interface -\/$>$ Baud, 8 Databits, 1 stop, no parity \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_ab6a6bcf4fe99fb9e4dc5e69f57600488}{enable} ()
+\begin{DoxyCompactList}\small\item\em enables U\+A\+R\+T0 recieve and transmit modes \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a45e1a479b7775961d452e4000f599769}{disable} ()
+\begin{DoxyCompactList}\small\item\em disables recieve and transmitt for U\+A\+R\+T0 \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_adf132d7000ec0061040552a91097e065}{write} (unsigned char c, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em write single u char when U\+A\+R\+T0 is ready to use \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a1427c57d57b93ea2e34679e9080051a9}{write} (char $\ast$s, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em send string as char array (call every single char from array char array must be \textquotesingle{}\textbackslash{}0\textquotesingle{} terminated \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a0807f0ccd0457eb6965513fed7a8c699}{write} (uint16\+\_\+t i, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert uint16\+\_\+t to char array and call write for char arrays \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a49fd7a42b8cebe109f82c13f56f70b86}{write} (int16\+\_\+t i, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert int16\+\_\+t to char array and call write for char arrays, incl. algebraic sign \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a5acb02c4fd6606432a35afd9c94e0d7e}{write} (uint32\+\_\+t i, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert uint32\+\_\+t to char array and call write for char arrays \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a9d3c87876b26d17b23b1fc5aac850991}{write} (int32\+\_\+t i, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert int32\+\_\+t to char array and call write for char arrays incl algebraic sign \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a9b3b568689c37bf0320d2613bfc5f160}{write} (float f, uint8\+\_\+t precision=2, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert float to char array and call write for char arrays incl. algebraic sign \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a7b78410a05298bd168d02e95edd281c7}{write} (double d, uint8\+\_\+t precision=2, bool linefeed=false)
+\begin{DoxyCompactList}\small\item\em convert double to char array and call write for char arrays incl. algebraic sign \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a616b3ffa4c6e27ffadeefdd40b08d19f}{cls} ()
+\begin{DoxyCompactList}\small\item\em send clear screen command for V\+T100 Terminal with Escape sequences \end{DoxyCompactList}\item 
+void \hyperlink{classmy_uart_a08971c41f424a701504cec9e2751aa49}{Lf\+Cr} ()
+\begin{DoxyCompactList}\small\item\em send CR and LF sequence for V\+T100 Terminal to display proper Linefeed \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classmy_uart_a29fd0034f6c7cd8612614dd85cc6f48d}{read} (unsigned char $\ast$x, uint8\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em reads chars from U\+A\+R\+T0 into an array until ~\newline
+ or  is hit or size -\/1 is reached and sets an final \textbackslash{}0 \end{DoxyCompactList}\item 
+unsigned char \hyperlink{classmy_uart_a65ccd1b10b9b11617a39890265052338}{read} ()
+\begin{DoxyCompactList}\small\item\em reads a single char from U\+A\+RT \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmy_uart_a1f58c3b9bd581805e64120e1c03a83af}\label{classmy_uart_a1f58c3b9bd581805e64120e1c03a83af}} 
+\index{my\+Uart@{my\+Uart}!my\+Uart@{my\+Uart}}
+\index{my\+Uart@{my\+Uart}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{my\+Uart()}{myUart()}}
+{\footnotesize\ttfamily my\+Uart\+::my\+Uart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+default constructor inits the U\+A\+R\+T0 Interface -\/$>$ Baud, 8 Databits, 1 stop, no parity 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmy_uart_a616b3ffa4c6e27ffadeefdd40b08d19f}\label{classmy_uart_a616b3ffa4c6e27ffadeefdd40b08d19f}} 
+\index{my\+Uart@{my\+Uart}!cls@{cls}}
+\index{cls@{cls}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{cls()}{cls()}}
+{\footnotesize\ttfamily void my\+Uart\+::cls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+send clear screen command for V\+T100 Terminal with Escape sequences 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a45e1a479b7775961d452e4000f599769}\label{classmy_uart_a45e1a479b7775961d452e4000f599769}} 
+\index{my\+Uart@{my\+Uart}!disable@{disable}}
+\index{disable@{disable}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{disable()}{disable()}}
+{\footnotesize\ttfamily void my\+Uart\+::disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+disables recieve and transmitt for U\+A\+R\+T0 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_ab6a6bcf4fe99fb9e4dc5e69f57600488}\label{classmy_uart_ab6a6bcf4fe99fb9e4dc5e69f57600488}} 
+\index{my\+Uart@{my\+Uart}!enable@{enable}}
+\index{enable@{enable}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{enable()}{enable()}}
+{\footnotesize\ttfamily void my\+Uart\+::enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+enables U\+A\+R\+T0 recieve and transmit modes 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a08971c41f424a701504cec9e2751aa49}\label{classmy_uart_a08971c41f424a701504cec9e2751aa49}} 
+\index{my\+Uart@{my\+Uart}!Lf\+Cr@{Lf\+Cr}}
+\index{Lf\+Cr@{Lf\+Cr}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{Lf\+Cr()}{LfCr()}}
+{\footnotesize\ttfamily void my\+Uart\+::\+Lf\+Cr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+send CR and LF sequence for V\+T100 Terminal to display proper Linefeed 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a29fd0034f6c7cd8612614dd85cc6f48d}\label{classmy_uart_a29fd0034f6c7cd8612614dd85cc6f48d}} 
+\index{my\+Uart@{my\+Uart}!read@{read}}
+\index{read@{read}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t my\+Uart\+::read (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{x,  }\item[{uint8\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+reads chars from U\+A\+R\+T0 into an array until ~\newline
+ or  is hit or size -\/1 is reached and sets an final \textbackslash{}0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & char array \\
+\hline
+{\em size} & max. number of chars\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t number of read chars without \textbackslash{}0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a65ccd1b10b9b11617a39890265052338}\label{classmy_uart_a65ccd1b10b9b11617a39890265052338}} 
+\index{my\+Uart@{my\+Uart}!read@{read}}
+\index{read@{read}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily unsigned char my\+Uart\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+reads a single char from U\+A\+RT 
+
+\begin{DoxyReturn}{Returns}
+unsigned char 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_adf132d7000ec0061040552a91097e065}\label{classmy_uart_adf132d7000ec0061040552a91097e065}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{unsigned char}]{c,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+write single u char when U\+A\+R\+T0 is ready to use 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & char or uint8\+\_\+t (A\+S\+C\+II) to send \\
+\hline
+{\em linefeed} & if true ... send CR and LF default value = false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a1427c57d57b93ea2e34679e9080051a9}\label{classmy_uart_a1427c57d57b93ea2e34679e9080051a9}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{char $\ast$}]{s,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+send string as char array (call every single char from array char array must be \textquotesingle{}\textbackslash{}0\textquotesingle{} terminated 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & char array \textquotesingle{}\textbackslash{}0\textquotesingle{} terminated \\
+\hline
+{\em linefeed} & if true .. send CR and LF default value = false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a0807f0ccd0457eb6965513fed7a8c699}\label{classmy_uart_a0807f0ccd0457eb6965513fed7a8c699}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{i,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert uint16\+\_\+t to char array and call write for char arrays 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & integer to send \\
+\hline
+{\em linefeed} & is handed over to write for char arrays default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a49fd7a42b8cebe109f82c13f56f70b86}\label{classmy_uart_a49fd7a42b8cebe109f82c13f56f70b86}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{i,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert int16\+\_\+t to char array and call write for char arrays, incl. algebraic sign 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & integer to send \\
+\hline
+{\em linefeed} & is handed over to write for char arrays; default value = false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a5acb02c4fd6606432a35afd9c94e0d7e}\label{classmy_uart_a5acb02c4fd6606432a35afd9c94e0d7e}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{i,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert uint32\+\_\+t to char array and call write for char arrays 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & integer to send \\
+\hline
+{\em linefeed} & is handed over to write for char arrays default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a9d3c87876b26d17b23b1fc5aac850991}\label{classmy_uart_a9d3c87876b26d17b23b1fc5aac850991}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{i,  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert int32\+\_\+t to char array and call write for char arrays incl algebraic sign 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & integer to send \\
+\hline
+{\em linefeed} & is handed over to write for char arrays default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a9b3b568689c37bf0320d2613bfc5f160}\label{classmy_uart_a9b3b568689c37bf0320d2613bfc5f160}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{float}]{f,  }\item[{uint8\+\_\+t}]{precision = {\ttfamily 2},  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert float to char array and call write for char arrays incl. algebraic sign 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & float value to send \\
+\hline
+{\em precision} & number of decimal places to enclose in array -\/$>$ and send \\
+\hline
+{\em linefeed} & is handed over to write for char arrays default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmy_uart_a7b78410a05298bd168d02e95edd281c7}\label{classmy_uart_a7b78410a05298bd168d02e95edd281c7}} 
+\index{my\+Uart@{my\+Uart}!write@{write}}
+\index{write@{write}!my\+Uart@{my\+Uart}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily void my\+Uart\+::write (\begin{DoxyParamCaption}\item[{double}]{d,  }\item[{uint8\+\_\+t}]{precision = {\ttfamily 2},  }\item[{bool}]{linefeed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+convert double to char array and call write for char arrays incl. algebraic sign 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & float value to send \\
+\hline
+{\em precision} & number of decimal places to enclose in array -\/$>$ and send default value is 2 digits \\
+\hline
+{\em linefeed} & is handed over to write for char arrays default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/my\+Uart.\+h\item 
+src/my\+Uart.\+cpp\end{DoxyCompactItemize}
