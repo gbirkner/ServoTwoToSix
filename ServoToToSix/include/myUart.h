@@ -42,7 +42,7 @@ class myUart {
 public:
 	
 private:
-	const uint16_t UBRR_VAL = (((F_CPU+BAUD_RATE*8)/(BAUD_RATE*16))-1); // 51 for Baudrate 19200 und f_cpu = 16MHz
+	const uint16_t UBRR_VAL = 51;//(((F_CPU+BAUD_RATE*8)/(BAUD_RATE*16))-1); // 51 for Baudrate 19200 und f_cpu = 16MHz
 
 //functions
 public:

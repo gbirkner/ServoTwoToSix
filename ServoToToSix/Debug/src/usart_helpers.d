@@ -1,6 +1,5 @@
 src/usart_helpers.d src/usart_helpers.o: ../src/usart_helpers.cpp \
- ../include/usart_helpers.h ../include/Servo2To6.h ../General.h \
- ../include/Board.h \
+ ../include/usart_helpers.h ../General.h ../include/Board.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -16,12 +15,10 @@ src/usart_helpers.d src/usart_helpers.o: ../src/usart_helpers.cpp \
  ../include/driver.h ../include/myUart.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
- ../include/ServoEEPROM.h \
+ ../include/Servo2To6.h ../include/ServoEEPROM.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\eeprom.h
 
 ../include/usart_helpers.h:
-
-../include/Servo2To6.h:
 
 ../General.h:
 
@@ -58,6 +55,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
+
+../include/Servo2To6.h:
 
 ../include/ServoEEPROM.h:
 

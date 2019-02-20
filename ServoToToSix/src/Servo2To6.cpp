@@ -9,11 +9,8 @@
 #include <Servo2To6.h>
 
 	uint8_t	Servo2To6::DelayValue = 50;				// times the Sig1 PCINT ISR counts for the delay of the servo
-	bool	Servo2To6::SigSwitchMeassure = false;	// is Switch Position meassurement active
-	bool	Servo2To6::setNewValues = false;		// are the new Values different and therefor to change
-	bool	Servo2To6::PWMSynchronizing = false;	// next Sig PCINT up: a PWM start is required
-	bool	Servo2To6::PWMActive = false;			// is PWM active
 	uint8_t	Servo2To6::SwitchPosition = 0;			// current SwitchPosition to compare with new meassure
+	ServoStatus Servo2To6::Status = ServoStatus::inActive;
 	uint8_t	Servo2To6::NewSwitchPosition =  0;		// next SwitchPosition to assign
 	uint8_t	Servo2To6::DTZValue = 0;				// current Counter Value for DTZ (reaching DelayValue)
 	ServoType	Servo2To6::_servoType = ServoType::analog;	// ServoType to calculate the ICR value of PWM timer
@@ -41,6 +38,7 @@
   */
  void Servo2To6::init(ServoType servotype, int8_t zeroing, uint8_t anglerange, uint16_t pwmdelay) {
 	_servoType = servotype;
+	Status = ServoStatus::inActive;
 	if (zeroing < -90) 
 		zeroing = -90;
 	else if (zeroing > 90)
@@ -64,10 +62,6 @@
 			break;
 	} // switch
 	DelayValue = pwmdelay;			// at 50Hz = 50 is one second delay
-	SigSwitchMeassure = false;
-	setNewValues = false;
-	PWMSynchronizing = false;
-	PWMActive = false;
 	_MinDecision = 78; //(uint8_t)((23.4375 - (0.15625 * ((float)anglerange/4.0))) + 0.5);
 	_MaxDecision = 137; //(uint8_t)((23.4375 + (0.15625 * ((float)anglerange/4.0))) + 0.5);
 

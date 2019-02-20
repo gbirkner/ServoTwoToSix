@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-#define F_CPU		12000000UL			// Controller clock frequency
+#define F_CPU		16000000UL			// Controller clock frequency
 #define F_Servo	           50			// Servo PWM frequency
 #define N_Servo			    8			// Prescaler Servo
 #define ServoMinTime	  600			// µs 0° Stellung des Servos (1200)
@@ -23,11 +23,11 @@
 #define SwitchInPort	PORTD
 #define SwitchInDir		DDRD
 #define SwitchInPins	PIND
-#define SwitchInUpPin	PD0
-#define SwitchInDownPin	PD1
-#define SwitchInUpLED	PD2
-#define SwitchInMidLED	PD3
-#define SwitchInLowLED	PD4
+#define SwitchInUpPin	PORTD0	
+#define SwitchInDownPin	PORTD1
+#define SwitchInUpLED	PORTD2
+#define SwitchInMidLED	PORTD3
+#define SwitchInLowLED	PORTD4
 
 volatile uint16_t SwitchPos[3];			// act. OCR1n values for servo duty cycle
 volatile uint8_t  SwitchIdx = 0;		// act. SwitchPos array index 
@@ -36,7 +36,7 @@ volatile uint16_t SwitchCount = 0;		// Delaycounter for SwitchServo to switch to
 int main(void)
 {
 	// PWM Ports as output
-	DDRB |= (1 << PB1) | (1 << PB2);
+	DDRB |= (1 << PORTB1) | (1 << PORTB2);
 
 	//Pinconfig
 	SwitchInDir |= (1 << SwitchInUpLED) | (1 << SwitchInMidLED) | (1 << SwitchInLowLED);	// ouptut for LEDs
@@ -59,7 +59,8 @@ int main(void)
 
 	servoSwitch = SwitchPos[0];				// Switchservo to default (0°)
 	SwitchIdx = 0;
-	servo1 = 1200;							// Servo 1 to default (90°)
+	servo1 = SwitchPos[1];							// Servo 1 to default (90°)
+	servo2 = SwitchPos[1];
 	SwitchCount = 0; 
 	TCCR0B |= (1 << CS02) | (1 << CS00);
 	TCCR1B |= (1 << CS11);					//set prescaler N = 8 for 16MHz and start Timer 1
@@ -69,22 +70,22 @@ int main(void)
 }
 
 ISR(TIMER0_OVF_vect) {
-	uint8_t newPosition = (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
-	if((newPosition == SwitchIdx) && (SwitchCount < SwitchDelay)) {
+	uint8_t newPosition = (0b00000011) & (SwitchInPins & ((1 << SwitchInUpPin) | (1 << SwitchInDownPin)));
+	if((SwitchCount < SwitchDelay)) {
 		SwitchCount++;
 	} else {
 		switch (newPosition) {
 			case 1:
 				SwitchCount = 0;
-				if (SwitchIdx < 2) {
-					SwitchIdx++;
+				if (SwitchIdx > 0) {
+					SwitchIdx--;
 					servoSwitch = SwitchPos[SwitchIdx];
 				}
 				break;
 			case 2:
 				SwitchCount = 0;
-				if (SwitchIdx > 0) {
-					SwitchIdx--;
+				if (SwitchIdx < 2) {
+					SwitchIdx++;
 					servoSwitch = SwitchPos[SwitchIdx];
 				}
 				break;

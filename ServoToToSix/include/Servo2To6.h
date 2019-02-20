@@ -22,10 +22,7 @@ class Servo2To6
 //variables
 public:
 	static uint8_t		DelayValue;			// times the Sig1 PCINT ISR counts for the delay of the servo
-	static bool			SigSwitchMeassure;	// is Switch Position meassurement active
-	static bool			setNewValues;		// are the new Values different and therefor to change
-	static bool			PWMSynchronizing;	// next Sig PCINT up: a PWM start is required 
-	static bool			PWMActive;			// is PWM active
+	static ServoStatus	Status;				// Flags for the status the servo is in
 	static uint8_t		SwitchPosition;		// current SwitchPosition to compare with new meassure
 	static uint8_t		NewSwitchPosition;	// next SwitchPosition to assign
 	static uint8_t		DTZValue;			// current Counter Value for DTZ (reaching DelayValue)

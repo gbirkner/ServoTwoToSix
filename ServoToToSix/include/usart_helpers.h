@@ -10,7 +10,7 @@
 #define USART_HELPERS_H_
 
 
-
+#include <General.h>
 
 namespace usartHelpers {
 
@@ -19,7 +19,7 @@ namespace usartHelpers {
 	void ChangeNullstellung();
 	void ChangeAngleRange();
 	void ChangePWMDelay();
-
+	void ServoTypeMenu(ServoType st);
 }
 
 

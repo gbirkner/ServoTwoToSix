@@ -9,8 +9,15 @@
 #define	true	1
 #define	false	0
 
-#define F_CPU	16000000UL
-#define BAUD_RATE 19200UL
+#define F_CPU		16000000UL
+#define BAUD_RATE	19200UL
+
+#define Servo12		0
+#define Servo34		1
+#define Servo56		2
+
+#define SwitchZero		93.75f // (F_CPU / N (256) / 1000ms) * 1.5
+#define SwitchDegree	0.625f // (F_CPU / N / 10000000 (µs)) * ((2400µs - 600µs)/180°)
 
 //////////////////////////////////////////////////////////////////////////
 //                   EEPROM Settings                                    //
@@ -60,6 +67,7 @@
 #define PWMOutDir				DDRB
 #define PWMOut1Pin				PORTB1		// standard PWM output Pin
 #define PWMOUT2Pin				PORTB2		// actually not needed
+#define PWMOutCompAInterrupt	TIMER1_COMPA_vect	// Timer 1 compA isr
 
 #define PwmOnPort				PORTC		// to get the PWM Input signals12 to the correct servo-pair
 #define PwmOnDir				DDRC
@@ -78,7 +86,7 @@
 #define SV1To6OpenPins			0b00111000	// alle ServoOpenPins together
 
 #define SwitchSenseInterrupt	INT0_vect			// INT0 Interrupt falling and rising edge to meassure the switch position
-								
+#define SwitchTimerOVF			TIMER0_OVF_vect		// Switch Timer Overvlow ISR to cancel meassurement (its too long)							
 #define ThreeMsCountInterrupt	TIMER2_COMPA_vect	// set all tristates when no signal is high (Servo1, Servo2, PWM)
 
 

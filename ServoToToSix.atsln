@@ -7,6 +7,8 @@ Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ServoToToSix", "ServoToToSi
 EndProject
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ServoTestUnit", "ServoTestUnit\ServoTestUnit.cppproj", "{72F75856-666B-4C3E-B0B0-378B9CC0874F}"
 EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "PWMToOutput", "PWMToOutput\PWMToOutput.cppproj", "{83FFEA3A-8BD4-4396-9F68-7EB8C3E5DB80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -21,6 +23,10 @@ Global
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Debug|AVR.Build.0 = Debug|AVR
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Release|AVR.ActiveCfg = Release|AVR
 		{72F75856-666B-4C3E-B0B0-378B9CC0874F}.Release|AVR.Build.0 = Release|AVR
+		{83FFEA3A-8BD4-4396-9F68-7EB8C3E5DB80}.Debug|AVR.ActiveCfg = Debug|AVR
+		{83FFEA3A-8BD4-4396-9F68-7EB8C3E5DB80}.Debug|AVR.Build.0 = Debug|AVR
+		{83FFEA3A-8BD4-4396-9F68-7EB8C3E5DB80}.Release|AVR.ActiveCfg = Release|AVR
+		{83FFEA3A-8BD4-4396-9F68-7EB8C3E5DB80}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
